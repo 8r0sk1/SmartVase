@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_nav"
+    app:startDestination="@id/homepage_fragment">
+
+    <fragment
+        android:id="@+id/homepage_fragment"
+        android:name="it.polito.did.smartvase.ui.main.Homepage"
+        android:label="homepage_fragment"
+        tools:layout="@layout/homepage_fragment" >
+        <action
+            android:id="@+id/action_homepage_fragment_to_addPlant"
+            app:destination="@id/addPlant" />
+    </fragment>
+    <fragment
+        android:id="@+id/addPlant"
+        android:name="it.polito.did.smartvase.ui.main.AddPlant"
+        android:label="addplant_fragment"
+        tools:layout="@layout/addplant_fragment" >
+        <action
+            android:id="@+id/action_addPlant_to_homepage_fragment"
+            app:destination="@id/homepage_fragment" />
+    </fragment>
+</navigation>
