@@ -8,10 +8,9 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import it.polito.did.smartvase.R
 
-class AddPlant : Fragment() {
+class PlantSetup : Fragment() {
 
     companion object {
         fun newInstance() = Homepage()
@@ -23,7 +22,7 @@ class AddPlant : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        return inflater.inflate(R.layout.addplant_fragment, container, false)
+        return inflater.inflate(R.layout.plantsetup_fragment, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

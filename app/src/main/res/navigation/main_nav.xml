@@ -16,9 +16,9 @@
     </fragment>
     <fragment
         android:id="@+id/addPlant"
-        android:name="it.polito.did.smartvase.ui.main.AddPlant"
+        android:name="it.polito.did.smartvase.ui.main.PlantSetup"
         android:label="addplant_fragment"
-        tools:layout="@layout/addplant_fragment" >
+        tools:layout="@layout/plantsetup_fragment" >
         <action
             android:id="@+id/action_addPlant_to_homepage_fragment"
             app:destination="@id/homepage_fragment" />
