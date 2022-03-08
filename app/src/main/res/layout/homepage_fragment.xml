@@ -7,6 +7,14 @@
     android:layout_height="match_parent"
     tools:context=".ui.main.Homepage">
 
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/sfondo"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp" />
+
     <TextView
         android:id="@+id/message"
         android:layout_width="wrap_content"
@@ -17,6 +25,18 @@
         android:textColor="#00915C"
         app:layout_constraintStart_toStartOf="@+id/guideline_left"
         app:layout_constraintTop_toTopOf="@+id/guideline_top" />
+
+
+    <ImageButton
+        android:id="@+id/imageButton3"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:backgroundTint="#00FFFFFF"
+        android:scaleType="centerInside"
+        android:src="@drawable/utente"
+        app:layout_constraintBottom_toBottomOf="@+id/message"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_right"
+        app:layout_constraintTop_toTopOf="@+id/message" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_top"
@@ -68,6 +88,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
         android:clickable="true"
+        android:elevation="2dp"
         android:foregroundTint="#FFFFFF"
         android:src="@android:drawable/ic_menu_add"
         app:backgroundTint="#00C081"
@@ -80,17 +101,18 @@
         android:layout_height="120dp"
         android:layout_marginTop="32dp"
         android:visibility="visible"
-        app:cardElevation="50dp"
         app:cardBackgroundColor="#00C081"
         app:cardCornerRadius="15dp"
+        app:cardElevation="5dp"
         app:layout_constraintEnd_toStartOf="@+id/guideline_right"
         app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="@+id/guideline_left"
-        app:layout_constraintTop_toBottomOf="@+id/textView" >
+        app:layout_constraintTop_toBottomOf="@+id/textView">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:elevation="2dp">
 
             <Switch
                 android:id="@+id/switch1"
@@ -133,15 +155,8 @@
 
     </androidx.cardview.widget.CardView>
 
-    <ImageButton
-        android:id="@+id/imageButton3"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:backgroundTint="#00FFFFFF"
-        android:scaleType="centerInside"
-        android:src="@drawable/utente"
-        app:layout_constraintBottom_toBottomOf="@+id/message"
-        app:layout_constraintEnd_toStartOf="@+id/guideline_right"
-        app:layout_constraintTop_toTopOf="@+id/message" />
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
