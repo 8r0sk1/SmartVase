@@ -75,16 +75,6 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline_right"
         app:layout_constraintStart_toStartOf="@+id/guideline_left" />
 
-    <ImageButton
-        android:id="@+id/imageButton"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:foreground="@drawable/utente"
-        android:src="@drawable/utente"
-        app:layout_constraintBottom_toBottomOf="@+id/message"
-        app:layout_constraintEnd_toStartOf="@+id/guideline_right"
-        app:layout_constraintTop_toTopOf="@+id/message" />
-
     <androidx.cardview.widget.CardView
         android:layout_width="320dp"
         android:layout_height="120dp"
@@ -142,5 +132,16 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>
+
+    <ImageButton
+        android:id="@+id/imageButton3"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:backgroundTint="#00FFFFFF"
+        android:scaleType="centerInside"
+        android:src="@drawable/utente"
+        app:layout_constraintBottom_toBottomOf="@+id/message"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_right"
+        app:layout_constraintTop_toTopOf="@+id/message" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
