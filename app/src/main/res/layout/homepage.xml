@@ -8,7 +8,7 @@
     tools:context=".ui.main.Homepage">
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/backgroundImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/sfondo"
@@ -16,7 +16,7 @@
         tools:layout_editor_absoluteY="0dp" />
 
     <TextView
-        android:id="@+id/message"
+        android:id="@+id/SmartVaseText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-black"
@@ -28,15 +28,15 @@
 
 
     <ImageButton
-        android:id="@+id/imageButton3"
+        android:id="@+id/profileButton"
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:backgroundTint="#00FFFFFF"
         android:scaleType="centerInside"
         android:src="@drawable/utente"
-        app:layout_constraintBottom_toBottomOf="@+id/message"
+        app:layout_constraintBottom_toBottomOf="@+id/SmartVaseText"
         app:layout_constraintEnd_toStartOf="@+id/guideline_right"
-        app:layout_constraintTop_toTopOf="@+id/message" />
+        app:layout_constraintTop_toTopOf="@+id/SmartVaseText" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_top"
@@ -71,7 +71,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/yourPlantText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
@@ -81,10 +81,10 @@
         android:textSize="34sp"
         app:layout_constraintEnd_toStartOf="@+id/guideline_right"
         app:layout_constraintStart_toStartOf="@+id/guideline_left"
-        app:layout_constraintTop_toBottomOf="@+id/message" />
+        app:layout_constraintTop_toBottomOf="@+id/SmartVaseText" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/add_plant_button"
+        android:id="@+id/addPlantButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
@@ -98,6 +98,7 @@
         app:layout_constraintStart_toStartOf="@+id/guideline_left" />
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cardPlant1"
         android:layout_width="320dp"
         android:layout_height="120dp"
         android:layout_marginTop="32dp"
@@ -108,7 +109,7 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline_right"
         app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="@+id/guideline_left"
-        app:layout_constraintTop_toBottomOf="@+id/textView">
+        app:layout_constraintTop_toBottomOf="@+id/yourPlantText">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -116,7 +117,7 @@
             android:elevation="2dp">
 
             <ImageView
-                android:id="@+id/imageView3"
+                android:id="@+id/cardWaterLevel"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginStart="8dp"
@@ -130,7 +131,7 @@
                 app:layout_constraintVertical_bias="1.0" />
 
             <Switch
-                android:id="@+id/switch1"
+                android:id="@+id/autoSwitch1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
@@ -143,7 +144,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
-                android:id="@+id/imageView"
+                android:id="@+id/cardPlantIcon1"
                 android:layout_width="90dp"
                 android:layout_height="90dp"
                 android:layout_marginStart="16dp"
@@ -153,7 +154,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/cardPlantName1"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:fontFamily="sans-serif-black"
@@ -163,9 +164,8 @@
                 android:textColor="#004F31"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/imageView"
+                app:layout_constraintStart_toEndOf="@+id/cardPlantIcon1"
                 tools:layout_editor_absoluteY="0dp" />
-
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

@@ -31,10 +31,10 @@ class Homepage : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val addPlant = view.findViewById<FloatingActionButton>(R.id.add_plant_button)
-        val settings = view.findViewById<ImageButton>(R.id.imageButton3)
-        val dashboard = view.findViewById<ImageView>(R.id.imageView) //per ora il tasto per aprire la dashboard è l'immagine pianta
-        val auto = view.findViewById<Switch>(R.id.switch1)
+        val addPlant = view.findViewById<FloatingActionButton>(R.id.addPlantButton)
+        val settings = view.findViewById<ImageButton>(R.id.profileButton)
+        val dashboard = view.findViewById<ImageView>(R.id.cardPlantIcon1) //per ora il tasto per aprire la dashboard è l'immagine pianta
+        val auto = view.findViewById<Switch>(R.id.autoSwitch1)
 
 
         addPlant.setOnClickListener { findNavController().navigate(R.id.action_homepage_to_plantSetup) }
