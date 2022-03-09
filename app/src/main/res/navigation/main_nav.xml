@@ -3,24 +3,52 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_nav"
-    app:startDestination="@id/homepage_fragment">
+    app:startDestination="@id/Homepage">
 
     <fragment
-        android:id="@+id/homepage_fragment"
+        android:id="@+id/Homepage"
         android:name="it.polito.did.smartvase.ui.main.Homepage"
         android:label="homepage_fragment"
-        tools:layout="@layout/homepage_fragment" >
+        tools:layout="@layout/homepage" >
         <action
-            android:id="@+id/action_homepage_fragment_to_addPlant"
-            app:destination="@id/addPlant" />
+            android:id="@+id/action_homepage_to_plantSetup"
+            app:destination="@id/PlantSetup" />
+        <action
+            android:id="@+id/action_homepage_to_settings"
+            app:destination="@id/Settings" />
+        <action
+            android:id="@+id/action_homepage_to_dashboard"
+            app:destination="@id/Dashboard" />
     </fragment>
+
     <fragment
-        android:id="@+id/addPlant"
+        android:id="@+id/PlantSetup"
         android:name="it.polito.did.smartvase.ui.main.PlantSetup"
-        android:label="addplant_fragment"
-        tools:layout="@layout/plantsetup_fragment" >
+        android:label="PlantSetup"
+        tools:layout="@layout/plant_setup" >
         <action
-            android:id="@+id/action_addPlant_to_homepage_fragment"
-            app:destination="@id/homepage_fragment" />
+            android:id="@+id/action_plantSetup_to_homepage"
+            app:destination="@id/Homepage" />
     </fragment>
+
+    <fragment
+        android:id="@+id/Settings"
+        android:name="it.polito.did.smartvase.ui.main.Settings"
+        android:label="Settings"
+        tools:layout="@layout/settings" >
+        <action
+            android:id="@+id/action_settings_to_homepage"
+            app:destination="@id/Settings" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/Dashboard"
+        android:name="it.polito.did.smartvase.ui.main.Dashboard"
+        android:label="Dashboard"
+        tools:layout="@layout/dashboard" >
+        <action
+            android:id="@+id/action_dashboard_to_homepage"
+            app:destination="@id/Settings" />
+    </fragment>
+
 </navigation>

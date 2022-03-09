@@ -10,7 +10,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import it.polito.did.smartvase.R
 
-class Dashboard : Fragment() {
+class Settings : Fragment() {
 
     companion object {
         fun newInstance() = Homepage()
