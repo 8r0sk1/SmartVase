@@ -10,39 +10,6 @@
     android:foregroundTintMode="add"
     tools:context=".ui.main.Homepage">
 
-
-
-    <ImageView
-        android:id="@+id/backgroundImage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/sfondo"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp" />
-
-    <TextView
-        android:id="@+id/SmartVaseText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="sans-serif-black"
-        android:text="@string/app_name"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display2"
-        android:textColor="#00915C"
-        app:layout_constraintStart_toStartOf="@+id/guideline_left"
-        app:layout_constraintTop_toTopOf="@+id/guideline_top" />
-
-
-    <ImageButton
-        android:id="@+id/profileButton"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:backgroundTint="#00FFFFFF"
-        android:scaleType="centerInside"
-        android:src="@drawable/utente"
-        app:layout_constraintBottom_toBottomOf="@+id/SmartVaseText"
-        app:layout_constraintEnd_toStartOf="@+id/guideline_right"
-        app:layout_constraintTop_toTopOf="@+id/SmartVaseText" />
-
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_top"
         android:layout_width="wrap_content"
@@ -75,6 +42,39 @@
         app:layout_constraintGuide_end="16dp"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <ImageView
+        android:id="@+id/backgroundImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/sfondo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/SmartVaseText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-black"
+        android:text="@string/app_name"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+        android:textColor="#00915C"
+        app:layout_constraintStart_toStartOf="@+id/guideline_left"
+        app:layout_constraintTop_toTopOf="@+id/guideline_top" />
+
+
+    <ImageButton
+        android:id="@+id/profileButton"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:backgroundTint="#00FFFFFF"
+        android:scaleType="centerInside"
+        android:src="@drawable/utente"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_right"
+        app:layout_constraintTop_toTopOf="@+id/guideline_top" />
+
     <TextView
         android:id="@+id/yourPlantText"
         android:layout_width="wrap_content"
@@ -100,7 +100,8 @@
         app:backgroundTint="#00C081"
         app:layout_constraintBottom_toTopOf="@+id/guideline_bottom"
         app:layout_constraintEnd_toStartOf="@+id/guideline_right"
-        app:layout_constraintStart_toStartOf="@+id/guideline_left" />
+        app:layout_constraintStart_toStartOf="@+id/guideline_left"
+        app:rippleColor="#EFEFEF" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/removePlantButton"
@@ -110,8 +111,8 @@
         android:clickable="true"
         android:elevation="2dp"
         android:foreground="@drawable/trashicon"
-        android:foregroundTint="#00512E"
-        android:visibility="invisible"
+        android:foregroundTint="#EFEFEF"
+        android:visibility="visible"
         app:backgroundTint="#00C081"
         app:layout_constraintBottom_toTopOf="@+id/guideline_bottom"
         app:layout_constraintEnd_toStartOf="@+id/guideline_right"
@@ -179,9 +180,9 @@
                 android:layout_height="match_parent"
                 android:fontFamily="sans-serif-black"
                 android:gravity="center"
-                android:text="PlantName1"
+                android:text="Ficus"
                 android:textAlignment="center"
-                android:textColor="#004F31"
+                android:textColor="#EFEFEF"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/cardPlantIcon1"
