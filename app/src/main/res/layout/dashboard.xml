@@ -52,7 +52,7 @@
         android:layout_height="70dp"
         android:backgroundTint="#00FFFFFF"
         android:scaleType="centerInside"
-        android:src=""
+        android:src="@drawable/matita"
         app:layout_constraintEnd_toStartOf="@+id/guideline_right"
         app:layout_constraintTop_toTopOf="@+id/guideline_top" />
 
