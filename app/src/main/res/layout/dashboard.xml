@@ -12,7 +12,7 @@
         android:src="@drawable/sfondo"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
@@ -74,6 +74,7 @@
         android:id="@+id/cardPlantIcon2"
         android:layout_width="120dp"
         android:layout_height="120dp"
+        android:layout_marginTop="8dp"
         android:outlineProvider="paddedBounds"
         android:src="@drawable/planticon1"
         app:layout_constraintEnd_toEndOf="parent"
@@ -84,23 +85,94 @@
         android:id="@+id/waterBar"
         android:layout_width="60dp"
         android:layout_height="400dp"
-        android:layout_marginStart="64dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline_bottom"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintStart_toStartOf="@+id/guideline_left"
-        app:layout_constraintTop_toTopOf="@+id/guideline_top"
+        app:layout_constraintTop_toBottomOf="@+id/cardPlantName2"
         app:srcCompat="@drawable/waterbar" />
 
     <ImageView
         android:id="@+id/soilMoistureBar"
         android:layout_width="60dp"
         android:layout_height="400dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="64dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="50dp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_right"
+        app:layout_constraintTop_toBottomOf="@+id/cardPlantName2"
+        app:srcCompat="@drawable/terrabar" />
+
+    <TextView
+        android:id="@+id/waterLevelText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Water Level"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="#3E3E3E"
+        app:layout_constraintEnd_toEndOf="@+id/waterBar"
+        app:layout_constraintStart_toStartOf="@+id/waterBar"
+        app:layout_constraintTop_toBottomOf="@+id/waterBar" />
+
+    <TextView
+        android:id="@+id/soilMoistureText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Soil Moisture"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="#3E3E3E"
+        app:layout_constraintEnd_toEndOf="@+id/soilMoistureBar"
+        app:layout_constraintStart_toStartOf="@+id/soilMoistureBar"
+        app:layout_constraintTop_toBottomOf="@+id/soilMoistureBar" />
+
+    <TextView
+        android:id="@+id/cardPlantName2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-black"
+        android:text="Ficus"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="#3E3E3E"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="@+id/cardPlantIcon2"
+        app:layout_constraintStart_toStartOf="@+id/cardPlantIcon2"
+        app:layout_constraintTop_toBottomOf="@+id/cardPlantIcon2" />
+
+    <TextView
+        android:id="@+id/soilMoisturePercentage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:fontFamily="sans-serif-black"
+        android:text="50%"
+        android:textColor="#EFEFEF"
+        app:layout_constraintBottom_toBottomOf="@+id/soilMoistureBar"
+        app:layout_constraintEnd_toEndOf="@+id/soilMoistureBar"
+        app:layout_constraintStart_toStartOf="@+id/soilMoistureBar" />
+
+    <TextView
+        android:id="@+id/waterVolume"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:fontFamily="sans-serif-black"
+        android:text="0.5L"
+        android:textColor="#EFEFEF"
+        app:layout_constraintBottom_toTopOf="@+id/waterLevelText"
+        app:layout_constraintEnd_toEndOf="@+id/waterBar"
+        app:layout_constraintStart_toStartOf="@+id/waterBar" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/waterButton"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginBottom="32dp"
+        android:clickable="true"
+        android:foreground="@drawable/goccia"
+        app:backgroundTint="#54E7F5"
+        app:elevation="2dp"
+        app:fabSize="auto"
         app:layout_constraintBottom_toTopOf="@+id/guideline_bottom"
         app:layout_constraintEnd_toStartOf="@+id/guideline_right"
-        app:layout_constraintTop_toTopOf="@+id/guideline_top"
-        app:srcCompat="@drawable/terrabar" />
+        app:layout_constraintStart_toStartOf="@+id/guideline_left" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
