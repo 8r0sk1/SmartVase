@@ -92,6 +92,15 @@
         app:srcCompat="@drawable/waterbar" />
 
     <ImageView
+        android:id="@+id/waterBarFiller"
+        android:layout_width="60dp"
+        android:layout_height="400dp"
+        app:layout_constraintEnd_toEndOf="@+id/waterBar"
+        app:layout_constraintStart_toStartOf="@+id/waterBar"
+        app:layout_constraintTop_toTopOf="@+id/waterBar"
+        app:srcCompat="@drawable/bandariempimento" />
+
+    <ImageView
         android:id="@+id/soilMoistureBar"
         android:layout_width="60dp"
         android:layout_height="400dp"
@@ -100,6 +109,15 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline_right"
         app:layout_constraintTop_toBottomOf="@+id/cardPlantName2"
         app:srcCompat="@drawable/terrabar" />
+
+    <ImageView
+        android:id="@+id/soilMoistureBarFiller"
+        android:layout_width="60dp"
+        android:layout_height="400"
+        app:layout_constraintEnd_toEndOf="@+id/soilMoistureBar"
+        app:layout_constraintTop_toTopOf="@+id/soilMoistureBar"
+        app:srcCompat="@drawable/bandariempimento" />
+
 
     <TextView
         android:id="@+id/waterLevelText"
@@ -164,7 +182,7 @@
         android:id="@+id/waterButton"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="50dp"
         android:clickable="true"
         android:foreground="@drawable/goccia"
         app:backgroundTint="#54E7F5"
@@ -173,6 +191,70 @@
         app:layout_constraintBottom_toTopOf="@+id/guideline_bottom"
         app:layout_constraintEnd_toStartOf="@+id/guideline_right"
         app:layout_constraintStart_toStartOf="@+id/guideline_left" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="@+id/waterButton"
+        app:layout_constraintStart_toStartOf="@+id/waterButton"
+        app:layout_constraintTop_toBottomOf="@+id/waterButton">
+
+        <TextView
+            android:id="@+id/autoWaterText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Auto Mode: "
+            tools:layout_editor_absoluteX="164dp"
+            tools:layout_editor_absoluteY="683dp" />
+
+        <TextView
+            android:id="@+id/offText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="OFF"
+            android:textColor="#F44336"
+            tools:layout_editor_absoluteX="164dp"
+            tools:layout_editor_absoluteY="683dp" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/holdToChangeText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hold to change"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="@+id/waterButton"
+        app:layout_constraintStart_toStartOf="@+id/waterButton"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+    <ImageView
+        android:id="@+id/soilMoistureMin"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/soilMoistureBar"
+        app:layout_constraintEnd_toEndOf="@+id/soilMoistureBar"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/soilMoistureBar"
+        app:layout_constraintTop_toTopOf="@+id/soilMoistureBar"
+        app:layout_constraintVertical_bias="0.68"
+        app:srcCompat="@drawable/taccalivello" />
+
+    <ImageView
+        android:id="@+id/soilMoistureMax"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/soilMoistureBar"
+        app:layout_constraintEnd_toEndOf="@+id/soilMoistureBar"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/soilMoistureBar"
+        app:layout_constraintTop_toTopOf="@+id/soilMoistureBar"
+        app:layout_constraintVertical_bias="0.35000002"
+        app:srcCompat="@drawable/taccalivello" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
