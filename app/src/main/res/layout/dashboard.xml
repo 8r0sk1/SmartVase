@@ -232,6 +232,17 @@
         app:layout_constraintStart_toStartOf="@+id/waterButton"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
+    <ImageButton
+        android:id="@+id/notificationButton"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:backgroundTint="#00FFFFFF"
+        android:scaleType="centerInside"
+        android:src="@drawable/notification"
+        app:layout_constraintEnd_toEndOf="@+id/waterButton"
+        app:layout_constraintStart_toStartOf="@+id/waterButton"
+        tools:layout_editor_absoluteY="552dp" />
+
     <ImageView
         android:id="@+id/soilMoistureMin"
         android:layout_width="0dp"
