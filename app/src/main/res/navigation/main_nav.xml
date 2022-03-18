@@ -51,4 +51,14 @@
             app:destination="@id/Settings" />
     </fragment>
 
+    <fragment
+        android:id="@+id/Dashboard"
+        android:name="it.polito.did.smartvase.ui.main.Dashboard"
+        android:label="Dashboard"
+        tools:layout="@layout/dashboard" >
+        <action
+            android:id="@+id/action_dashboard_to_editPlant"
+            app:destination="@id/Settings" />
+    </fragment>
+
 </navigation>

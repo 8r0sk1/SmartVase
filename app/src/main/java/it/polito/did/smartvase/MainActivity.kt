@@ -14,4 +14,14 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.hide()
 
     }
+
+    private fun vibrate(millisecond: Long) {
+        val vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            vibrator.vibrate(VibrationEffect.createOneShot(millisecond, VibrationEffect.DEFAULT_AMPLITUDE))
+        } else {
+            vibrator.vibrate(millisecond)
+        }
+    }
 }
