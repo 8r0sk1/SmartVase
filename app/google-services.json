@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "250378430176",
+    "project_id": "smart-vase-526dc",
+    "storage_bucket": "smart-vase-526dc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:250378430176:android:e8735c8cc194ab09de1285",
+        "android_client_info": {
+          "package_name": "it.polito.did.smartvase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "250378430176-56g4ace2f2h7kspr1p1luukojhts5ifp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAyXSqARtA1WnkDaD3iORM_WaLTjH-6QzQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "250378430176-56g4ace2f2h7kspr1p1luukojhts5ifp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
