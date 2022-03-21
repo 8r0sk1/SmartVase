@@ -20,11 +20,15 @@ class Homepage : Fragment() {
     }
 
     private val viewModel: MainViewModel by activityViewModels<MainViewModel>()
+    private var auto : Switch
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        auto = view.findViewById<Switch>(R.id.autoSwitch1)
+        auto.setChecked(viewModel.auto)
+
         return inflater.inflate(R.layout.homepage, container, false)
     }
 
@@ -34,15 +38,16 @@ class Homepage : Fragment() {
         val addPlant = view.findViewById<FloatingActionButton>(R.id.addPlantButton)
         val settings = view.findViewById<ImageButton>(R.id.profileButton)
         val dashboard = view.findViewById<ImageView>(R.id.cardPlantIcon1) //per ora il tasto per aprire la dashboard è l'immagine pianta
-        val auto = view.findViewById<Switch>(R.id.autoSwitch1)
+
 
 
         addPlant.setOnClickListener { findNavController().navigate(R.id.action_homepage_to_plantSetup) }
         settings.setOnClickListener { findNavController().navigate(R.id.action_homepage_to_settings) }
         dashboard.setOnClickListener { findNavController().navigate(R.id.action_homepage_to_dashboard) }
 
-        auto.setOnClickListener {
-            viewModel.auto=true
+        auto.setOnCheckedChangeListener { buttonView, isChecked ->
+            viewModel.auto = isChecked
+
         }
 
     }

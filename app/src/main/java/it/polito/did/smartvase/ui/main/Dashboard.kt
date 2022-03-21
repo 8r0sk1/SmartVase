@@ -7,6 +7,9 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
+import android.widget.Switch
+import android.widget.TextView
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import it.polito.did.smartvase.MainActivity
@@ -20,10 +23,36 @@ class Dashboard : Fragment() {
 
     private val viewModel: MainViewModel by activityViewModels<MainViewModel>()
 
+    private var auto : Switch
+    private var waterButton : Button
+    private var notificationButton : Button
+    private var offText : TextView
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        val waterBar = view.findViewById<ImageView>(R.id.waterBarFiller)
+        val soilMostureBar = view.findViewById<ImageView>(R.id.soilMoistureBarFiller)
+        offText = view.findViewById<TextView>(R.id.offText)
+        waterButton = view.findViewById<Button>(R.id.waterButton)
+        notificationButton = view.findViewById<Button>(R.id.notificationButton)
+
+        waterBar.height=viewModel.waterLevel
+        soilMostureBar.height=viewModel.soilMoisture
+
+        if(viewModel.auto) {
+            offText.text = "OFF"
+        }
+        else {
+            //TODO TASTO WATER IN DENTRO
+            offText.text = "ON"
+        }
+        if(viewModel.notification)
+            //TODO STATE ICONA NOTIFICHE
+
+        auto.setChecked(viewModel.auto)
+
         return inflater.inflate(R.layout.plant_setup, container, false)
     }
 
@@ -32,8 +61,6 @@ class Dashboard : Fragment() {
 
         val homeButton = view.findViewById<Button>(R.id.homeButton)
         val editButton = view.findViewById<Button>(R.id.editButton)
-        val waterButton = view.findViewById<Button>(R.id.waterButton)
-        val notificationButton = view.findViewById<Button>(R.id.notificationButton)
 
         homeButton.setOnClickListener { findNavController().navigate(R.id.action_dashboard_to_homepage) }
         editButton.setOnClickListener { findNavController().navigate(R.id.action_dashboard_to_editPlant) } //ancora da capire come fare, se con altro fragment
