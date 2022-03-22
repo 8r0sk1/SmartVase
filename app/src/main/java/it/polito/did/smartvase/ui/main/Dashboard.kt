@@ -55,7 +55,7 @@ class Dashboard : Fragment() {
         }
         if(viewModel.notification)
             //TODO STATE ICONA NOTIFICHE
-
+        //todo peppinodicapri
         auto.setChecked(viewModel.auto)
 
         return inflater.inflate(R.layout.plant_setup, container, false)
