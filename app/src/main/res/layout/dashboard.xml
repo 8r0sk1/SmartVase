@@ -263,6 +263,20 @@
         android:contentDescription="notification"
         android:scaleType="centerInside"
         android:src="@drawable/notification"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/waterButton"
+        app:layout_constraintEnd_toEndOf="@+id/waterButton"
+        app:layout_constraintStart_toStartOf="@+id/waterButton" />
+
+    <ImageButton
+        android:id="@+id/notificationOFFButton"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:backgroundTint="#00FFFFFF"
+        android:contentDescription="notification"
+        android:scaleType="centerInside"
+        android:src="@drawable/notificationoff"
+        android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@+id/waterButton"
         app:layout_constraintEnd_toEndOf="@+id/waterButton"
         app:layout_constraintStart_toStartOf="@+id/waterButton" />
