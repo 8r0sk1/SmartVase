@@ -165,7 +165,7 @@
         android:layout_marginBottom="16dp"
         android:fontFamily="sans-serif-black"
         android:text="50%"
-        android:textColor="#EFEFEF"
+        android:textColor="#3E3E3E"
         app:layout_constraintBottom_toBottomOf="@+id/soilMoistureBar"
         app:layout_constraintEnd_toEndOf="@+id/soilMoistureBar"
         app:layout_constraintStart_toStartOf="@+id/soilMoistureBar" />
@@ -177,7 +177,7 @@
         android:layout_marginBottom="16dp"
         android:fontFamily="sans-serif-black"
         android:text="0.5L"
-        android:textColor="#EFEFEF"
+        android:textColor="#3E3E3E"
         app:layout_constraintBottom_toTopOf="@+id/waterLevelText"
         app:layout_constraintEnd_toEndOf="@+id/waterBar"
         app:layout_constraintStart_toStartOf="@+id/waterBar" />
@@ -190,12 +190,30 @@
         android:clickable="true"
         android:contentDescription="water"
         android:foreground="@drawable/goccia"
+        android:visibility="visible"
         app:backgroundTint="#54E7F5"
         app:elevation="2dp"
         app:fabSize="auto"
         app:layout_constraintBottom_toTopOf="@+id/guideline_bottom"
         app:layout_constraintEnd_toStartOf="@+id/guideline_right"
         app:layout_constraintStart_toStartOf="@+id/guideline_left" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/autoWaterButton"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginBottom="50dp"
+        android:clickable="true"
+        android:contentDescription="autoWater"
+        android:foreground="@drawable/gocciapigiata"
+        android:visibility="invisible"
+        app:backgroundTint="#54E7F5"
+        app:elevation="0dp"
+        app:fabSize="auto"
+        app:layout_constraintBottom_toTopOf="@+id/guideline_bottom"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_right"
+        app:layout_constraintStart_toStartOf="@+id/guideline_left" />
+
 
     <LinearLayout
         android:id="@+id/linearLayout"
