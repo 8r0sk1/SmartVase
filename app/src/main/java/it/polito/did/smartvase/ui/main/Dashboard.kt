@@ -23,23 +23,23 @@ class Dashboard : Fragment() {
 
     private val viewModel: MainViewModel by activityViewModels<MainViewModel>()
 
-    private var auto : Switch
-    private var waterButton : Button
-    private var notificationButton : Button
-    private var offText : TextView
+    private lateinit var auto : Switch
+    private lateinit var waterButton : Button
+    private lateinit var notificationButton : Button
+    private lateinit var offText : TextView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val waterBar = view.findViewById<ImageView>(R.id.waterBarFiller)
-        val soilMostureBar = view.findViewById<ImageView>(R.id.soilMoistureBarFiller)
-        offText = view.findViewById<TextView>(R.id.offText)
-        waterButton = view.findViewById<Button>(R.id.waterButton)
-        notificationButton = view.findViewById<Button>(R.id.notificationButton)
+        val waterBar = view?.findViewById<ImageView>(R.id.waterBarFiller)
+        val soilMostureBar = view?.findViewById<ImageView>(R.id.soilMoistureBarFiller)
+        //offText = view?.findViewById<TextView>(R.id.offText) ?:
+        //waterButton = view?.findViewById<Button>(R.id.waterButton) ?:
+        //notificationButton = view?.findViewById<Button>(R.id.notificationButton)
 
-        waterBar.height=viewModel.waterLevel
-        soilMostureBar.height=viewModel.soilMoisture
+        //waterBar.height=viewModel.waterLevel
+        //soilMostureBar.height=viewModel.soilMoisture
 
         if(viewModel.auto) {
             offText.text = "OFF"
@@ -67,7 +67,7 @@ class Dashboard : Fragment() {
 
         waterButton.setOnLongClickListener{
             viewModel.auto=true
-            activity?.vibrate(25);
+           // activity?.vibrate(25);
             return@setOnLongClickListener true
         }
 

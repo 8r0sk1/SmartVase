@@ -20,14 +20,14 @@ class Homepage : Fragment() {
     }
 
     private val viewModel: MainViewModel by activityViewModels<MainViewModel>()
-    private var auto : Switch
+    private lateinit var auto : Switch
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        auto = view.findViewById<Switch>(R.id.autoSwitch1)
-        auto.setChecked(viewModel.auto)
+       // auto = view?.findViewById<Switch>(R.id.autoSwitch1) ?:
+       // auto.setChecked(viewModel.auto)
 
         return inflater.inflate(R.layout.homepage, container, false)
     }
