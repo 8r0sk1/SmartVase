@@ -14,7 +14,6 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import it.polito.did.smartvase.MainActivity
 import it.polito.did.smartvase.R
-import org.w3c.dom.Text
 
 class Dashboard : Fragment() {
 
@@ -35,14 +34,10 @@ class Dashboard : Fragment() {
     ): View {
         val waterBar = view.findViewById<ImageView>(R.id.waterBarFiller)
         val soilMostureBar = view.findViewById<ImageView>(R.id.soilMoistureBarFiller)
-        val plantName = view.findViewById<TextView>(R.id.cardPlantName2)
-        val plantIcon = view.findViewById<TextView>(R.id.cardPlantIcon2)
         offText = view.findViewById<TextView>(R.id.offText)
         waterButton = view.findViewById<Button>(R.id.waterButton)
         notificationButton = view.findViewById<Button>(R.id.notificationButton)
 
-        plantName.text=viewModel.plantName
-        //TODO METTERE IMMAGINE PIANTA plantIcon=viewModel.plantIcon
         waterBar.height=viewModel.waterLevel
         soilMostureBar.height=viewModel.soilMoisture
 
