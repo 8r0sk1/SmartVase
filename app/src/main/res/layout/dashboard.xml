@@ -28,6 +28,14 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_top2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="16dp"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_left"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -52,7 +60,7 @@
         android:scaleType="centerInside"
         android:src="@drawable/matita"
         app:layout_constraintEnd_toStartOf="@+id/guideline_right"
-        tools:layout_editor_absoluteY="16dp" />
+        app:layout_constraintTop_toTopOf="@+id/guideline_top2" />
 
     <ImageButton
         android:id="@+id/homeButton"
@@ -63,7 +71,7 @@
         android:scaleType="centerInside"
         android:src="@drawable/home"
         app:layout_constraintStart_toStartOf="@+id/guideline_left"
-        tools:layout_editor_absoluteY="16dp" />
+        app:layout_constraintTop_toTopOf="@+id/guideline_top2" />
 
     <ImageView
         android:id="@+id/cardPlantIcon2"
@@ -73,8 +81,8 @@
         android:src="@drawable/planticon1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/planticon1"
-        tools:layout_editor_absoluteY="24dp" />
+        app:layout_constraintTop_toTopOf="@+id/guideline_top2"
+        app:srcCompat="@drawable/planticon1" />
 
     <!-- Bordo barra serbatoio -->
     <androidx.cardview.widget.CardView
@@ -96,7 +104,7 @@
                 android:id="@+id/waterBarEmpty"
                 android:layout_width="55dp"
                 android:layout_height="385dp"
-                app:cardBackgroundColor="#177780"
+                app:cardBackgroundColor="#47828A"
                 app:cardCornerRadius="13dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -112,7 +120,7 @@
                         android:layout_width="55dp"
                         android:layout_height="300dp"
                         android:translationZ="-50dp"
-                        app:cardBackgroundColor="#00EAF8"
+                        app:cardBackgroundColor="#7EE4F2"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent" />
@@ -164,7 +172,7 @@
                 android:id="@+id/soilMoistureBarEmpty"
                 android:layout_width="55dp"
                 android:layout_height="385dp"
-                app:cardBackgroundColor="#105713"
+                app:cardBackgroundColor="#287752"
                 app:cardCornerRadius="13dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -180,7 +188,7 @@
                         android:layout_width="55dp"
                         android:layout_height="300dp"
                         android:translationZ="-50dp"
-                        app:cardBackgroundColor="#25DC1F"
+                        app:cardBackgroundColor="#45BC86"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent" />
