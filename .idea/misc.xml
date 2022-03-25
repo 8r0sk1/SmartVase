@@ -20,7 +20,8 @@
         <entry key="app/src/main/res/layout/edit_plant.xml" value="0.2776268115942029" />
         <entry key="app/src/main/res/layout/homepage.xml" value="0.2557291666666667" />
         <entry key="app/src/main/res/layout/homepage_fragment.xml" value="0.36041666666666666" />
-        <entry key="app/src/main/res/layout/plant_setup.xml" value="0.2776268115942029" />
+        <entry key="app/src/main/res/layout/plant_setup.xml" value="0.36041666666666666" />
+        <entry key="app/src/main/res/layout/settings.xml" value="0.26412048339843763" />
       </map>
     </option>
   </component>
