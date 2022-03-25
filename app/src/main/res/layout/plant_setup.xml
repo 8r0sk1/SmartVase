@@ -5,7 +5,22 @@
     android:id="@+id/frameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#1F332A"
     tools:context=".ui.main.PlantSetup">
+
+    <TextView
+        android:id="@+id/PlantNameSetup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:fontFamily="sans-serif-black"
+        android:text="Plant name"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="#EFEFEF"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="@+id/iconaPiantaSetup"
+        app:layout_constraintStart_toStartOf="@+id/iconaPiantaSetup"
+        app:layout_constraintTop_toBottomOf="@+id/iconaPiantaSetup" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_top4"
@@ -43,6 +58,9 @@
         android:id="@+id/back_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="#45BC86"
         android:text="Back"
         app:layout_constraintBottom_toTopOf="@+id/guideline_bottom4"
         app:layout_constraintStart_toStartOf="@+id/guideline_left4" />
@@ -51,7 +69,60 @@
         android:id="@+id/next_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="#45BC86"
         android:text="Next"
         app:layout_constraintBottom_toTopOf="@+id/guideline_bottom4"
         app:layout_constraintEnd_toStartOf="@+id/guideline_right4" />
+
+
+    <!-- Card vuota per immagine pianta -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/iconaPiantaSetup"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        app:cardBackgroundColor="#EFEFEF"
+        app:cardCornerRadius="15dp"
+        app:cardElevation="0dp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_right4"
+        app:layout_constraintStart_toStartOf="@+id/guideline_left4"
+        app:layout_constraintTop_toTopOf="@+id/guideline_top4">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/addPlantButton2"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:clickable="true"
+                android:contentDescription="add"
+                android:elevation="2dp"
+                android:foreground="@drawable/add"
+                android:foregroundTint="#EFEFEF"
+                app:backgroundTint="#00C081"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:rippleColor="#EFEFEF" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Choose your plant type and name for it."
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="#EFEFEF"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline_bottom4"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_right4"
+        app:layout_constraintStart_toStartOf="@+id/guideline_left4"
+        app:layout_constraintTop_toTopOf="@+id/guideline_top4" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

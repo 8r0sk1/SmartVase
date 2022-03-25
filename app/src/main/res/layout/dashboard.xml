@@ -73,16 +73,36 @@
         app:layout_constraintStart_toStartOf="@+id/guideline_left"
         app:layout_constraintTop_toTopOf="@+id/guideline_top2" />
 
-    <ImageView
-        android:id="@+id/cardPlantIcon2"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:outlineProvider="paddedBounds"
-        android:src="@drawable/planticon1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline_top2"
-        app:srcCompat="@drawable/planticon1" />
+    <!-- Card vuota per immagine pianta -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/iconaPianta2"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        app:cardBackgroundColor="#EFEFEF"
+        app:cardCornerRadius="15dp"
+        app:cardElevation="0dp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_right"
+        app:layout_constraintStart_toStartOf="@+id/guideline_left"
+        app:layout_constraintTop_toTopOf="@+id/guideline_top2">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <!-- Immagine pianta-->
+            <ImageView
+                android:id="@+id/PlantIcon1"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:outlineProvider="paddedBounds"
+                android:src="@drawable/planticon1"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/planticon1" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+
 
     <!-- Bordo barra serbatoio -->
     <androidx.cardview.widget.CardView
@@ -94,7 +114,7 @@
         app:cardBackgroundColor="#3E3E3E"
         app:cardCornerRadius="15dp"
         app:layout_constraintStart_toStartOf="@+id/backgroundImage"
-        app:layout_constraintTop_toBottomOf="@+id/cardPlantName2">
+        app:layout_constraintTop_toBottomOf="@+id/PlantName2">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -258,17 +278,18 @@
         app:layout_constraintTop_toBottomOf="@+id/soilMoistureBarCorner" />
 
     <TextView
-        android:id="@+id/cardPlantName2"
+        android:id="@+id/PlantName2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
         android:fontFamily="sans-serif-black"
         android:text="Ficus"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textColor="#3E3E3E"
         android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="@+id/cardPlantIcon2"
-        app:layout_constraintStart_toStartOf="@+id/cardPlantIcon2"
-        app:layout_constraintTop_toBottomOf="@+id/cardPlantIcon2" />
+        app:layout_constraintEnd_toEndOf="@+id/iconaPianta2"
+        app:layout_constraintStart_toStartOf="@+id/iconaPianta2"
+        app:layout_constraintTop_toBottomOf="@+id/iconaPianta2" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/waterButton"
