@@ -46,13 +46,13 @@ class Dashboard : Fragment() {
         //soilMostureBar.height=viewModel.soilMoisture
 
         if(viewModel.auto) {
-            offText.text = "OFF"
+            offText.setText("OFF")
         }
         else {
             //TODO TASTO WATER IN DENTRO
-            offText.text = "ON"
+            offText.setText("ON")
         }
-        if(viewModel.notification)
+        //if(viewModel.notification)
             //TODO STATE ICONA NOTIFICHE
         //todo peppinodicapri
         auto.setChecked(viewModel.auto)
