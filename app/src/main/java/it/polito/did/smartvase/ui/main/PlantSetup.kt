@@ -30,6 +30,6 @@ class PlantSetup : Fragment() {
 
         val back = view.findViewById<Button>(R.id.back_button)
 
-        back.setOnClickListener { findNavController().navigate(R.id.action_addPlant_to_homepage_fragment) }
+        back.setOnClickListener { findNavController().navigate(R.id.action_plantSetup_to_homepage) }
     }
 }

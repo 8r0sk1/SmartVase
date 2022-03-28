@@ -3,13 +3,4 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#00FFFFFF">
-
-    <ImageView
-        android:id="@+id/edit_soilMoistureBarFiller"
-        android:layout_width="60dp"
-        android:layout_height="400"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/soilMoistureBar"
-        app:srcCompat="@drawable/bandariempimento" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+    android:background="#00FFFFFF"/>

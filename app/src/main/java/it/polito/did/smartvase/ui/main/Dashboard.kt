@@ -32,12 +32,16 @@ class Dashboard : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val waterBar = view?.findViewById<ImageView>(R.id.waterBarFiller)
-        val soilMostureBar = view?.findViewById<ImageView>(R.id.soilMoistureBarFiller)
+        val waterBar = view?.findViewById<ImageView>(R.id.waterBarFull)
+        val soilMostureBar = view?.findViewById<ImageView>(R.id.soilMoisrtureBarFull)
+        val plantName = view?.findViewById<TextView>(R.id.PlantName2)
+        val plantIcon = view?.findViewById<TextView>(R.id.PlantIcon1)
         //offText = view?.findViewById<TextView>(R.id.offText) ?:
         //waterButton = view?.findViewById<Button>(R.id.waterButton) ?:
         //notificationButton = view?.findViewById<Button>(R.id.notificationButton)
 
+        //plantName.text=viewModel.plantName
+            //TODO METTERE IMMAGINE PIANTA plantIcon=viewModel.plantIcon
         //waterBar.height=viewModel.waterLevel
         //soilMostureBar.height=viewModel.soilMoisture
 

@@ -37,7 +37,7 @@ class Homepage : Fragment() {
 
         val addPlant = view.findViewById<FloatingActionButton>(R.id.addPlantButton)
         val settings = view.findViewById<ImageButton>(R.id.profileButton)
-        val dashboard = view.findViewById<ImageView>(R.id.cardPlantIcon1) //per ora il tasto per aprire la dashboard è l'immagine pianta
+        val dashboard = view.findViewById<ImageView>(R.id.cardWaterLevel) //TODO capire cosa premere per aprire dash
 
 
 
