@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.hide()
 
     }
-    public var milliseconds : Long = 200
+    private var milliseconds : Long = 200
 
     fun Fragment.vibrate() {
         val vibrator = context?.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator

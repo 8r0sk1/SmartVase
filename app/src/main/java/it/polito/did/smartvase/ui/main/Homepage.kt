@@ -20,7 +20,7 @@ class Homepage : Fragment() {
     }
 
     private val viewModel: MainViewModel by activityViewModels<MainViewModel>()
-    private lateinit var auto : Switch
+    //private lateinit var auto : Switch
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,17 +38,19 @@ class Homepage : Fragment() {
         val addPlant = view.findViewById<FloatingActionButton>(R.id.addPlantButton)
         val settings = view.findViewById<ImageButton>(R.id.profileButton)
         val dashboard = view.findViewById<ImageView>(R.id.cardWaterLevel) //TODO capire cosa premere per aprire dash
-
+        val auto = view.findViewById<Switch>(R.id.autoSwitch1)
 
 
         addPlant.setOnClickListener { findNavController().navigate(R.id.action_homepage_to_plantSetup) }
         settings.setOnClickListener { findNavController().navigate(R.id.action_homepage_to_settings) }
         dashboard.setOnClickListener { findNavController().navigate(R.id.action_homepage_to_dashboard) }
 
-        auto.setOnCheckedChangeListener { buttonView, isChecked ->
+        auto.setOnCheckedChangeListener { _, isChecked ->
             viewModel.auto = isChecked
-
         }
+//        auto.setOnClickListener {
+//            viewModel.auto = true
+//        }
 
     }
 }
