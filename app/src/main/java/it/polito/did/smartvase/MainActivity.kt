@@ -1,7 +1,12 @@
 package it.polito.did.smartvase
 
+import android.content.Context
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.VibrationEffect
+import android.os.Vibrator
+import androidx.fragment.app.Fragment
 import it.polito.did.smartvase.ui.main.Homepage
 
 class MainActivity : AppCompatActivity() {
@@ -14,14 +19,14 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.hide()
 
     }
+    public var milliseconds : Long = 200
 
-    private fun vibrate(millisecond: Long) {
-        val vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            vibrator.vibrate(VibrationEffect.createOneShot(millisecond, VibrationEffect.DEFAULT_AMPLITUDE))
+    fun Fragment.vibrate() {
+        val vibrator = context?.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+        if (Build.VERSION.SDK_INT >= 26) {
+            vibrator.vibrate(VibrationEffect.createOneShot(milliseconds, VibrationEffect.DEFAULT_AMPLITUDE))
         } else {
-            vibrator.vibrate(millisecond)
+            vibrator.vibrate(milliseconds)
         }
     }
 }
