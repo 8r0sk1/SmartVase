@@ -23,10 +23,10 @@ class Dashboard : Fragment() {
 
     private val viewModel: MainViewModel by activityViewModels<MainViewModel>()
 
-    private lateinit var auto : Switch
-    private lateinit var waterButton : Button
-    private lateinit var notificationButton : Button
-    private lateinit var offText : TextView
+//    private lateinit var auto : Switch
+//    private lateinit var waterButton : Button
+//    private lateinit var notificationButton : Button
+//    private lateinit var offText : TextView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,26 +36,33 @@ class Dashboard : Fragment() {
         val soilMostureBar = view?.findViewById<ImageView>(R.id.soilMoisrtureBarFull)
         val plantName = view?.findViewById<TextView>(R.id.PlantName2)
         val plantIcon = view?.findViewById<TextView>(R.id.PlantIcon1)
-        //offText = view?.findViewById<TextView>(R.id.offText) ?:
-        //waterButton = view?.findViewById<Button>(R.id.waterButton) ?:
-        //notificationButton = view?.findViewById<Button>(R.id.notificationButton)
+        val offText = view?.findViewById<TextView>(R.id.offText)
+        val waterButton = view?.findViewById<Button>(R.id.waterButton)
+        val notificationButton = view?.findViewById<Button>(R.id.notificationButton)
 
-        //plantName.text=viewModel.plantName
+
+        if (plantName != null) {
+            plantName.text=viewModel.plantName
+        }
             //TODO METTERE IMMAGINE PIANTA plantIcon=viewModel.plantIcon
         //waterBar.height=viewModel.waterLevel
         //soilMostureBar.height=viewModel.soilMoisture
 
         if(viewModel.auto) {
-            offText.setText("OFF")
+            if (offText != null) {
+                offText.setText("OFF")
+            }
         }
         else {
             //TODO TASTO WATER IN DENTRO
-            offText.setText("ON")
+            if (offText != null) {
+                offText.setText("ON")
+            }
         }
         //if(viewModel.notification)
             //TODO STATE ICONA NOTIFICHE
         //todo peppinodicapri
-        auto.setChecked(viewModel.auto)
+        viewModel.auto=!viewModel.auto
 
         return inflater.inflate(R.layout.plant_setup, container, false)
     }
@@ -65,19 +72,21 @@ class Dashboard : Fragment() {
 
         val homeButton = view.findViewById<Button>(R.id.homeButton)
         val editButton = view.findViewById<Button>(R.id.editButton)
+        val waterButton = view.findViewById<Button>(R.id.waterButton)
+        val notificationButton = view.findViewById<Button>(R.id.notificationButton)
 
-        homeButton.setOnClickListener { findNavController().navigate(R.id.action_dashboard_to_homepage) }
-        editButton.setOnClickListener { findNavController().navigate(R.id.action_dashboard_to_editPlant) } //ancora da capire come fare, se con altro fragment
-
-        waterButton.setOnLongClickListener{
-            viewModel.auto=true
-           // activity?.vibrate(25);
-            return@setOnLongClickListener true
-        }
-
-        notificationButton.setOnClickListener{
-            viewModel.notification=false
-        }
+//        homeButton.setOnClickListener { findNavController().navigate(R.id.action_dashboard_to_homepage) }
+//        editButton.setOnClickListener { findNavController().navigate(R.id.action_dashboard_to_editPlant) } //ancora da capire come fare, se con altro fragment
+//
+//        waterButton.setOnLongClickListener{
+//            viewModel.auto=true
+//           // activity?.vibrate(25);
+//            return@setOnLongClickListener true
+//        }
+//
+//        notificationButton.setOnClickListener{
+//            viewModel.notification=false
+//        }
     }
 
 }

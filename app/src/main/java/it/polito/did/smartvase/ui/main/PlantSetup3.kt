@@ -10,7 +10,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import it.polito.did.smartvase.R
 
-class PlantSetup : Fragment() {
+class PlantSetup3 : Fragment() {
 
     companion object {
         fun newInstance() = Homepage()
@@ -31,7 +31,7 @@ class PlantSetup : Fragment() {
         val back = view.findViewById<Button>(R.id.back_button)
         val next = view.findViewById<Button>(R.id.next_button)
 
-        back.setOnClickListener { findNavController().navigate(R.id.action_plantSetup_to_homepage) }
-        next.setOnClickListener { findNavController().navigate(R.id.action_plantSetup_to_plantSetup2) }
+        back.setOnClickListener { findNavController().navigate(R.id.action_plantSetup3_to_plantSetup2) }
+        next.setOnClickListener { findNavController().navigate(R.id.action_plantSetup3_to_dashboard) }
     }
 }

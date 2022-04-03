@@ -29,6 +29,29 @@
         <action
             android:id="@+id/action_plantSetup_to_homepage"
             app:destination="@id/Homepage" />
+        <action
+            android:id="@+id/action_plantSetup_to_plantSetup2"
+            app:destination="@id/PlantSetup3" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/PlantSetup2"
+        android:name="it.polito.did.smartvase.ui.main.PlantSetup2"
+        android:label="PlantSetup2"
+        tools:layout="@layout/plant_setup" >
+        <action
+            android:id="@+id/action_plantSetup2_to_plantSetup3"
+            app:destination="@id/PlantSetup3" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/PlantSetup3"
+        android:name="it.polito.did.smartvase.ui.main.PlantSetup3"
+        android:label="PlantSetup3"
+        tools:layout="@layout/plant_setup" >
+        <action
+            android:id="@+id/action_plantSetup3_to_dashboard"
+            app:destination="@id/Dashboard" />
     </fragment>
 
     <fragment
@@ -38,7 +61,7 @@
         tools:layout="@layout/settings" >
         <action
             android:id="@+id/action_settings_to_homepage"
-            app:destination="@id/Settings" />
+            app:destination="@id/Homepage" />
     </fragment>
 
     <fragment
@@ -48,10 +71,10 @@
         tools:layout="@layout/dashboard" >
         <action
             android:id="@+id/action_dashboard_to_homepage"
-            app:destination="@id/Settings" />
+            app:destination="@id/Homepage" />
         <action
             android:id="@+id/action_dashboard_to_editPlant"
-            app:destination="@id/Settings" />
+            app:destination="@id/EditPlant" />
     </fragment>
 
     <fragment
@@ -61,7 +84,7 @@
         tools:layout="@layout/edit_plant" >
         <action
             android:id="@+id/action_editPlant_to_homepage"
-            app:destination="@id/Settings" />
+            app:destination="@id/Homepage" />
     </fragment>
 
 </navigation>
