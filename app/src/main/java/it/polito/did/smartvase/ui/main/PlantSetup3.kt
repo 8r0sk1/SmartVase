@@ -22,7 +22,7 @@ class PlantSetup3 : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        return inflater.inflate(R.layout.plant_setup, container, false)
+        return inflater.inflate(R.layout.plant_setup3, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

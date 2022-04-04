@@ -6,12 +6,10 @@ import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.Switch
-import android.widget.TextView
+import android.widget.*
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import it.polito.did.smartvase.MainActivity
 import it.polito.did.smartvase.R
 
@@ -64,16 +62,16 @@ class Dashboard : Fragment() {
         //todo peppinodicapri
         viewModel.auto=!viewModel.auto
 
-        return inflater.inflate(R.layout.plant_setup, container, false)
+        return inflater.inflate(R.layout.dashboard, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val homeButton = view.findViewById<Button>(R.id.homeButton)
-        val editButton = view.findViewById<Button>(R.id.editButton)
-        val waterButton = view.findViewById<Button>(R.id.waterButton)
-        val notificationButton = view.findViewById<Button>(R.id.notificationButton)
+        val homeButton = view.findViewById<ImageButton>(R.id.homeButton)
+        val editButton = view.findViewById<ImageButton>(R.id.editButton)
+        val waterButton = view.findViewById<FloatingActionButton>(R.id.autoWaterButton)
+        val notificationButton = view.findViewById<ImageButton>(R.id.notificationButton)
 
 //        homeButton.setOnClickListener { findNavController().navigate(R.id.action_dashboard_to_homepage) }
 //        editButton.setOnClickListener { findNavController().navigate(R.id.action_dashboard_to_editPlant) } //ancora da capire come fare, se con altro fragment

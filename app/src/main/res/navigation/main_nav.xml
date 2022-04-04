@@ -31,7 +31,7 @@
             app:destination="@id/Homepage" />
         <action
             android:id="@+id/action_plantSetup_to_plantSetup2"
-            app:destination="@id/PlantSetup3" />
+            app:destination="@id/PlantSetup2" />
     </fragment>
 
     <fragment
@@ -42,6 +42,9 @@
         <action
             android:id="@+id/action_plantSetup2_to_plantSetup3"
             app:destination="@id/PlantSetup3" />
+        <action
+            android:id="@+id/action_plantSetup2_to_plantSetup"
+            app:destination="@id/PlantSetup" />
     </fragment>
 
     <fragment
@@ -52,6 +55,9 @@
         <action
             android:id="@+id/action_plantSetup3_to_dashboard"
             app:destination="@id/Dashboard" />
+        <action
+            android:id="@+id/action_plantSetup3_to_plantSetup2"
+            app:destination="@id/PlantSetup2" />
     </fragment>
 
     <fragment

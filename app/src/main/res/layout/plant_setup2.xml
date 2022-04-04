@@ -9,15 +9,6 @@
     tools:context=".ui.main.PlantSetup">
 
     <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="SETUP 1"
-        android:textSize="34sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:layout_editor_absoluteY="288dp" />
-
-    <TextView
         android:id="@+id/PlantNameSetup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -133,5 +124,14 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline_right4"
         app:layout_constraintStart_toStartOf="@+id/guideline_left4"
         app:layout_constraintTop_toTopOf="@+id/guideline_top4" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SETUP 2"
+        android:textSize="34sp"
+        tools:layout_editor_absoluteX="174dp"
+        tools:layout_editor_absoluteY="288dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

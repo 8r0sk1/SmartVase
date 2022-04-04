@@ -42,7 +42,8 @@ class Homepage : Fragment() {
 
 
         addPlant.setOnClickListener { findNavController().navigate(R.id.action_homepage_to_plantSetup) }
-        settings.setOnClickListener { findNavController().navigate(R.id.action_homepage_to_settings) }
+        //settings.setOnClickListener { findNavController().navigate(R.id.action_homepage_to_settings) }
+        settings.setOnClickListener { findNavController().navigate(R.id.action_homepage_to_dashboard) } //TODO questo serve ad andare veloce a dashboard
         dashboard.setOnClickListener { findNavController().navigate(R.id.action_homepage_to_dashboard) }
 
         auto.setOnCheckedChangeListener { _, isChecked ->
