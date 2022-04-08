@@ -8,9 +8,16 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.Switch
+import android.widget.TextView
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.ktx.database
+import com.google.firebase.database.ktx.getValue
+import com.google.firebase.ktx.Firebase
 import it.polito.did.smartvase.R
 
 class Homepage : Fragment() {
@@ -39,6 +46,20 @@ class Homepage : Fragment() {
         val settings = view.findViewById<ImageButton>(R.id.profileButton)
         val dashboard = view.findViewById<ImageView>(R.id.cardWaterLevel) //TODO capire cosa premere per aprire dash
         val auto = view.findViewById<Switch>(R.id.autoSwitch1)
+
+        val txtV = view.findViewById<TextView>(R.id.yourPlantText)
+        val db = Firebase.database.reference
+        val ref = db.child("chiave")
+
+        ref.addValueEventListener(object: ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                txtV.text = snapshot.getValue<String>()
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+        })
 
 
         addPlant.setOnClickListener { findNavController().navigate(R.id.action_homepage_to_plantSetup) }
