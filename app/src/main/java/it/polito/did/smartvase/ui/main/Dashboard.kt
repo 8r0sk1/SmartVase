@@ -1,6 +1,8 @@
 package it.polito.did.smartvase.ui.main
 
+import android.app.AlertDialog
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.MotionEvent
@@ -10,6 +12,12 @@ import android.widget.*
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.ktx.database
+import com.google.firebase.database.ktx.getValue
+import com.google.firebase.ktx.Firebase
 import it.polito.did.smartvase.MainActivity
 import it.polito.did.smartvase.R
 
@@ -72,6 +80,14 @@ class Dashboard : Fragment() {
         val editButton = view.findViewById<ImageButton>(R.id.editButton)
         val waterButton = view.findViewById<FloatingActionButton>(R.id.autoWaterButton)
         val notificationButton = view.findViewById<ImageButton>(R.id.notificationButton)
+
+        val db = Firebase.database.reference
+        val ref = db.child("A7/toWaterControl")
+
+        waterButton.setOnClickListener {
+            ref.setValue(1)
+        }
+
 
 //        homeButton.setOnClickListener { findNavController().navigate(R.id.action_dashboard_to_homepage) }
 //        editButton.setOnClickListener { findNavController().navigate(R.id.action_dashboard_to_editPlant) } //ancora da capire come fare, se con altro fragment

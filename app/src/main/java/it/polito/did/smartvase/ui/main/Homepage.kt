@@ -51,6 +51,7 @@ class Homepage : Fragment() {
         val db = Firebase.database.reference
         val ref = db.child("chiave")
 
+
         ref.addValueEventListener(object: ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 txtV.text = snapshot.getValue<String>()
