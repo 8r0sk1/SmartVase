@@ -38,7 +38,7 @@ class Homepage : Fragment() {
 
         return inflater.inflate(R.layout.homepage, container, false)
     }
-
+//42
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
