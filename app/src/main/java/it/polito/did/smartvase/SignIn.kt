@@ -1,34 +1,54 @@
 package it.polito.did.smartvase
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.auth.FirebaseAuth
+import it.polito.did.smartvase.databinding.SignInBinding
+
 
 class SignIn : AppCompatActivity() {
 
+    private lateinit var binding: SignInBinding
+
+    companion object{
+        lateinit var auth: FirebaseAuth
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-//        setContentView(R.layout.sign_in)
-//
-//        // Configure sign-in to request the user's ID, email address, and basic
-//        // profile. ID and basic profile are included in DEFAULT_SIGN_IN.
-//        val gso: GoogleSignInOptions = Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-//            .requestEmail()
-//            .build()
-//        // Build a GoogleSignInClient with the options specified by gso.
-//        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
-//
-//        findViewById(R.id.sign_in_button).setOnClickListener(this);
+        super.onCreate(savedInstanceState)
+
+        auth = FirebaseAuth.getInstance()
+
+        if(auth.currentUser == null){
+            startActivity(Intent(this, RegisterActivity::class.java))
+            finish()
+        }
+
+        binding = SignInBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        binding.signIn.setOnClickListener{
+            startActivity(Intent(this, RegisterActivity::class.java))
+            finish()
+        }
+
+        binding.signOut.setOnClickListener{
+            auth.signOut()
+            binding.userDetails.text = updateData()
+        }
+
 //        //nascondo la Action Bar (barra con il titolo dell'app)
 //        supportActionBar?.hide()
 
     }
 
-    override fun onStart() {
-//        super.onStart()
-//
-//        // Check for existing Google Sign In account, if the user is already signed in
-//        // the GoogleSignInAccount will be non-null.
-//        val account: GoogleSignInAccount = GoogleSignIn.getLastSignedInAccount(this)
-//        updateUI(account)
+    override fun onResume() {
+        super.onResume()
+        binding.userDetails.text = updateData()
+    }
+
+    private fun updateData(): String{
+        return "Email: ${auth.currentUser?.email}"
     }
 }
