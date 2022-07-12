@@ -89,18 +89,18 @@ class Dashboard : Fragment() {
         }
 
 
-/*        homeButton.setOnClickListener { findNavController().navigate(R.id.action_dashboard_to_homepage) }
-        editButton.setOnClickListener { findNavController().navigate(R.id.action_dashboard_to_editPlant) } //ancora da capire come fare, se con altro fragment
-
-        waterButton.setOnLongClickListener{
-            viewModel.auto=true
-           // activity?.vibrate(25);
-            return@setOnLongClickListener true
-        }
-
-        notificationButton.setOnClickListener{
-            viewModel.notification=false
-        }*/
+//        homeButton.setOnClickListener { findNavController().navigate(R.id.action_dashboard_to_homepage) }
+//        editButton.setOnClickListener { findNavController().navigate(R.id.action_dashboard_to_editPlant) } //ancora da capire come fare, se con altro fragment
+//
+//        waterButton.setOnLongClickListener{
+//            viewModel.auto=true
+//           // activity?.vibrate(25);
+//            return@setOnLongClickListener true
+//        }
+//
+//        notificationButton.setOnClickListener{
+//            viewModel.notification=false
+//        }
     }
 
 }
