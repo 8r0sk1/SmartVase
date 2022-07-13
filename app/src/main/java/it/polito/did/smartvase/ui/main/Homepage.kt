@@ -19,6 +19,8 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
 import it.polito.did.smartvase.R
+import android.util.Log
+
 
 class Homepage : Fragment() {
 
@@ -33,6 +35,7 @@ class Homepage : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        Log.d("HOMEPAGE","creating")
        // auto = view?.findViewById<Switch>(R.id.autoSwitch1) ?:
        // auto.setChecked(viewModel.auto)
 
@@ -40,6 +43,7 @@ class Homepage : Fragment() {
     }
 //42
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        Log.d("HOMEPAGE","created")
         super.onViewCreated(view, savedInstanceState)
 
         val addPlant = view.findViewById<FloatingActionButton>(R.id.addPlantButton)

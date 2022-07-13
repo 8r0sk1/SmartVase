@@ -8,10 +8,12 @@ import android.os.VibrationEffect
 import android.os.Vibrator
 import androidx.fragment.app.Fragment
 import it.polito.did.smartvase.ui.main.Homepage
+import android.util.Log
 
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        Log.d("MAINACTIVITY","created")
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_activity)
 
