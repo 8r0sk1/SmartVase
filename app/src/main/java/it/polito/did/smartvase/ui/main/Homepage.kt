@@ -21,15 +21,14 @@ import com.google.firebase.ktx.Firebase
 import it.polito.did.smartvase.R
 import android.util.Log
 
+class Homepage : Fragment(R.layout.homepage) {
 
-class Homepage : Fragment() {
+    private val viewModel: MainViewModel by activityViewModels<MainViewModel>()
+    private lateinit var auto : Switch
 
     companion object {
         fun newInstance() = Homepage()
     }
-
-    private val viewModel: MainViewModel by activityViewModels<MainViewModel>()
-    //private lateinit var auto : Switch
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,7 +37,6 @@ class Homepage : Fragment() {
         Log.d("HOMEPAGE","creating")
        // auto = view?.findViewById<Switch>(R.id.autoSwitch1) ?:
        // auto.setChecked(viewModel.auto)
-
         return inflater.inflate(R.layout.homepage, container, false)
     }
 //42
@@ -46,7 +44,7 @@ class Homepage : Fragment() {
         Log.d("HOMEPAGE","created")
         super.onViewCreated(view, savedInstanceState)
 
-        val addPlant = view.findViewById<FloatingActionButton>(R.id.addPlantButton)
+        /*val addPlant = view.findViewById<FloatingActionButton>(R.id.addPlantButton)
         val settings = view.findViewById<ImageButton>(R.id.profileButton)
         val dashboard = view.findViewById<ImageView>(R.id.cardWaterLevel) //TODO capire cosa premere per aprire dash
         val auto = view.findViewById<Switch>(R.id.autoSwitch1)
@@ -54,7 +52,6 @@ class Homepage : Fragment() {
         val txtV = view.findViewById<TextView>(R.id.yourPlantText)
         val db = Firebase.database.reference
         val ref = db.child("chiave")
-
 
         ref.addValueEventListener(object: ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -66,7 +63,6 @@ class Homepage : Fragment() {
             }
         })
 
-
         addPlant.setOnClickListener { findNavController().navigate(R.id.action_homepage_to_plantSetup) }
         //settings.setOnClickListener { findNavController().navigate(R.id.action_homepage_to_settings) }
         settings.setOnClickListener { findNavController().navigate(R.id.action_homepage_to_dashboard) } //TODO questo serve ad andare veloce a dashboard
@@ -77,7 +73,6 @@ class Homepage : Fragment() {
         }
 //        auto.setOnClickListener {
 //            viewModel.auto = true
-//        }
-
+//        }*/
     }
 }

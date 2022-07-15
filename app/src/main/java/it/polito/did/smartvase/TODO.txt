@@ -9,3 +9,7 @@ pagina principale homepage con un controllo dell'autenticazione che manda alla p
     nel viewmodel si salva il profilo loggato da cui partire con le query
 
 roba di arduino e wifi boh soccazzi
+
+
+BUG
+conflitto mainactivity

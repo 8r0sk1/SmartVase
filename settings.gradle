@@ -4,6 +4,7 @@ dependencyResolutionManagement {
         google()
         mavenCentral()
         jcenter() // Warning: this repository is going to shut down soon
+        //implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     }
 }
 rootProject.name = "Smart Vase"
