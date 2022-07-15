@@ -46,7 +46,7 @@
         android:id="@+id/backgroundImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:contentDescription="@string/background"
+        android:contentDescription="BackgroundAppHome"
         android:src="@drawable/sfondo"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -75,7 +75,7 @@
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:backgroundTint="#00FFFFFF"
-        android:contentDescription="@string/profile"
+        android:contentDescription="profile"
         android:scaleType="centerInside"
         android:src="@drawable/utente"
         app:layout_constraintEnd_toStartOf="@+id/guideline_right"
@@ -103,7 +103,7 @@
         android:layout_height="60dp"
         android:layout_marginBottom="50dp"
         android:clickable="true"
-        android:contentDescription="@string/add"
+        android:contentDescription="add"
         android:elevation="2dp"
         android:foreground="@drawable/add"
         android:foregroundTint="#EFEFEF"
@@ -112,13 +112,12 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline_right"
         app:layout_constraintStart_toStartOf="@+id/guideline_left"
         app:rippleColor="#EFEFEF"
-        tools:ignore="ImageContrastCheck"
-        android:focusable="true" />
+        tools:ignore="ImageContrastCheck" />
 
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/removePlantButton"
-        android:contentDescription="@string/remove"
+        android:contentDescription="remove"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_marginBottom="50dp"
@@ -130,8 +129,7 @@
         app:backgroundTint="#00C081"
         app:layout_constraintBottom_toTopOf="@+id/guideline_bottom"
         app:layout_constraintEnd_toStartOf="@+id/guideline_right"
-        app:layout_constraintStart_toStartOf="@+id/guideline_left"
-        android:focusable="true" />
+        app:layout_constraintStart_toStartOf="@+id/guideline_left" />
 
 
     <!--<androidx.cardview.widget.CardView

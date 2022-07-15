@@ -17,4 +17,8 @@
     <string name="create_account">Create Account</string>
 
     <string name="client_id">250378430176–56g4ace2f2h7kspr1p1luukojhts5ifp.apps.googleusercontent.com</string>
+    <string name="add">add</string>
+    <string name="remove">remove</string>
+    <string name="profile">profile</string>
+    <string name="background">background</string>
 </resources>
