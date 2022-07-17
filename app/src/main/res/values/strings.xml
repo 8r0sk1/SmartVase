@@ -21,4 +21,8 @@
     <string name="remove">remove</string>
     <string name="profile">profile</string>
     <string name="background">background</string>
+    <string name="auto">Auto</string>
+    <string name="ficus">Ficus</string>
+    <string name="planticon">plantIcon</string>
+    <string name="plantcard">plantCard</string>
 </resources>
