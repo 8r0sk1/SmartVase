@@ -44,12 +44,12 @@ class Homepage : Fragment(R.layout.homepage) {
         Log.d("HOMEPAGE","created")
         super.onViewCreated(view, savedInstanceState)
 
-        /*val addPlant = view.findViewById<FloatingActionButton>(R.id.addPlantButton)
-        val settings = view.findViewById<ImageButton>(R.id.profileButton)
-        val dashboard = view.findViewById<ImageView>(R.id.cardWaterLevel) //TODO capire cosa premere per aprire dash
-        val auto = view.findViewById<Switch>(R.id.autoSwitch1)
+        val addPlant = view.findViewById<FloatingActionButton>(R.id.addPlantButton2)
+        //val settings = view.findViewById<ImageButton>(R.id.profileButton2)
+        //val dashboard = view.findViewById<ImageView>(R.id.cardWaterLevel) //TODO capire cosa premere per aprire dash
+//        val auto = view.findViewById<Switch>(R.id.autoSwitch1)
 
-        val txtV = view.findViewById<TextView>(R.id.yourPlantText)
+        val txtV = view.findViewById<TextView>(R.id.yourPlantText2)
         val db = Firebase.database.reference
         val ref = db.child("chiave")
 
@@ -65,14 +65,14 @@ class Homepage : Fragment(R.layout.homepage) {
 
         addPlant.setOnClickListener { findNavController().navigate(R.id.action_homepage_to_plantSetup) }
         //settings.setOnClickListener { findNavController().navigate(R.id.action_homepage_to_settings) }
-        settings.setOnClickListener { findNavController().navigate(R.id.action_homepage_to_dashboard) } //TODO questo serve ad andare veloce a dashboard
-        dashboard.setOnClickListener { findNavController().navigate(R.id.action_homepage_to_dashboard) }
+//        settings.setOnClickListener { findNavController().navigate(R.id.action_homepage_to_dashboard) } //TODO questo serve ad andare veloce a dashboard
+//        dashboard.setOnClickListener { findNavController().navigate(R.id.action_homepage_to_dashboard) }
 
-        auto.setOnCheckedChangeListener { _, isChecked ->
-            viewModel.auto = isChecked
-        }
+//        auto.setOnCheckedChangeListener { _, isChecked ->
+//            viewModel.auto = isChecked
+//        }
 //        auto.setOnClickListener {
 //            viewModel.auto = true
-//        }*/
+//        }
     }
 }
