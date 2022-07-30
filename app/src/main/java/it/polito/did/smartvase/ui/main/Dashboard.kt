@@ -38,7 +38,7 @@ class Dashboard : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val waterBar = view?.findViewById<ImageView>(R.id.waterBarFull)
+       /* val waterBar = view?.findViewById<ImageView>(R.id.waterBarFull)
         val soilMostureBar = view?.findViewById<ImageView>(R.id.soilMoisrtureBarFull)
         val plantName = view?.findViewById<TextView>(R.id.PlantName2)
         val plantIcon = view?.findViewById<TextView>(R.id.PlantIcon1)
@@ -68,7 +68,7 @@ class Dashboard : Fragment() {
         //if(viewModel.notification)
             //TODO STATE ICONA NOTIFICHE
         //todo peppinodicapri
-        viewModel.auto=!viewModel.auto
+        viewModel.auto=!viewModel.auto*/
 
         return inflater.inflate(R.layout.dashboard, container, false)
     }
@@ -76,7 +76,7 @@ class Dashboard : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val homeButton = view.findViewById<ImageButton>(R.id.homeButton)
+        /*val homeButton = view.findViewById<ImageButton>(R.id.homeButton)
         val editButton = view.findViewById<ImageButton>(R.id.editButton)
         val waterButton = view.findViewById<FloatingActionButton>(R.id.autoWaterButton)
         val notificationButton = view.findViewById<ImageButton>(R.id.notificationButton)
@@ -86,7 +86,7 @@ class Dashboard : Fragment() {
 
         waterButton.setOnClickListener {
             ref.setValue(1)
-        }
+        }*/
 
 
 /*        homeButton.setOnClickListener { findNavController().navigate(R.id.action_dashboard_to_homepage) }

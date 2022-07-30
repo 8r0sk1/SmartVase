@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageView
+    <!--<ImageView
         android:id="@+id/backgroundImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -72,7 +72,7 @@
         app:layout_constraintStart_toStartOf="@+id/guideline_left"
         app:layout_constraintTop_toTopOf="@+id/guideline_top2" />
 
-    <!-- Card vuota per immagine pianta -->
+    &lt;!&ndash; Card vuota per immagine pianta &ndash;&gt;
     <androidx.cardview.widget.CardView
         android:id="@+id/iconaPianta2"
         android:layout_width="130dp"
@@ -86,7 +86,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-            <!-- Immagine pianta-->
+            &lt;!&ndash; Immagine pianta&ndash;&gt;
             <ImageView
                 android:id="@+id/PlantIcon1"
                 android:layout_width="0dp"
@@ -103,7 +103,7 @@
 
 
 
-    <!-- Bordo barra serbatoio -->
+    &lt;!&ndash; Bordo barra serbatoio &ndash;&gt;
     <androidx.cardview.widget.CardView
         android:id="@+id/waterBarCorner"
         android:layout_width="60dp"
@@ -118,7 +118,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-            <!-- Barra vuota del serbatoio -->
+            &lt;!&ndash; Barra vuota del serbatoio &ndash;&gt;
             <androidx.cardview.widget.CardView
                 android:id="@+id/waterBarEmpty"
                 android:layout_width="55dp"
@@ -133,7 +133,7 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
-                    <!-- Barra piena serbatoio -->
+                    &lt;!&ndash; Barra piena serbatoio &ndash;&gt;
                     <androidx.cardview.widget.CardView
                         android:id="@+id/waterBarFull"
                         android:layout_width="55dp"
@@ -143,7 +143,7 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent" />
-                    <!-- Barra acqua -->
+                    &lt;!&ndash; Barra acqua &ndash;&gt;
                     <ImageView
                         android:id="@+id/dividerWater"
                         android:layout_width="60dp"
@@ -154,7 +154,7 @@
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintVertical_bias="0.74"
                         app:srcCompat="@drawable/taccalivello" />
-                    <!-- Testo volume d'acqua-->
+                    &lt;!&ndash; Testo volume d'acqua&ndash;&gt;
                     <TextView
                         android:id="@+id/waterVolume"
                         android:layout_width="wrap_content"
@@ -171,7 +171,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 
-    <!-- Bordo barra umidità -->
+    &lt;!&ndash; Bordo barra umidità &ndash;&gt;
     <androidx.cardview.widget.CardView
         android:id="@+id/soilMoistureBarCorner"
         android:layout_width="60dp"
@@ -185,7 +185,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-            <!-- Barra vuota umidità -->
+            &lt;!&ndash; Barra vuota umidità &ndash;&gt;
             <androidx.cardview.widget.CardView
                 android:id="@+id/soilMoistureBarEmpty"
                 android:layout_width="55dp"
@@ -199,7 +199,7 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
-                    <!-- Barra piena umidità -->
+                    &lt;!&ndash; Barra piena umidità &ndash;&gt;
                     <androidx.cardview.widget.CardView
                         android:id="@+id/soilMoisrtureBarFull"
                         android:layout_width="55dp"
@@ -209,7 +209,7 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent" />
-                    <!-- Barra umidità minima -->
+                    &lt;!&ndash; Barra umidità minima &ndash;&gt;
                     <ImageView
                         android:id="@+id/dividerMinSoilMoisture"
                         android:layout_width="60dp"
@@ -220,7 +220,7 @@
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintVertical_bias="0.74"
                         app:srcCompat="@drawable/taccalivello" />
-                    <!-- Barra umidità massima -->
+                    &lt;!&ndash; Barra umidità massima &ndash;&gt;
                     <ImageView
                         android:id="@+id/dividerMaxSoilMoisture"
                         android:layout_width="60dp"
@@ -231,7 +231,7 @@
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintVertical_bias="0.45"
                         app:srcCompat="@drawable/taccalivello" />
-                    <!-- Testo volume d'acqua-->
+                    &lt;!&ndash; Testo volume d'acqua&ndash;&gt;
                     <TextView
                         android:id="@+id/SoilMoisturePercentage"
                         android:layout_width="wrap_content"
@@ -385,7 +385,7 @@
         android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@+id/waterButton"
         app:layout_constraintEnd_toEndOf="@+id/waterButton"
-        app:layout_constraintStart_toStartOf="@+id/waterButton" />
+        app:layout_constraintStart_toStartOf="@+id/waterButton" />-->
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

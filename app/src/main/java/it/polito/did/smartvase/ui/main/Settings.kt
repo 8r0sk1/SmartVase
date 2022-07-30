@@ -22,14 +22,14 @@ class Settings : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        return inflater.inflate(R.layout.plant_setup, container, false)
+        return inflater.inflate(R.layout.settings, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val back = view.findViewById<Button>(R.id.back_button)
+        /*val back = view.findViewById<Button>(R.id.back_button)
 
-        back.setOnClickListener { findNavController().navigate(R.id.action_editPlant_to_homepage) }
+        back.setOnClickListener { findNavController().navigate(R.id.action_editPlant_to_homepage) }*/
     }
 }
