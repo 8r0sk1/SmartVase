@@ -17,6 +17,8 @@ import com.google.firebase.ktx.Firebase
 import it.polito.did.smartvase.R
 import android.util.Log
 import android.widget.*
+import androidx.transition.TransitionInflater
+import com.google.android.material.switchmaterial.SwitchMaterial
 
 class Homepage : Fragment(R.layout.homepage) {
 
@@ -26,6 +28,12 @@ class Homepage : Fragment(R.layout.homepage) {
 
     companion object {
         fun newInstance() = Homepage()
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val inflater = TransitionInflater.from(requireContext())
+        exitTransition = inflater.inflateTransition(R.transition.fade)
     }
 
     override fun onCreateView(
@@ -42,7 +50,40 @@ class Homepage : Fragment(R.layout.homepage) {
         Log.d("HOMEPAGE","created")
         super.onViewCreated(view, savedInstanceState)
 
-    val addPlant = view.findViewById<Button>(R.id.addPlantButton2)
+        val addPlant = view.findViewById<FloatingActionButton>(R.id.addPlantButton)
+        val settings = view.findViewById<ImageButton>(R.id.profileButton)
+        val dashboard = view.findViewById<ImageView>(R.id.cardWaterLevel) //TODO capire cosa premere per aprire dash
+        val auto = view.findViewById<SwitchMaterial>(R.id.autoSwitch)
+
+        val txtV = view.findViewById<TextView>(R.id.yourPlantText)
+        val db = Firebase.database.reference
+        val ref = db.child("chiave")
+
+        ref.addValueEventListener(object: ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                txtV.text = snapshot.getValue<String>()
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+        })
+
+        addPlant.setOnClickListener { findNavController().navigate(R.id.action_homepage_to_plantSetup) }
+        settings.setOnClickListener { findNavController().navigate(R.id.action_homepage_to_settings) }
+        //settings.setOnClickListener { findNavController().navigate(R.id.action_homepage_to_dashboard) }
+        dashboard.setOnClickListener { findNavController().navigate(R.id.action_homepage_to_dashboard) }
+
+        auto.setOnCheckedChangeListener { _, isChecked ->
+            viewModel.auto = isChecked
+        }
+        /*auto.setOnClickListener {
+            viewModel.auto = true
+        }*/
+
+
+
+    /*val addPlant = view.findViewById<Button>(R.id.addPlantButton2)
     val settings = view.findViewById<Button>(R.id.profileButton2)
     val dashboard = view.findViewById<Button>(R.id.cardWaterLevel) //TODO capire cosa premere per aprire dash
     val auto = view.findViewById<Switch>(R.id.autoSwitch2)
@@ -70,48 +111,14 @@ class Homepage : Fragment(R.layout.homepage) {
     //settings.setOnClickListener { findNavController().navigate(R.id.action_homepage_to_dashboard) } //TODO questo serve ad andare veloce a dashboard
     dashboard.setOnClickListener { findNavController().navigate(R.id.action_homepage_to_dashboard) }
 
-    /*auto.setOnClickListener{ //BARARE LO SWITCH
+    *//*auto.setOnClickListener{ //BARARE LO SWITCH
         checked = !checked
         viewModel.auto = checked
-    }*/
+    }*//*
     auto.setOnCheckedChangeListener { _, isChecked ->
         viewModel.auto = isChecked
-    }
+    }*/
 
 
-        /*
-
-        val addPlant = view.findViewById<FloatingActionButton>(R.id.addPlantButton2)
-        val settings = view.findViewById<ImageButton>(R.id.profileButton2)
-        val dashboard = view.findViewById<ImageView>(R.id.cardWaterLevel) //TODO capire cosa premere per aprire dash
-        //val auto = view.findViewById<Switch>(R.id.autoSwitch2)
-
-        val txtV = view.findViewById<TextView>(R.id.yourPlantText2)
-        val db = Firebase.database.reference
-        val ref = db.child("chiave")
-
-        ref.addValueEventListener(object: ValueEventListener{
-            override fun onDataChange(snapshot: DataSnapshot) {
-                txtV.text = snapshot.getValue<String>()
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
-            }
-        })
-
-        addPlant.setOnClickListener { findNavController().navigate(R.id.action_homepage_to_plantSetup) }
-        //settings.setOnClickListener { findNavController().navigate(R.id.action_homepage_to_settings) }
-//        settings.setOnClickListener { findNavController().navigate(R.id.action_homepage_to_dashboard) } //TODO questo serve ad andare veloce a dashboard
-//        dashboard.setOnClickListener { findNavController().navigate(R.id.action_homepage_to_dashboard) }
-
-//        auto.setOnCheckedChangeListener { _, isChecked ->
-//            viewModel.auto = isChecked
-//        }
-//        auto.setOnClickListener {
-//            viewModel.auto = true
-//        }
-
-         */
     }
 }

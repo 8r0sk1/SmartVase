@@ -1,15 +1,8 @@
-cazzinelculo
-MAINACTIVITY E HOMEPAGE SONO LA STESSA COSA COME LAYOUT?
-    view solo della homepage magari, è anche un po' lento il setcontentview
-in mainactivity o nel servizio in background fare aggiornamento delle variabili ogni tot tempo
-    in caso di innaffiaggio appena premuto aggiornamneto realtime per un tot tempo o fino ad avvenuta situzione
-    potrebbe essere un servizio dbmanager che fa tuttecose del db e manda notifiche
-
 pagina principale homepage con un controllo dell'autenticazione che manda alla pagina di registrazione che diventa un fragment
     nel viewmodel si salva il profilo loggato da cui partire con le query
 
 roba di arduino e wifi boh soccazzi
 
+quando si finisce il setup premere back dalla dashboard deve portare alla home
 
-BUG
-conflitto mainactivity
+se java.lang.OUTOFMEMORY aggiungi riga commentata in manifest
