@@ -7,7 +7,7 @@
     android:background="#CB1F332A">
 
     <TextView
-        android:id="@+id/soilMoistureText"
+        android:id="@+id/soilMoistureText2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
@@ -19,7 +19,7 @@
         app:layout_constraintTop_toBottomOf="@+id/soilMoistureBarCorner" />
 
     <TextView
-        android:id="@+id/plantName"
+        android:id="@+id/plantName2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
@@ -33,7 +33,7 @@
         app:layout_constraintTop_toBottomOf="@+id/iconaPianta" />
 
     <ImageButton
-        android:id="@+id/homeButton"
+        android:id="@+id/homeButton2"
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:backgroundTint="#00FFFFFF"
@@ -44,7 +44,7 @@
         app:layout_constraintTop_toTopOf="@+id/guideline_top" />
 
     <ImageButton
-        android:id="@+id/editButton"
+        android:id="@+id/editButton2"
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:backgroundTint="#00FFFFFF"
@@ -103,7 +103,7 @@
             android:layout_height="match_parent">
             <!-- Immagine pianta-->
             <ImageView
-                android:id="@+id/PlantIcon"
+                android:id="@+id/PlantIcon2"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:outlineProvider="paddedBounds"
@@ -127,7 +127,7 @@
         app:cardBackgroundColor="#3E3E3E"
         app:cardCornerRadius="15dp"
         app:layout_constraintEnd_toStartOf="@+id/guideline_right"
-        app:layout_constraintTop_toBottomOf="@+id/plantName">
+        app:layout_constraintTop_toBottomOf="@+id/plantName2">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -149,7 +149,7 @@
                     android:layout_height="match_parent">
                     <!-- Barra umidità minima -->
                     <ImageView
-                        android:id="@+id/dividerMinSoilMoisture"
+                        android:id="@+id/dividerMinSoilMoisture2"
                         android:layout_width="60dp"
                         android:layout_height="wrap_content"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -160,7 +160,7 @@
                         app:srcCompat="@mipmap/ic_launcher" />
                     <!-- Barra umidità massima -->
                     <ImageView
-                        android:id="@+id/dividerMaxSoilMoisture"
+                        android:id="@+id/dividerMaxSoilMoisture2"
                         android:layout_width="60dp"
                         android:layout_height="wrap_content"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -176,7 +176,7 @@
     </androidx.cardview.widget.CardView>
 
     <TextView
-        android:id="@+id/maxSoilMoistureText"
+        android:id="@+id/WaterLevelPercentage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="70dp"
@@ -184,13 +184,13 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         android:textColor="#EFEFEF"
         android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="@+id/autoWaterButton"
-        app:layout_constraintEnd_toStartOf="@+id/autoWaterButton"
-        app:layout_constraintTop_toTopOf="@+id/autoWaterButton"
+        app:layout_constraintBottom_toBottomOf="@+id/autoWaterButton2"
+        app:layout_constraintEnd_toStartOf="@+id/autoWaterButton2"
+        app:layout_constraintTop_toTopOf="@+id/autoWaterButton2"
         app:layout_constraintVertical_bias="0.437" />
 
     <TextView
-        android:id="@+id/minSoilMoistureText"
+        android:id="@+id/SoilMoisturePercentage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="70dp"
@@ -198,13 +198,13 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         android:textColor="#EFEFEF"
         android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="@+id/notificationButton"
-        app:layout_constraintEnd_toStartOf="@+id/notificationButton"
-        app:layout_constraintTop_toTopOf="@+id/notificationButton"
+        app:layout_constraintBottom_toBottomOf="@+id/notificationButton2"
+        app:layout_constraintEnd_toStartOf="@+id/notificationButton2"
+        app:layout_constraintTop_toTopOf="@+id/notificationButton2"
         app:layout_constraintVertical_bias="0.437" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/autoWaterButton"
+        android:id="@+id/autoWaterButton2"
         android:contentDescription="maxSoilMoisture"
         android:layout_width="48dp"
         android:layout_height="48dp"
@@ -216,7 +216,7 @@
         app:layout_constraintVertical_bias="0.447" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/notificationButton"
+        android:id="@+id/notificationButton2"
         android:contentDescription="minSoilMoisture"
         android:layout_width="48dp"
         android:layout_height="48dp"

@@ -6,3 +6,7 @@ roba di arduino e wifi boh soccazzi
 quando si finisce il setup premere back dalla dashboard deve portare alla home
 
 se java.lang.OUTOFMEMORY aggiungi riga commentata in manifest
+HOMEPAGE 1
+DASHBOARD 2
+TODO CONCRETO GIALLINOOOO
+linee sopra la barra
