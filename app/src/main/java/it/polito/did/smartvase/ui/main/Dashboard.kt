@@ -1,6 +1,5 @@
 package it.polito.did. smartvase.ui.main
 
-import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -10,8 +9,6 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.constraintlayout.widget.ConstraintSet
-import androidx.core.view.marginTop
 import androidx.core.view.updateLayoutParams
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -35,6 +32,7 @@ class Dashboard : Fragment() {
         super.onCreate(savedInstanceState)
         val inflater = TransitionInflater.from(requireContext())
         enterTransition = inflater.inflateTransition(R.transition.slide)
+        exitTransition = inflater.inflateTransition(R.transition.fade)
     }
 
     override fun onCreateView(
@@ -47,10 +45,10 @@ class Dashboard : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        var waterBar = view?.findViewById<CardView>(R.id.waterLevelBar2)
-        var soilMostureBar = view?.findViewById<CardView>(R.id.soilMoistureBar2)
+        val waterBar = view?.findViewById<CardView>(R.id.waterLevelBar2)
+        val soilMostureBar = view?.findViewById<CardView>(R.id.soilMoistureBar2)
         val plantName = view?.findViewById<TextView>(R.id.plantName2)
-        val plantIcon = view?.findViewById<ImageView>(R.id.PlantIcon2)
+                                val plantIcon = view?.findViewById<ImageView>(R.id.PlantIcon2)
         val offText = view?.findViewById<TextView>(R.id.offText2)
         val homeButton = view.findViewById<ImageButton>(R.id.homeButton2)
         val editButton = view.findViewById<ImageButton>(R.id.editButton2)
@@ -58,39 +56,38 @@ class Dashboard : Fragment() {
         val notificationButton = view.findViewById<ImageButton>(R.id.notificationButton2)
         val SoilMoisturePercentage = view?.findViewById<TextView>(R.id.SoilMoisturePercentage)
         val WaterLevelPercentage = view?.findViewById<TextView>(R.id.WaterLevelPercentage)
-        val dividerMaxWaterLevel = view?.findViewById<ImageView>(R.id.dividerMaxWaterLevel2)
-        val dividerMinWaterLevel = view?.findViewById<ImageView>(R.id.dividerMinWaterLevel2)
-        val dividerMaxSoilMoisture = view?.findViewById<ImageView>(R.id.dividerMaxSoilMoisture2)
-        val dividerMinSoilMoisture = view?.findViewById<ImageView>(R.id.dividerMinSoilMoisture2)
+//        val dividerMaxWaterLevel = view?.findViewById<ProgressBar>(R.id.dividerMaxWaterLevel2)
+//        val dividerMinWaterLevel = view?.findViewById<ProgressBar>(R.id.dividerMinWaterLevel2)
+        val dividerMaxSoilMoisture = view?.findViewById<ProgressBar>(R.id.dividerMaxSoilMoisture2)
+        val dividerMinSoilMoisture = view?.findViewById<ProgressBar>(R.id.dividerMinSoilMoisture2)
 
         val db = Firebase.database.reference //TODO VLAD TE TENGO DOCCHIOOOO
         val ref = db.child("A7/toWaterControl")
 
+        val barHeight=waterBar.translationY
 
                                         //popolamento viste
-
-        viewModel.plantIconId= R.mipmap.ic_launcher
         plantName?.setText(viewModel.plantName)
-        plantIcon?.setImageResource(viewModel.plantIconId) //TODO COMe si assegnano le immagini porcapputttana?
+        plantIcon?.setImageResource(viewModel.plantIconId)
 
         //testo percentuale riempimento
         SoilMoisturePercentage?.text= viewModel.waterLevel.toString()
         WaterLevelPercentage?.text= viewModel.soilMoisture.toString()
 
         //divisori barre
-        dividerMaxWaterLevel?.updateLayoutParams<ConstraintLayout.LayoutParams> { verticalBias = 1-0.01f*viewModel.waterLevelMax  }
-        dividerMinWaterLevel?.updateLayoutParams<ConstraintLayout.LayoutParams> { verticalBias = 1-0.01f*viewModel.waterLevelMin  }
-        dividerMaxSoilMoisture?.updateLayoutParams<ConstraintLayout.LayoutParams> { verticalBias = 1-0.01f*viewModel.soilMoistureMax  }
-        dividerMinSoilMoisture?.updateLayoutParams<ConstraintLayout.LayoutParams> { verticalBias = 1-0.01f*viewModel.soilMoistureMin  }
+//        dividerMaxWaterLevel?.updateLayoutParams<ConstraintLayout.LayoutParams> { verticalBias = 1-viewModel.waterLevelMax  }
+//        dividerMinWaterLevel?.updateLayoutParams<ConstraintLayout.LayoutParams> { verticalBias = 1-viewModel.waterLevelMin  }
+        dividerMaxSoilMoisture?.updateLayoutParams<ConstraintLayout.LayoutParams> { verticalBias = 1-viewModel.soilMoistureMax  }
+        dividerMinSoilMoisture?.updateLayoutParams<ConstraintLayout.LayoutParams> { verticalBias = 1-viewModel.soilMoistureMin  }
 
         //da percentuale a valore di traslazione (385dp lunghezza barra)
-        var fillWater :Float=385- 3.85f * viewModel.waterLevel //TODO DA DP A PIXEL DI MERDA
-        var fillSoil :Float =385- 3.85f * viewModel.soilMoisture
-
+        var fillWater :Float=385- 385f * viewModel.waterLevel //TODO DA DP A PIXEL DI MERDA
+        var fillSoil :Float =385- 385f * viewModel.soilMoisture
 
         //riempire barre
-        waterBar.translationY =  * 385f *0.5f
-        soilMostureBar.translationY = 154f
+        waterBar.translationY +=  viewModel.waterLevel *  barHeight
+        soilMostureBar.translationY += viewModel.soilMoisture * barHeight
+
 
         if(viewModel.auto){
             offText?.text="ON"
@@ -115,5 +112,4 @@ class Dashboard : Fragment() {
             viewModel.notification = !viewModel.notification
         }
     }
-
 }

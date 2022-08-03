@@ -28,8 +28,8 @@ class PlantSetup3 : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val back = view.findViewById<Button>(R.id.back_button)
-        val next = view.findViewById<Button>(R.id.next_button)
+        val back = view.findViewById<Button>(R.id.back_button32)
+        val next = view.findViewById<Button>(R.id.next_button32)
 
         back.setOnClickListener { findNavController().navigate(R.id.action_plantSetup3_to_plantSetup2) }
         next.setOnClickListener { findNavController().navigate(R.id.action_plantSetup3_to_dashboard) }
