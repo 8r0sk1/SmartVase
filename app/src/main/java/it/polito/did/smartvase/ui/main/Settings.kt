@@ -21,20 +21,19 @@ class Settings : Fragment() {
         super.onCreate(savedInstanceState)
         val inflater = TransitionInflater.from(requireContext())
         enterTransition = inflater.inflateTransition(R.transition.slide)
+        exitTransition = inflater.inflateTransition(R.transition.fade)
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        return inflater.inflate(R.layout.settings, container, false)
+        return inflater.inflate(R.layout.plant_setup, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        /*val back = view.findViewById<Button>(R.id.back_button)
 
-        back.setOnClickListener { findNavController().navigate(R.id.action_editPlant_to_homepage) }*/
     }
 }

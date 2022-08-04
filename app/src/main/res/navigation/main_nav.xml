@@ -22,17 +22,27 @@
     </fragment>
 
     <fragment
-        android:id="@+id/PlantSetup"
-        android:name="it.polito.did.smartvase.ui.main.PlantSetup"
-        android:label="PlantSetup"
-        tools:layout="@layout/plant_setup" >
-        <action
-            android:id="@+id/action_plantSetup_to_homepage"
-            app:destination="@id/Homepage" />
-        <action
-            android:id="@+id/action_plantSetup_to_plantSetup2"
-            app:destination="@id/PlantSetup2" />
+    android:id="@+id/PlantSetup"
+    android:name="it.polito.did.smartvase.ui.main.PlantSetup"
+    android:label="PlantSetup"
+    tools:layout="@layout/plant_setup" >
+    <action
+        android:id="@+id/action_plantSetup_to_homepage"
+        app:destination="@id/Homepage" />
+    <action
+        android:id="@+id/action_plantSetup_to_plantSetup2"
+        app:destination="@id/PlantSetup2" />
+    <action
+        android:id="@+id/action_plantSetup_to_iconListFragment"
+        app:destination="@id/IconListFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/IconListFragment"
+        android:name="it.polito.did.smartvase.ui.main.IconListFragment"
+        android:label="IconListFragment"
+        tools:layout="@layout/icon_list_fragment" >
+    </fragment>
+
 
     <fragment
         android:id="@+id/PlantSetup2"

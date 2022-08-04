@@ -9,6 +9,8 @@ se java.lang.OUTOFMEMORY aggiungi riga commentata in manifest
 HOMEPAGE 1
 DASHBOARD 2
 SETUP 3  setup2 32
+Setting/EDITPLANT 4 42
+planticon 5
 TODO CONCRETO GIALLINOOOO
 animazione nel longpress
 reset del viewmodel annullando il setup, mettere icona col + come icona default
@@ -17,3 +19,4 @@ rendere sfocato il dietro nel setup e setup2
 regolazione umidità standard per il tipo di pianta
 mettere terrino e acquino sotto alle barre così si nasconde bug
 oggetti di classe viewmodel per il multipianta
+gestione del tasto BACK impossibile

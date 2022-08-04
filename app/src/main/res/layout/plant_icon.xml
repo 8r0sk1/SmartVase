@@ -1,26 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="5dp"
+    android:layout_marginLeft="2dp"
+    android:layout_marginRight="2dp"
+    android:padding="5dp"
+    >
 
-    <ImageView
-        android:id="@+id/iconR"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardViewAddPlant5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="150dp"
-        tools:srcCompat="@tools:sample/avatars" />
+        app:cardCornerRadius="60dp"
+        app:cardElevation="0dp"
+        >
+
+        <ImageView
+            android:id="@+id/plantIcon5"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:adjustViewBounds="true"
+            android:scaleType="center"
+            android:src="@mipmap/ic_launcher" />
+    </androidx.cardview.widget.CardView>
 
     <TextView
-        android:id="@+id/typeR"
+        android:id="@+id/Type5"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="25dp"
+        android:layout_toEndOf="@+id/cardViewAddPlant5"
+        android:text="Ficus merdus 96 xxx"
+        android:textColor="@color/black"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/defaultMin5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/iconR" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_centerVertical="true"
+        android:layout_toEndOf="@+id/Type5"
+        android:text="35" />
+
+    <TextView
+        android:id="@+id/defaultMax5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Type5"
+        android:layout_marginTop="-19dp"
+        android:layout_toEndOf="@+id/Type5"
+        android:text="55%" />
+
+    <TextView
+        android:id="@+id/defaultValues"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/Type5"
+        android:layout_alignStart="@+id/defaultMin5"
+        android:layout_alignTop="@+id/cardViewAddPlant5"
+        android:layout_marginStart="-10dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginBottom="-43dp"
+        android:text="Default Soil Moisture %" />
+</RelativeLayout>

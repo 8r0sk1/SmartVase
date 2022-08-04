@@ -25,7 +25,7 @@ class IconAdapter(val data:List<PlantIcon>):
 
     class IconViewHolder(v:View):
         RecyclerView.ViewHolder(v) {
-        val icon: ImageView = v.findViewById(R.id.iconR)
+        val icon: ImageView = v.findViewById(R.id.plantIcon5)
         fun bind(p: PlantIcon) {
             icon?.setImageResource(p.iconId)
         }}

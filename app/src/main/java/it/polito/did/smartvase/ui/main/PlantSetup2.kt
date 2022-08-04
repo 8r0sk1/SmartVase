@@ -43,12 +43,12 @@ class PlantSetup2 : Fragment() {
 
         //val plantName = view.findViewById<TextView>(R.id.plantName32)
         val plantIcon = view.findViewById<ImageView>(R.id.plantIcon32)
-        val maxText = view.findViewById<TextView>(R.id.maxText)
-        val minText = view.findViewById<TextView>(R.id.minText)
+        val maxText = view.findViewById<TextView>(R.id.maxText32)
+        val minText = view.findViewById<TextView>(R.id.minText32)
         val dividerMaxSoilMoisture = view.findViewById<ProgressBar>(R.id.dividerMaxSoilMoisture32)
         val dividerMinSoilMoisture = view.findViewById<ProgressBar>(R.id.dividerMinSoilMoisture32)
-        val arrowMax = view.findViewById<ImageView>(R.id.arrowMax)
-        val arrowMin = view.findViewById<ImageView>(R.id.arrowMin)
+        val arrowMax = view.findViewById<ImageView>(R.id.arrowMax32)
+        val arrowMin = view.findViewById<ImageView>(R.id.arrowMin32)
 
         //caricamento default
         dividerMaxSoilMoisture?.updateLayoutParams<ConstraintLayout.LayoutParams> { verticalBias = 1-viewModel.defaultMax }
@@ -71,9 +71,8 @@ class PlantSetup2 : Fragment() {
             //TODO situazione
         }
 
-        //TODO BACK   back.setOnClickListener { findNavController().navigate(R.id.action_plantSetup2_to_plantSetup) }
+        back.setOnClickListener { findNavController().navigate(R.id.action_plantSetup2_to_plantSetup) }
         next.setOnClickListener {
-            //TODO reset mvm
             findNavController().navigate(R.id.action_plantSetup2_to_dashboard) }
     }
 }

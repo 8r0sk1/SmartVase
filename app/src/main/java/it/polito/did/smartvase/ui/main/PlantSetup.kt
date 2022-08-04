@@ -12,6 +12,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.transition.TransitionInflater
 import it.polito.did.smartvase.R
+import android.util.Log
 
 class PlantSetup : Fragment() {
 
@@ -52,6 +53,7 @@ class PlantSetup : Fragment() {
             plantIcon.setImageResource(iconId)
         }
 
+        plantIcon.setOnClickListener{ findNavController().navigate(R.id.action_plantSetup_to_iconListFragment) }
         back.setOnClickListener { findNavController().navigate(R.id.action_plantSetup_to_homepage) }
         next.setOnClickListener {
             if (!setted)
