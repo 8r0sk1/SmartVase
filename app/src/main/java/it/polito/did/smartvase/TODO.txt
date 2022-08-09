@@ -2,14 +2,12 @@ pagina principale homepage con un controllo dell'autenticazione che manda alla p
     nel viewmodel si salva il profilo loggato da cui partire con le query
 
 roba di arduino e wifi boh soccazzi
-
 quando si finisce il setup premere back dalla dashboard deve portare alla home
 
-se java.lang.OUTOFMEMORY aggiungi riga commentata in manifest
 HOMEPAGE 1
 DASHBOARD 2
 SETUP 3  setup2 32
-Setting/EDITPLANT 4 42
+Setting 4 42
 planticon 5
 TODO CONCRETO GIALLINOOOO
 animazione nel longpress

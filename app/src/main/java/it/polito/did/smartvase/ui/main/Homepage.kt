@@ -51,7 +51,7 @@ class Homepage : Fragment(R.layout.homepage) {
         super.onViewCreated(view, savedInstanceState)
 
         val addPlant = view.findViewById<FloatingActionButton>(R.id.addPlantButton)
-        val settings = view.findViewById<ImageButton>(R.id.profileButton)
+        val profile = view.findViewById<ImageButton>(R.id.profileButton)
         val dashboard = view.findViewById<ImageView>(R.id.cardWaterLevel) //TODO capire cosa premere per aprire dash
         val auto = view.findViewById<SwitchMaterial>(R.id.autoSwitch)
 
@@ -70,8 +70,8 @@ class Homepage : Fragment(R.layout.homepage) {
         })
 
         addPlant.setOnClickListener { findNavController().navigate(R.id.action_homepage_to_plantSetup) }
-        settings.setOnClickListener { findNavController().navigate(R.id.action_homepage_to_settings) }
-        //settings.setOnClickListener { findNavController().navigate(R.id.action_homepage_to_dashboard) }
+        //TODO profile.setOnClickListener { findNavController().navigate(R.id.action_homepage_to_settings) }
+        //profile.setOnClickListener { findNavController().navigate(R.id.action_homepage_to_dashboard) }
         dashboard.setOnClickListener { findNavController().navigate(R.id.action_homepage_to_dashboard) }
 
         auto.setOnCheckedChangeListener { _, isChecked ->

@@ -12,15 +12,14 @@
         android:id="@+id/plantName4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
         android:fontFamily="sans-serif-black"
         android:text="Plant name"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textColor="#EFEFEF"
         android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="@+id/iconaPiantaSetup"
-        app:layout_constraintStart_toStartOf="@+id/iconaPiantaSetup"
-        app:layout_constraintTop_toBottomOf="@+id/iconaPiantaSetup" />
+        app:layout_constraintEnd_toEndOf="@+id/iconaPiantaSetup4"
+        app:layout_constraintStart_toStartOf="@+id/iconaPiantaSetup4"
+        app:layout_constraintTop_toBottomOf="@+id/iconaPiantaSetup4" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_top"
@@ -132,9 +131,8 @@
         android:text="EDIT SETUP"
         android:textSize="34sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/guideline_right"
         app:layout_constraintStart_toStartOf="@+id/guideline_left"
-        app:layout_constraintTop_toBottomOf="@+id/plantName32" />
+        app:layout_constraintTop_toBottomOf="@+id/textSetup4" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/soilMoistureBarCorner"
@@ -145,7 +143,7 @@
         app:cardBackgroundColor="#3E3E3E"
         app:cardCornerRadius="15dp"
         app:layout_constraintEnd_toStartOf="@+id/guideline_right"
-        app:layout_constraintTop_toBottomOf="@+id/plantName32">
+        app:layout_constraintTop_toBottomOf="@+id/plantName4">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"

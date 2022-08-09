@@ -101,7 +101,7 @@
                 android:clickable="true"
                 android:contentDescription="add"
                 android:elevation="2dp"
-                android:foreground="@drawable/add"
+                android:foreground="@mipmap/ic_launcher"
                 android:foregroundTint="#EFEFEF"
                 app:backgroundTint="#00C081"
                 app:layout_constraintBottom_toBottomOf="parent"

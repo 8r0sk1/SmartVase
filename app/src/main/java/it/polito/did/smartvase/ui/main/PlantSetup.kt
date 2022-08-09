@@ -1,18 +1,21 @@
 package it.polito.did.smartvase.ui.main
 
+import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.transition.TransitionInflater
 import it.polito.did.smartvase.R
 import android.util.Log
+import androidx.annotation.RequiresApi
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.snackbar.Snackbar
 
 class PlantSetup : Fragment() {
 
@@ -36,33 +39,31 @@ class PlantSetup : Fragment() {
         return inflater.inflate(R.layout.plant_setup, container, false)
     }
 
+    @RequiresApi(Build.VERSION_CODES.M)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         val plantName = view.findViewById<TextView>(R.id.plantName3)
-        val plantIcon = view.findViewById<ImageView>(R.id.plantIcon32)
+        val plantIcon = view.findViewById<FloatingActionButton>(R.id.plantIcon3)
 
-        val back = view.findViewById<Button>(R.id.back_button32)
-        val next = view.findViewById<Button>(R.id.next_button32)
+        val back = view.findViewById<Button>(R.id.back_button3)
+        val next = view.findViewById<Button>(R.id.next_button3)
 
-        //debugssssssssssssss
-        var setted:Boolean=true
-        var iconId:Int=R.mipmap.ic_launcher
-        plantIcon.setOnClickListener{
-            //TODO situazione
-            plantIcon.setImageResource(iconId)
-        }
+        val tmpMVM = viewModel
+
+        plantIcon.foreground = resources.getDrawable(tmpMVM.plantIconId)
+        plantName.setText(tmpMVM.plantName)
 
         plantIcon.setOnClickListener{ findNavController().navigate(R.id.action_plantSetup_to_iconListFragment) }
-        back.setOnClickListener { findNavController().navigate(R.id.action_plantSetup_to_homepage) }
+        back.setOnClickListener {
+            viewModel.reset()
+            findNavController().navigate(R.id.action_plantSetup_to_homepage) }
         next.setOnClickListener {
-            if (!setted)
-                //TODO MESSAGGIO completare cosetta
+            if (!tmpMVM.setupSetted){
+                val snack = Snackbar.make(it,"Choose a plant icon",Snackbar.LENGTH_SHORT)
+                snack.show()
+            }
             else {
-                viewModel.defaultMax = .55f //TODO PRENDERE I VALORI DEFAULT dal tipo pianta
-                viewModel.defaultMin = .25f
-                viewModel.plantIconId=iconId
-                viewModel.plantName = plantName.text.toString()
                 findNavController().navigate(R.id.action_plantSetup_to_plantSetup2)
             }
         }

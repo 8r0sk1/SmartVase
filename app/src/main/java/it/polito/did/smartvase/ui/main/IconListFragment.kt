@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -37,6 +38,7 @@ class IconListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val recyclerView = view?.findViewById<RecyclerView>(R.id.recycler_view)
+        val select=view?.findViewById<Button>(R.id.select)
 
         //Inizializzazione icone
         var Icons = arrayListOf<PlantIcon>()
@@ -51,5 +53,12 @@ class IconListFragment : Fragment() {
         recyclerView?.layoutManager =LinearLayoutManager(this.context)
         //Popola la recyclerView con i dati
         recyclerView?.adapter = IconAdapter(Icons)
+        select?.setOnClickListener{
+            viewModel.defaultMax = .55f //TODO PRENDERE I VALORI DEFAULT dal tipo pianta
+            viewModel.defaultMin = .25f
+            //viewModel.plantName = plantName.text.toString()
+            viewModel.plantIconId= R.drawable.password_icon
+            viewModel.setupSetted=true
+            findNavController().navigate(R.id.action_iconListFragment_to_plantSetup)}
     }
 }

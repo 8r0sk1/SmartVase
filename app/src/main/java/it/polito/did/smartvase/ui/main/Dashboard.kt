@@ -95,7 +95,7 @@ class Dashboard : Fragment() {
         }
 
         homeButton.setOnClickListener { findNavController().navigate(R.id.action_dashboard_to_homepage) }
-        editButton.setOnClickListener { findNavController().navigate(R.id.action_dashboard_to_editPlant) } //ancora da capire come fare, se con altro fragment
+        editButton.setOnClickListener { findNavController().navigate(R.id.action_dashboard_to_settings) } //ancora da capire come fare, se con altro fragment
 
         autoWaterButton.setOnLongClickListener{
             viewModel.auto = !viewModel.auto
