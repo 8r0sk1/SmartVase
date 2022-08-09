@@ -9,6 +9,7 @@ DASHBOARD 2
 SETUP 3  setup2 32
 Setting 4 42
 planticon 5
+wifisetup 6
 TODO CONCRETO GIALLINOOOO
 animazione nel longpress
 reset del viewmodel annullando il setup, mettere icona col + come icona default
@@ -18,3 +19,6 @@ regolazione umidità standard per il tipo di pianta
 mettere terrino e acquino sotto alle barre così si nasconde bug
 oggetti di classe viewmodel per il multipianta
 gestione del tasto BACK impossibile
+
+WIFI
+richiamo a chrome, controllare su database se settato e andare avanti

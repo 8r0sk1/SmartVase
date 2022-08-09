@@ -99,14 +99,18 @@
             app:destination="@id/Settings" />
     </fragment>
 
-    <!--<fragment
-        android:id="@+id/Settings"
-        android:name="it.polito.did.smartvase.ui.main.EditPlant"
-        android:label="EditPlant"
-        tools:layout="@layout/edit_plant" >
+    <fragment
+        android:id="@+id/WifiSetup"
+        android:name="it.polito.did.smartvase.ui.main.WifiSetup"
+        android:label="WifiSetup"
+        tools:layout="@layout/wifi_setup" >
         <action
-            android:id="@+id/action_editPlant_to_homepage"
+            android:id="@+id/action_wifisetup_to_homepage"
             app:destination="@id/Homepage" />
-    </fragment>-->
+        <action
+            android:id="@+id/action_wifisetup_to_plantsetup"
+            app:destination="@id/PlantSetup" />
+    </fragment>
+
 
 </navigation>

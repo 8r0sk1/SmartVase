@@ -70,7 +70,7 @@ class Homepage : Fragment(R.layout.homepage) {
         })
 
         addPlant.setOnClickListener { findNavController().navigate(R.id.action_homepage_to_plantSetup) }
-        //TODO profile.setOnClickListener { findNavController().navigate(R.id.action_homepage_to_settings) }
+        //TODO profile.setOnClickListener { findNavController().navigate(R.id.action_homepage_to_profile) }
         //profile.setOnClickListener { findNavController().navigate(R.id.action_homepage_to_dashboard) }
         dashboard.setOnClickListener { findNavController().navigate(R.id.action_homepage_to_dashboard) }
 
