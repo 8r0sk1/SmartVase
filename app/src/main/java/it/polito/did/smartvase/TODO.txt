@@ -1,24 +1,20 @@
-pagina principale homepage con un controllo dell'autenticazione che manda alla pagina di registrazione che diventa un fragment
-    nel viewmodel si salva il profilo loggato da cui partire con le query
-
-roba di arduino e wifi boh soccazzi
-quando si finisce il setup premere back dalla dashboard deve portare alla home
-
 HOMEPAGE 1
 DASHBOARD 2
 SETUP 3  setup2 32
 Setting 4 42
 planticon 5
 wifisetup 6
-TODO CONCRETO GIALLINOOOO
+
 animazione nel longpress
+mettere matitina invece di freccina nel setup//TODO LUIGINOSssssssssssS
+matitina o "+" sopra l'icona nel setup 1 //TODO luis
 reset del viewmodel annullando il setup, mettere icona col + come icona default
 inizializzare viewmodel con icon del + e PlantName placeholder
+quando si finisce il setup premere back dalla dashboard deve portare alla home
 rendere sfocato il dietro nel setup e setup2
-regolazione umidità standard per il tipo di pianta
-mettere terrino e acquino sotto alle barre così si nasconde bug
-oggetti di classe viewmodel per il multipianta
+varie schede default
+mettere terrino e acquino sotto alle barre così si nasconde bug //TODO LUIGI dipende come le fai, ora hanno un po' di rottura in basso
 gestione del tasto BACK impossibile
 
 WIFI
-richiamo a chrome, controllare su database se settato e andare avanti
+browser, flag di completamento setup da scrivere sul db

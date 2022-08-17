@@ -282,4 +282,5 @@
         app:layout_constraintEnd_toEndOf="@+id/cardPlant"
         app:layout_constraintStart_toStartOf="@+id/cardPlant"
         app:layout_constraintTop_toTopOf="@+id/cardPlant"></androidx.cardview.widget.CardView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

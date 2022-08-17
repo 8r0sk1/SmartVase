@@ -5,10 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.ProgressBar
-import android.widget.TextView
+import android.widget.*
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.updateLayoutParams
 import androidx.fragment.app.activityViewModels
@@ -50,9 +47,12 @@ class Settings : Fragment() {
         val dividerMinSoilMoisture = view.findViewById<ProgressBar>(R.id.dividerMinSoilMoisture4)
         val arrowMax = view.findViewById<ImageView>(R.id.arrowMax4)
         val arrowMin = view.findViewById<ImageView>(R.id.arrowMin4)
+        val barMax = view.findViewById<SeekBar>(R.id.barMax4)
+        val barMin = view.findViewById<SeekBar>(R.id.barMin4)
 
         val tmpMVM = viewModel
-
+        val back = view.findViewById<Button>(R.id.back_button4)
+        val next = view.findViewById<Button>(R.id.next_button4)
 
         /*
         //caricamento default
@@ -61,26 +61,58 @@ class Settings : Fragment() {
         maxText?.updateLayoutParams<ConstraintLayout.LayoutParams> { verticalBias = 1-viewModel.defaultMax }
         maxText.setText(viewModel.defaultMax.toString()+" %")
 
+
         dividerMinSoilMoisture?.updateLayoutParams<ConstraintLayout.LayoutParams> { verticalBias = 1-viewModel.defaultMin  }
         arrowMin?.updateLayoutParams<ConstraintLayout.LayoutParams> { verticalBias = 1-viewModel.defaultMin  }
         minText?.updateLayoutParams<ConstraintLayout.LayoutParams> { verticalBias = 1-viewModel.defaultMax }
         minText.setText(viewModel.defaultMin.toString()+" %")
         */
+        soilMostureBarEdit(dividerMaxSoilMoisture,arrowMax,maxText,barMax,viewModel.defaultMax)
+        soilMostureBarEdit(dividerMinSoilMoisture,arrowMin,minText,barMin,viewModel.defaultMin)
 
-        //TODO trascinando col dito si spostano i divisori e si aggiornano testo e arrow (on change qualcosa)
-
-
-        val back = view.findViewById<Button>(R.id.back_button4)
-        val next = view.findViewById<Button>(R.id.next_button4)
+        barMax.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+            var progressChangedValue = barMax.progress*0.01f
+            override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {
+                progressChangedValue = progress*0.01f
+                soilMostureBarEdit(dividerMaxSoilMoisture,arrowMax,maxText,barMax,progressChangedValue)
+            }
+            override fun onStartTrackingTouch(seekBar: SeekBar) {
+                return
+            }
+            override fun onStopTrackingTouch(seekBar: SeekBar) {
+                return
+            }
+        })
+        barMin.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+            var progressChangedValue = barMax.progress*0.01f
+            override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {
+                progressChangedValue = progress*0.01f
+                soilMostureBarEdit(dividerMinSoilMoisture,arrowMin,minText,barMin,progressChangedValue)
+            }
+            override fun onStartTrackingTouch(seekBar: SeekBar) {
+                return
+            }
+            override fun onStopTrackingTouch(seekBar: SeekBar) {
+                return
+            }
+        })
 
         plantIcon.setOnClickListener{
             //TODO situazione
         }
 
+
         back.setOnClickListener {
             findNavController().navigate(R.id.action_settings_to_dashboard) }
         next.setOnClickListener {
-            viewModel.reset()
             findNavController().navigate(R.id.action_settings_to_dashboard) }
+    }
+
+    fun soilMostureBarEdit(divider:ProgressBar, arrow:ImageView, text:TextView, bar: SeekBar, progressValue:Float){
+        divider?.updateLayoutParams<ConstraintLayout.LayoutParams> { verticalBias = 1-progressValue}
+        arrow?.updateLayoutParams<ConstraintLayout.LayoutParams> { verticalBias = 1-progressValue }
+        text?.updateLayoutParams<ConstraintLayout.LayoutParams> { verticalBias = 1-progressValue }
+        text.setText((progressValue*100f).toInt().toString()+" %")
+        bar.progress= (progressValue*100f).toInt()
     }
 }

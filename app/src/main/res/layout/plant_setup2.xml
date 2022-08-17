@@ -217,14 +217,71 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/soilMoistureBarCornerAppoggio"
+        android:id="@+id/soilMoistureBarCornerMin"
         android:layout_width="60dp"
         android:layout_height="390dp"
         android:layout_marginTop="8dp"
         android:visibility="visible"
         app:cardBackgroundColor="#003E3E3E"
         app:cardElevation="0dp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline_right"
+        app:layout_constraintEnd_toStartOf="@+id/soilMoistureBarCorner"
+        app:layout_constraintTop_toBottomOf="@+id/plantName32">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <!-- Barra vuota umidità -->
+
+            <SeekBar
+                android:id="@+id/barMin32"
+                android:layout_width="390dp"
+                android:layout_height="390dp"
+                android:layout_marginEnd="18dp"
+                android:alpha="0"
+                android:progress="25"
+                android:rotation="-90"
+                android:scaleY="4"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <ImageView
+                android:id="@+id/arrowMin32"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:rotation="90"
+                android:src="@android:drawable/arrow_up_float"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.75" />
+
+            <TextView
+                android:id="@+id/minText32"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:elevation="4dp"
+                android:text="25%"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.75" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/soilMoistureBarCornerMax"
+        android:layout_width="60dp"
+        android:layout_height="390dp"
+        android:layout_marginTop="8dp"
+        android:visibility="visible"
+        app:cardBackgroundColor="#003E3E3E"
+        app:cardElevation="0dp"
         app:layout_constraintStart_toEndOf="@+id/soilMoistureBarCorner"
         app:layout_constraintTop_toBottomOf="@+id/plantName32">
 
@@ -232,6 +289,21 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <!-- Barra vuota umidità -->
+
+            <SeekBar
+                android:id="@+id/barMax32"
+                android:layout_width="390dp"
+                android:layout_height="390dp"
+                android:layout_marginEnd="18dp"
+                android:alpha="0"
+                android:progress="45"
+                android:rotation="-90"
+                android:scaleY="4"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
 
             <ImageView
                 android:id="@+id/arrowMax32"
@@ -255,29 +327,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.55" />
-
-            <ImageView
-                android:id="@+id/arrowMin32"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:rotation="-90"
-                android:src="@android:drawable/arrow_up_float"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.75" />
-
-            <TextView
-                android:id="@+id/minText32"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:elevation="4dp"
-                android:text="25%"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.75" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>

@@ -27,7 +27,7 @@ class MainViewModel : ViewModel() {
 
     init {
         //TODO RICEVERE DA DATABASE VALORI DEFAULT
-        reset()
+        //reset()
     }
 
     fun reset(){
@@ -48,6 +48,25 @@ class MainViewModel : ViewModel() {
 
         plantIconId = R.mipmap.ic_launcher //nomi file immagini profilo
         setupSetted = false
+    }
+    fun setMvm(v: MainViewModel){
+        auto = v.auto
+        notification = v.notification
+
+        //in percentuale da 0 a 1 per come fatto su dashboard
+        waterLevel = v.waterLevel
+        waterLevelMax = v.waterLevelMax
+        waterLevelMin = v.waterLevelMin
+        soilMoisture = v.soilMoisture
+        soilMoistureMax = v.soilMoistureMax
+        soilMoistureMin = v.soilMoistureMin
+        defaultMax =v.defaultMax
+        defaultMin = v.defaultMin
+
+        plantName = v.plantName
+
+        plantIconId = v.plantIconId
+        setupSetted = v.setupSetted
     }
 
 }

@@ -19,6 +19,9 @@
         <action
             android:id="@+id/action_homepage_to_dashboard"
             app:destination="@id/Dashboard" />
+        <action
+            android:id="@+id/action_homepage_to_wifisetup"
+            app:destination="@id/WifiSetup" />
     </fragment>
 
     <fragment

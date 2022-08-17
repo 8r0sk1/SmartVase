@@ -39,23 +39,26 @@ class WifiSetup : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val browser = view.findViewById<Button>(R.id.Browser)
+        val browserButton = view.findViewById<Button>(R.id.browserButton)
         val back = view.findViewById<Button>(R.id.back_button6)
         val next = view.findViewById<Button>(R.id.next_button6)
 
         val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse("http://www.google.com"))
 
-        browser.setOnClickListener { startActivity(browserIntent) }
+        browserButton.setOnClickListener { startActivity(browserIntent) }
 
         back.setOnClickListener { findNavController().navigate(R.id.action_wifisetup_to_homepage) }
-        
-        next.setOnClickListener {
-            if (/*TODO CONTROLLO DATABASE VLADDD*/){
-                val snack = Snackbar.make(it,"Open Browser and connect to WiFi",Snackbar.LENGTH_SHORT)
-                snack.show()
-            }
-            else {
-                findNavController().navigate(R.id.action_wifisetup_to_plantsetup)
+
+        //TODO AUTOMATICAMENTE A PAGINA SUCCESSIVA
+        while(true) {
+            next.setOnClickListener {
+                if (false /*TODO CONTROLLO DATABASE VLADDD*/) {
+                    val snack =
+                        Snackbar.make(it, "Open Browser and connect to WiFi", Snackbar.LENGTH_SHORT)
+                    snack.show()
+                } else {
+                    findNavController().navigate(R.id.action_wifisetup_to_plantsetup)
+                }
             }
         }
     }
