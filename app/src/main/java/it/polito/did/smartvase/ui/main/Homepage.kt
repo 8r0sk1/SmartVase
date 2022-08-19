@@ -20,22 +20,20 @@ import android.widget.*
 import androidx.activity.OnBackPressedCallback
 import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.view.isVisible
 import androidx.transition.TransitionInflater
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.switchmaterial.SwitchMaterial
 import android.content.Intent
-
-
+import it.polito.did.smartvase.MainActivity
 
 
 class Homepage : Fragment(R.layout.homepage) {
 
     private val viewModel: MainViewModel by activityViewModels<MainViewModel>()
 
-    companion object {
-        fun newInstance() = Homepage()
-    }
+    /*companion object {
+        fun mainActivity() = MainActivity()
+    }*/
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -94,7 +92,7 @@ class Homepage : Fragment(R.layout.homepage) {
                     removing = true
                     deleteConfirm.visibility = View.VISIBLE
                     deleteYes.setOnClickListener {
-                        // activity?.vibrate(25);
+                        (activity as MainActivity).vibration(500)
                         removePlant.visibility = View.INVISIBLE
                         hider.visibility = View.VISIBLE
                         viewModel.plantCreated = false
@@ -109,28 +107,28 @@ class Homepage : Fragment(R.layout.homepage) {
                         removing = false
                     }
                 }
-                //else  activity?.vibrate(25);
+                else (activity as MainActivity).vibration(500)
             }
             bg.setOnClickListener{
                 removePlant.visibility=View.INVISIBLE
             }
-            // activity?.vibrate(25);
+            (activity as MainActivity).vibration(500)
             return@setOnLongClickListener true
         }
 
         addPlant.setOnClickListener {
             if(!removing) findNavController().navigate(R.id.action_homepage_to_wifisetup)
-            //else  activity?.vibrate(25);
+            else (activity as MainActivity).vibration(500)
         }
 
         plantCard.setOnClickListener {
             if(!removing) findNavController().navigate(R.id.action_homepage_to_dashboard)
-            //else  activity?.vibrate(25);
+            else (activity as MainActivity).vibration(500)
         }
 
         auto.setOnCheckedChangeListener { _, isChecked ->
             if(!removing) viewModel.auto = isChecked //TODO aggiornare database
-            //else  activity?.vibrate(25);
+            else (activity as MainActivity).vibration(500)
         }
 
         //ToDO profile.setOnClickListener { findNavController().navigate(R.id.action_homepage_to_profile) }

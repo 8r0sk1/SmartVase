@@ -13,7 +13,6 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.transition.TransitionInflater
 import it.polito.did.smartvase.R
-import android.util.Log
 import androidx.activity.OnBackPressedCallback
 import androidx.annotation.RequiresApi
 import com.google.android.material.floatingactionbutton.FloatingActionButton

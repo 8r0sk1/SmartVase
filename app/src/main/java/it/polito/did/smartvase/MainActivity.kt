@@ -4,8 +4,6 @@ import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Vibrator
-import androidx.fragment.app.Fragment
-import it.polito.did.smartvase.ui.main.Homepage
 
 class MainActivity : AppCompatActivity() {
 
@@ -17,7 +15,7 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.hide()
     }
 
-    fun showFragment(f: Fragment) {
+    /*fun showFragment(f: Fragment) {
         supportFragmentManager
             .beginTransaction()
             .replace(R.id.fragment_container_view_tag, f)
@@ -32,7 +30,10 @@ class MainActivity : AppCompatActivity() {
         ft.add(id, f)
         ft.addToBackStack("ScreenName")
         ft.commit()
+    }*/
+
+    public fun vibration(ms:Long) {
+        val vibratorService = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+        vibratorService.vibrate(ms)
     }
-
-
 }

@@ -1,9 +1,8 @@
 package it.polito.did.smartvase.ui.main
 
-import android.graphics.drawable.Drawable
-import android.widget.ImageView
-
 data class PlantIcon(
     var iconId : Int,
-    var type : String =""
+    var type : String ="",
+    var defaultMax : Int = 50,
+    var defaultMin : Int = 25
 );

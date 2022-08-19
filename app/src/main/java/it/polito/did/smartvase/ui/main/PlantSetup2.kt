@@ -13,10 +13,6 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.transition.TransitionInflater
 import it.polito.did.smartvase.R
-import android.widget.Toast
-
-import it.polito.did.smartvase.MainActivity
-
 import android.widget.SeekBar
 import android.widget.SeekBar.OnSeekBarChangeListener
 import androidx.activity.OnBackPressedCallback

@@ -19,14 +19,14 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import it.polito.did.smartvase.R
-import it.polito.did.smartvase.ui.main.Homepage
+//import it.polito.did.smartvase.ui.main.Homepage
 import it.polito.did.smartvase.ui.main.MainViewModel
 
 class Dashboard : Fragment() {
 
-    companion object {
+    /*companion object {
         fun newInstance() = Homepage()
-    }
+    }*/
 
     private val viewModel: MainViewModel by activityViewModels<MainViewModel>()
 
@@ -47,21 +47,19 @@ class Dashboard : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val waterBar = view?.findViewById<CardView>(R.id.waterLevelBar2)
-        val soilMostureBar = view?.findViewById<CardView>(R.id.soilMoistureBar2)
-        val plantName = view?.findViewById<TextView>(R.id.plantName2)
-                                val plantIcon = view?.findViewById<ImageView>(R.id.PlantIcon2)
-        val offText = view?.findViewById<TextView>(R.id.offText2)
+        val waterBar = view.findViewById<CardView>(R.id.waterLevelBar2)
+        val soilMostureBar = view.findViewById<CardView>(R.id.soilMoistureBar2)
+        val plantName = view.findViewById<TextView>(R.id.plantName2)
+        val plantIcon = view.findViewById<ImageView>(R.id.PlantIcon2)
+        val offText = view.findViewById<TextView>(R.id.offText2)
         val homeButton = view.findViewById<ImageButton>(R.id.homeButton2)
         val editButton = view.findViewById<ImageButton>(R.id.editButton2)
         val autoWaterButton = view.findViewById<FloatingActionButton>(R.id.autoWaterButton2)
         val notificationButton = view.findViewById<ImageButton>(R.id.notificationButton2)
-        val SoilMoisturePercentage = view?.findViewById<TextView>(R.id.SoilMoisturePercentage)
-        val WaterLevelPercentage = view?.findViewById<TextView>(R.id.WaterLevelPercentage)
-//        val dividerMaxWaterLevel = view?.findViewById<ProgressBar>(R.id.dividerMaxWaterLevel2)
-//        val dividerMinWaterLevel = view?.findViewById<ProgressBar>(R.id.dividerMinWaterLevel2)
-        val dividerMaxSoilMoisture = view?.findViewById<ProgressBar>(R.id.dividerMaxSoilMoisture2)
-        val dividerMinSoilMoisture = view?.findViewById<ProgressBar>(R.id.dividerMinSoilMoisture2)
+        val SoilMoisturePercentage = view.findViewById<TextView>(R.id.SoilMoisturePercentage)
+        val WaterLevelPercentage = view.findViewById<TextView>(R.id.WaterLevelPercentage)
+        val dividerMaxSoilMoisture = view.findViewById<ProgressBar>(R.id.dividerMaxSoilMoisture2)
+        val dividerMinSoilMoisture = view.findViewById<ProgressBar>(R.id.dividerMinSoilMoisture2)
 
         val db = Firebase.database.reference //TODO VLAD TE TENGO DOCCHIOOOO
         val ref = db.child("A7/toWaterControl")
@@ -77,9 +75,7 @@ class Dashboard : Fragment() {
         WaterLevelPercentage?.text= viewModel.soilMoisture.toString()
 
         //divisori barre
-//        dividerMaxWaterLevel?.updateLayoutParams<ConstraintLayout.LayoutParams> { verticalBias = 1-viewModel.waterLevelMax  }
-//        dividerMinWaterLevel?.updateLayoutParams<ConstraintLayout.LayoutParams> { verticalBias = 1-viewModel.waterLevelMin  }
-        dividerMaxSoilMoisture?.updateLayoutParams<ConstraintLayout.LayoutParams> { verticalBias = 1-viewModel.soilMoistureMax  }
+       dividerMaxSoilMoisture?.updateLayoutParams<ConstraintLayout.LayoutParams> { verticalBias = 1-viewModel.soilMoistureMax  }
         dividerMinSoilMoisture?.updateLayoutParams<ConstraintLayout.LayoutParams> { verticalBias = 1-viewModel.soilMoistureMin  }
 
         //da percentuale a valore di traslazione (385dp lunghezza barra)

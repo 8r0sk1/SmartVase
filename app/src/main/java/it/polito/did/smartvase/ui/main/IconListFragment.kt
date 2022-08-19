@@ -17,9 +17,9 @@ import it.polito.did.smartvase.R
 
 class IconListFragment : Fragment() {
 
-    companion object {
+    /*companion object {
         fun newInstance() = Homepage()
-    }
+    }*/
 
     private val viewModel: MainViewModel by activityViewModels<MainViewModel>()
 
@@ -44,17 +44,18 @@ class IconListFragment : Fragment() {
 
         //Inizializzazione icone
         var Icons = arrayListOf<PlantIcon>()
-        Icons.add(PlantIcon(R.mipmap.ic_launcher,"Ficus"))
-        Icons.add(PlantIcon(R.mipmap.ic_launcher,"Ficus"))
-        Icons.add(PlantIcon(R.mipmap.ic_launcher,"Ficus"))
-        Icons.add(PlantIcon(R.mipmap.ic_launcher,"Ficus"))
-        Icons.add(PlantIcon(R.mipmap.ic_launcher,"Ficus"))
-        Icons.add(PlantIcon(R.mipmap.ic_launcher,"Ficus"))
+        Icons.add(PlantIcon(R.mipmap.ic_launcher,"Ficus", 50, 25))
+        Icons.add(PlantIcon(R.mipmap.ic_launcher,"Gianni", 50, 25))
+        Icons.add(PlantIcon(R.mipmap.ic_launcher,"Franco", 50, 25))
+        Icons.add(PlantIcon(R.mipmap.ic_launcher,"DottorCisafrulli", 50, 25))
+        Icons.add(PlantIcon(R.mipmap.ic_launcher,"Vlad", 50, 25))
+        Icons.add(PlantIcon(R.mipmap.ic_launcher,"Ciruzzo", 50, 25))
 
         //Mostra le voci come lista lineare
         recyclerView?.layoutManager =LinearLayoutManager(this.context)
         //Popola la recyclerView con i dati
         recyclerView?.adapter = IconAdapter(Icons)
+
         select?.setOnClickListener{
             viewModel.defaultMax = .55f //TODO PRENDERE I VALORI DEFAULT dal tipo pianta
             viewModel.defaultMin = .25f
@@ -65,7 +66,8 @@ class IconListFragment : Fragment() {
         }
     }
 
-    fun goBack(){findNavController().navigate(R.id.action_iconListFragment_to_plantSetup)}
+
+    public fun goBack(){findNavController().navigate(R.id.action_iconListFragment_to_plantSetup)}
     override fun onAttach(context: Context) {
         super.onAttach(context)
         val callback: OnBackPressedCallback =

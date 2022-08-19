@@ -24,6 +24,7 @@ class MainViewModel : ViewModel() {
     public lateinit var plantIcon : Drawable //nomi file immagini profilo
     public var plantIconId : Int = R.mipmap.ic_launcher //nomi file immagini profilo
 
+    public var iconSelected : Boolean=true
     public var setupSetted : Boolean = false
     public var connected : Boolean = false
 
@@ -51,6 +52,7 @@ class MainViewModel : ViewModel() {
 
         plantIconId = R.mipmap.ic_launcher //nomi file immagini profilo
         setupSetted = false
+        iconSelected = false
         //TODO mancano ultime variabili
     }
     fun setMvm(v: MainViewModel){
@@ -72,6 +74,7 @@ class MainViewModel : ViewModel() {
 
         plantIconId = v.plantIconId
         setupSetted = v.setupSetted
+        iconSelected = v.iconSelected
     }
 
 }
