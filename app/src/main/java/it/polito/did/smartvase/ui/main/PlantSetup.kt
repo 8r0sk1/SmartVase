@@ -1,5 +1,6 @@
 package it.polito.did.smartvase.ui.main
 
+import android.content.Context
 import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -13,6 +14,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.transition.TransitionInflater
 import it.polito.did.smartvase.R
 import android.util.Log
+import androidx.activity.OnBackPressedCallback
 import androidx.annotation.RequiresApi
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
@@ -56,8 +58,9 @@ class PlantSetup : Fragment() {
 
         plantIcon.setOnClickListener{ findNavController().navigate(R.id.action_plantSetup_to_iconListFragment) }
         back.setOnClickListener {
-            viewModel.reset()
-            findNavController().navigate(R.id.action_plantSetup_to_homepage) }
+            viewModel.setMvm(tmpMVM)
+            goBack()
+        }
         next.setOnClickListener {
             if (!tmpMVM.setupSetted){
                 val snack = Snackbar.make(it,"Choose a plant icon",Snackbar.LENGTH_SHORT)
@@ -67,5 +70,23 @@ class PlantSetup : Fragment() {
                 findNavController().navigate(R.id.action_plantSetup_to_plantSetup2)
             }
         }
+    }
+
+    fun goBack(){findNavController().navigate(R.id.action_plantSetup_to_wifisetup)}
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        val callback: OnBackPressedCallback =
+            object : OnBackPressedCallback(true)
+            {
+                override fun handleOnBackPressed() {
+                    // Leave empty do disable back press or
+                    // write your code which you want
+                    goBack()
+                }
+            }
+        requireActivity().onBackPressedDispatcher.addCallback(
+            this,
+            callback
+        )
     }
 }

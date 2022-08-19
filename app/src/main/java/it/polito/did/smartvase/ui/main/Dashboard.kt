@@ -1,5 +1,6 @@
 package it.polito.did. smartvase.ui.main
 
+import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.activity.OnBackPressedCallback
 import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.updateLayoutParams
@@ -81,8 +83,8 @@ class Dashboard : Fragment() {
         dividerMinSoilMoisture?.updateLayoutParams<ConstraintLayout.LayoutParams> { verticalBias = 1-viewModel.soilMoistureMin  }
 
         //da percentuale a valore di traslazione (385dp lunghezza barra)
-        var fillWater :Float=385- 385f * viewModel.waterLevel //TODO DA DP A PIXEL DI MERDA
-        var fillSoil :Float =385- 385f * viewModel.soilMoisture
+        /*var fillWater :Float=385- 385f * viewModel.waterLevel //TODO DA DP A PIXEL DI MERDA
+        var fillSoil :Float =385- 385f * viewModel.soilMoisture*/
 
         //riempire barre
         waterBar.translationY +=  viewModel.waterLevel *  barHeight
@@ -94,7 +96,7 @@ class Dashboard : Fragment() {
             offText?.setTextColor(Color.RED)
         }
 
-        homeButton.setOnClickListener { findNavController().navigate(R.id.action_dashboard_to_homepage) }
+        homeButton.setOnClickListener { goBack() }
         editButton.setOnClickListener { findNavController().navigate(R.id.action_dashboard_to_settings) } //ancora da capire come fare, se con altro fragment
 
         autoWaterButton.setOnLongClickListener{
@@ -111,5 +113,22 @@ class Dashboard : Fragment() {
         notificationButton.setOnClickListener {
             viewModel.notification = !viewModel.notification
         }
+    }
+    fun goBack(){findNavController().navigate(R.id.action_dashboard_to_homepage)}
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        val callback: OnBackPressedCallback =
+            object : OnBackPressedCallback(true)
+            {
+                override fun handleOnBackPressed() {
+                    // Leave empty do disable back press or
+                    // write your code which you want
+                    goBack()
+                }
+            }
+        requireActivity().onBackPressedDispatcher.addCallback(
+            this,
+            callback
+        )
     }
 }

@@ -27,7 +27,7 @@
         <entry key="..\:/Users/vitto/OneDrive/Documenti/POLI/DID/SmartVase/app/src/main/res/layout/dashboard.xml" value="0.16666666666666666" />
         <entry key="..\:/Users/vitto/OneDrive/Documenti/POLI/DID/SmartVase/app/src/main/res/layout/edit_plant.xml" value="0.1" />
         <entry key="..\:/Users/vitto/OneDrive/Documenti/POLI/DID/SmartVase/app/src/main/res/layout/fragment_second.xml" value="0.1" />
-        <entry key="..\:/Users/vitto/OneDrive/Documenti/POLI/DID/SmartVase/app/src/main/res/layout/homepage.xml" value="0.4466666666666667" />
+        <entry key="..\:/Users/vitto/OneDrive/Documenti/POLI/DID/SmartVase/app/src/main/res/layout/homepage.xml" value="0.22" />
         <entry key="..\:/Users/vitto/OneDrive/Documenti/POLI/DID/SmartVase/app/src/main/res/layout/icon_list_fragment.xml" value="0.16666666666666666" />
         <entry key="..\:/Users/vitto/OneDrive/Documenti/POLI/DID/SmartVase/app/src/main/res/layout/main_activity.xml" value="0.1" />
         <entry key="..\:/Users/vitto/OneDrive/Documenti/POLI/DID/SmartVase/app/src/main/res/layout/oldhomepage.xml" value="0.13125" />
@@ -63,5 +63,12 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.22" />
+      </ProjectState>
+    </option>
   </component>
 </project>

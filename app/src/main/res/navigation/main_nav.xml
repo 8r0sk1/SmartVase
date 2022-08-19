@@ -10,9 +10,9 @@
         android:name="it.polito.did.smartvase.ui.main.Homepage"
         android:label="homepage_fragment"
         tools:layout="@layout/homepage" >
-        <action
+        <!--<action
             android:id="@+id/action_homepage_to_plantSetup"
-            app:destination="@id/PlantSetup" />
+            app:destination="@id/PlantSetup" />-->
         <action
             android:id="@+id/action_homepage_to_settings"
             app:destination="@id/Settings" />
@@ -30,8 +30,8 @@
     android:label="PlantSetup"
     tools:layout="@layout/plant_setup" >
     <action
-        android:id="@+id/action_plantSetup_to_homepage"
-        app:destination="@id/Homepage" />
+        android:id="@+id/action_plantSetup_to_wifisetup"
+        app:destination="@id/WifiSetup" />
     <action
         android:id="@+id/action_plantSetup_to_plantSetup2"
         app:destination="@id/PlantSetup2" />
@@ -63,7 +63,7 @@
             app:destination="@id/PlantSetup" />
     </fragment>
 
-    <fragment
+    <!--<fragment
         android:id="@+id/PlantSetup3"
         android:name="it.polito.did.smartvase.ui.main.PlantSetup3"
         android:label="PlantSetup3"
@@ -74,7 +74,7 @@
         <action
             android:id="@+id/action_plantSetup3_to_plantSetup2"
             app:destination="@id/PlantSetup2" />
-    </fragment>
+    </fragment>-->
 
     <fragment
         android:id="@+id/Settings"

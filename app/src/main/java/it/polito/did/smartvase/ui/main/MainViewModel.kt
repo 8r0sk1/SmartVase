@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import it.polito.did.smartvase.R
 
 class MainViewModel : ViewModel() {
+    public var plantCreated : Boolean=true
     public var auto : Boolean = false
     public var notification : Boolean = true
 
@@ -24,6 +25,7 @@ class MainViewModel : ViewModel() {
     public var plantIconId : Int = R.mipmap.ic_launcher //nomi file immagini profilo
 
     public var setupSetted : Boolean = false
+    public var connected : Boolean = false
 
     init {
         //TODO RICEVERE DA DATABASE VALORI DEFAULT
@@ -31,6 +33,7 @@ class MainViewModel : ViewModel() {
     }
 
     fun reset(){
+        plantCreated=false
         auto = false
         notification = true
 
@@ -48,8 +51,10 @@ class MainViewModel : ViewModel() {
 
         plantIconId = R.mipmap.ic_launcher //nomi file immagini profilo
         setupSetted = false
+        //TODO mancano ultime variabili
     }
     fun setMvm(v: MainViewModel){
+        plantCreated=v.plantCreated
         auto = v.auto
         notification = v.notification
 

@@ -1,5 +1,6 @@
 package it.polito.did.smartvase.ui.main
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -18,6 +19,7 @@ import it.polito.did.smartvase.MainActivity
 
 import android.widget.SeekBar
 import android.widget.SeekBar.OnSeekBarChangeListener
+import androidx.activity.OnBackPressedCallback
 
 
 class PlantSetup2 : Fragment() {
@@ -75,7 +77,8 @@ class PlantSetup2 : Fragment() {
             var progressChangedValue = barMax.progress*0.01f
             override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {
                 progressChangedValue = progress*0.01f
-                soilMostureBarEdit(dividerMaxSoilMoisture,arrowMax,maxText,barMax,progressChangedValue)
+                if(progressChangedValue*100f>barMin.progress+1)
+                    soilMostureBarEdit(dividerMaxSoilMoisture,arrowMax,maxText,barMax,progressChangedValue)
             }
             override fun onStartTrackingTouch(seekBar: SeekBar) {
                 return
@@ -88,7 +91,8 @@ class PlantSetup2 : Fragment() {
             var progressChangedValue = barMax.progress*0.01f
             override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {
                 progressChangedValue = progress*0.01f
-                soilMostureBarEdit(dividerMinSoilMoisture,arrowMin,minText,barMin,progressChangedValue)
+                if(progressChangedValue*100f<barMax.progress-1)
+                    soilMostureBarEdit(dividerMinSoilMoisture,arrowMin,minText,barMin,progressChangedValue)
             }
             override fun onStartTrackingTouch(seekBar: SeekBar) {
                 return
@@ -98,10 +102,11 @@ class PlantSetup2 : Fragment() {
             }
         })
 
-        back.setOnClickListener { findNavController().navigate(R.id.action_plantSetup2_to_plantSetup) }
+        back.setOnClickListener { goBack() }
         next.setOnClickListener {
             viewModel.defaultMax=barMax.progress*0.01f
             viewModel.defaultMin=barMin.progress*0.01f
+            viewModel.plantCreated=true
             //TODO VLAD db
             findNavController().navigate(R.id.action_plantSetup2_to_dashboard) }
     }
@@ -112,5 +117,23 @@ class PlantSetup2 : Fragment() {
         text?.updateLayoutParams<ConstraintLayout.LayoutParams> { verticalBias = 1-progressValue }
         text.setText((progressValue*100f).toInt().toString()+" %")
         bar.progress= (progressValue*100f).toInt()
+    }
+
+    fun goBack(){findNavController().navigate(R.id.action_plantSetup2_to_plantSetup)}
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        val callback: OnBackPressedCallback =
+            object : OnBackPressedCallback(true)
+            {
+                override fun handleOnBackPressed() {
+                    // Leave empty do disable back press or
+                    // write your code which you want
+                    goBack()
+                }
+            }
+        requireActivity().onBackPressedDispatcher.addCallback(
+            this,
+            callback
+        )
     }
 }

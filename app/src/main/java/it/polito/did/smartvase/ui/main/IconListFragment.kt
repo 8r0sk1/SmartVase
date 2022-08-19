@@ -1,11 +1,13 @@
 package it.polito.did.smartvase.ui.main
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -59,6 +61,25 @@ class IconListFragment : Fragment() {
             //viewModel.plantName = plantName.text.toString()
             viewModel.plantIconId= R.drawable.password_icon
             viewModel.setupSetted=true
-            findNavController().navigate(R.id.action_iconListFragment_to_plantSetup)}
+            goBack()
+        }
+    }
+
+    fun goBack(){findNavController().navigate(R.id.action_iconListFragment_to_plantSetup)}
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        val callback: OnBackPressedCallback =
+            object : OnBackPressedCallback(true)
+            {
+                override fun handleOnBackPressed() {
+                    // Leave empty do disable back press or
+                    // write your code which you want
+                    goBack()
+                }
+            }
+        requireActivity().onBackPressedDispatcher.addCallback(
+            this,
+            callback
+        )
     }
 }

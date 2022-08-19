@@ -8,6 +8,7 @@ wifisetup 6
 animazione nel longpress
 mettere matitina invece di freccina nel setup//TODO LUIGINOSssssssssssS
 matitina o "+" sopra l'icona nel setup 1 //TODO luis
+button da migliorare o far diventare floating action button //TODO luis
 reset del viewmodel annullando il setup, mettere icona col + come icona default
 inizializzare viewmodel con icon del + e PlantName placeholder
 quando si finisce il setup premere back dalla dashboard deve portare alla home
@@ -15,6 +16,7 @@ rendere sfocato il dietro nel setup e setup2
 varie schede default
 mettere terrino e acquino sotto alle barre così si nasconde bug //TODO LUIGI dipende come le fai, ora hanno un po' di rottura in basso
 gestione del tasto BACK impossibile
+vibrazione
 
 WIFI
 browser, flag di completamento setup da scrivere sul db

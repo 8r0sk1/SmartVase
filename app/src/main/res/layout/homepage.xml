@@ -6,6 +6,28 @@
     android:layout_height="match_parent"
     android:background="#CB1F332A">
 
+    <ImageView
+        android:id="@+id/backgroundImage1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/cool_bg" />
+
+    <ImageView
+        android:id="@+id/hider1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="6dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/cool_bg" />
+
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_top"
         android:layout_width="wrap_content"
@@ -42,6 +64,7 @@
         android:id="@+id/smartVaseText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:elevation="7dp"
         android:fontFamily="sans-serif-black"
         android:text="@string/app_name"
         android:textAppearance="@style/TextAppearance.AppCompat.Display2"
@@ -49,22 +72,13 @@
         app:layout_constraintStart_toStartOf="@+id/guideline_left"
         app:layout_constraintTop_toTopOf="@+id/guideline_top" />
 
-    <ImageView
-        android:id="@+id/backgroundImage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_launcher_background" />
-
     <ImageButton
-        android:id="@+id/profileButton"
+        android:id="@+id/profileButton1"
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:backgroundTint="#00FFFFFF"
         android:contentDescription="@string/profile"
+        android:elevation="7dp"
         android:scaleType="centerInside"
         android:src="@mipmap/ic_launcher"
         app:layout_constraintEnd_toStartOf="@+id/guideline_right"
@@ -76,6 +90,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
+        android:elevation="7dp"
         android:fontFamily="sans-serif-light"
         android:text="@string/your_plants"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
@@ -138,13 +153,13 @@
         app:layout_constraintStart_toStartOf="@+id/guideline_left2"
         app:layout_constraintTop_toBottomOf="@+id/yourPlantText2" />-->
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/addPlantButton"
+        android:id="@+id/addPlantButton1"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_marginBottom="20dp"
         android:clickable="true"
         android:contentDescription="@string/add"
-        android:elevation="2dp"
+        android:elevation="7dp"
         android:focusable="true"
         android:foreground="@mipmap/ic_launcher"
         android:foregroundTint="#EFEFEF"
@@ -156,25 +171,100 @@
         tools:ignore="ImageContrastCheck" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/removePlantButton"
+        android:id="@+id/removePlantButton1"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginTop="8dp"
         android:clickable="true"
         android:contentDescription="@string/remove"
-        android:elevation="2dp"
+        android:elevation="3dp"
         android:focusable="true"
         android:foreground="@mipmap/ic_launcher"
         android:foregroundTint="#EFEFEF"
         android:visibility="invisible"
         app:backgroundTint="#00C081"
-        app:layout_constraintBottom_toTopOf="@+id/addPlantButton"
         app:layout_constraintEnd_toStartOf="@+id/guideline_right"
         app:layout_constraintHorizontal_bias="0.501"
-        app:layout_constraintStart_toStartOf="@+id/guideline_left" />
+        app:layout_constraintStart_toStartOf="@+id/guideline_left"
+        app:layout_constraintTop_toBottomOf="@+id/cardPlant1" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/deleteConfirm1"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:elevation="9dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/guideline_bottom"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_right"
+        app:layout_constraintStart_toStartOf="@+id/guideline_left"
+        app:layout_constraintTop_toTopOf="@+id/guideline_top">
+
+        <ImageView
+            android:id="@+id/deleteConfirmHider1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:alpha="0.2"
+            android:elevation="2dp"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0"
+            app:srcCompat="@drawable/cool_bg" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="200dp"
+            android:background="#8000C081"
+            android:elevation="3dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/deleteConfirmHider1">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="32dp"
+                android:text="Are you sure?"
+                android:textSize="34sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/deleteNo1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginBottom="32dp"
+                android:text="No"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+            <Button
+                android:id="@+id/deleteYes1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="32dp"
+                android:layout_marginBottom="32dp"
+                android:text="Yes"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardPlant"
+        android:id="@+id/cardPlant1"
         android:layout_width="320dp"
         android:layout_height="120dp"
         android:layout_marginTop="32dp"
@@ -193,19 +283,22 @@
             android:elevation="2dp">
 
             <ImageView
-                android:id="@+id/cardWaterLevel"
+                android:id="@+id/cardWaterLevel1"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
                 android:contentDescription="@string/plantcard"
+                android:rotation="90"
                 android:src="@mipmap/ic_launcher"
+                android:translationY="120dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="1.0"
+                app:srcCompat="@drawable/cool_bg"
                 tools:ignore="ImageContrastCheck" />
 
             <!-- &lt;!&ndash; Card vuota per immagine pianta &ndash;&gt; -->
@@ -223,7 +316,8 @@
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:background="#B300C081">
                     <!--             &lt;!&ndash; Immagine pianta&ndash;&gt; -->
                     <ImageView
                         android:id="@+id/PlantIcon2"
@@ -278,9 +372,9 @@
         android:layout_height="120dp"
         android:visibility="invisible"
         app:cardCornerRadius="15dp"
-        app:layout_constraintBottom_toBottomOf="@+id/cardPlant"
-        app:layout_constraintEnd_toEndOf="@+id/cardPlant"
-        app:layout_constraintStart_toStartOf="@+id/cardPlant"
-        app:layout_constraintTop_toTopOf="@+id/cardPlant"></androidx.cardview.widget.CardView>
+        app:layout_constraintBottom_toBottomOf="@+id/cardPlant1"
+        app:layout_constraintEnd_toEndOf="@+id/cardPlant1"
+        app:layout_constraintStart_toStartOf="@+id/cardPlant1"
+        app:layout_constraintTop_toTopOf="@+id/cardPlant1"></androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
