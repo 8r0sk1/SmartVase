@@ -6,7 +6,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -17,16 +16,12 @@ import it.polito.did.smartvase.R
 
 class IconListFragment : Fragment() {
 
-    /*companion object {
-        fun newInstance() = Homepage()
-    }*/
-
-    private val viewModel: MainViewModel by activityViewModels<MainViewModel>()
+    val viewModel: MainViewModel by activityViewModels<MainViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val inflater = TransitionInflater.from(requireContext())
-        enterTransition = inflater.inflateTransition(R.transition.slide)
+        enterTransition = inflater.inflateTransition(R.transition.fade)
         exitTransition = inflater.inflateTransition(R.transition.fade)
     }
 
@@ -38,36 +33,40 @@ class IconListFragment : Fragment() {
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        val recyclerView = view?.findViewById<RecyclerView>(R.id.recycler_view)
-        val select=view?.findViewById<Button>(R.id.select)
+        val recyclerView = view.findViewById<RecyclerView>(R.id.recycler_view)
 
         //Inizializzazione icone
-        var Icons = arrayListOf<PlantIcon>()
-        Icons.add(PlantIcon(R.mipmap.ic_launcher,"Ficus", 50, 25))
-        Icons.add(PlantIcon(R.mipmap.ic_launcher,"Gianni", 50, 25))
+        val Icons = arrayListOf<PlantIcon>()
+        Icons.add(PlantIcon(R.drawable.nficusicon,"Ficus", 50, 25))
+        Icons.add(PlantIcon(R.drawable.nficusicon,"Gianni", 50, 25))
         Icons.add(PlantIcon(R.mipmap.ic_launcher,"Franco", 50, 25))
         Icons.add(PlantIcon(R.mipmap.ic_launcher,"DottorCisafrulli", 50, 25))
         Icons.add(PlantIcon(R.mipmap.ic_launcher,"Vlad", 50, 25))
         Icons.add(PlantIcon(R.mipmap.ic_launcher,"Ciruzzo", 50, 25))
+        Icons.add(PlantIcon(R.mipmap.ic_launcher,"Vlad", 50, 25))
+        Icons.add(PlantIcon(R.mipmap.ic_launcher,"Vlad", 50, 25))
+        Icons.add(PlantIcon(R.mipmap.ic_launcher,"Vlad", 50, 25))
+        Icons.add(PlantIcon(R.mipmap.ic_launcher,"Vlad", 50, 25))
 
         //Mostra le voci come lista lineare
         recyclerView?.layoutManager =LinearLayoutManager(this.context)
         //Popola la recyclerView con i dati
-        recyclerView?.adapter = IconAdapter(Icons)
-
-        select?.setOnClickListener{
-            viewModel.defaultMax = .55f //TODO PRENDERE I VALORI DEFAULT dal tipo pianta
-            viewModel.defaultMin = .25f
-            //viewModel.plantName = plantName.text.toString()
-            viewModel.plantIconId= R.drawable.password_icon
-            viewModel.setupSetted=true
-            goBack()
-        }
+        recyclerView?.adapter = IconAdapter(Icons,this)
     }
 
+    fun setMvm(p:PlantIcon){
+        if(!viewModel.plantCreated) {
+            viewModel.defaultMax = p.defaultMax * .1f //TODO PRENDERE I VALORI DEFAULT dal tipo pianta
+            viewModel.defaultMin = p.defaultMin * .1f
+            viewModel.plantName = p.type
+        }
+//      viewModel.plantIcon = resources.getDrawable(p.iconId)
+        viewModel.plantIconId = p.iconId
+        viewModel.setupSetted = true
+        goBack()
+    }
 
-    public fun goBack(){findNavController().navigate(R.id.action_iconListFragment_to_plantSetup)}
+    fun goBack(){findNavController().navigate(R.id.action_iconListFragment_to_plantSetup)}
     override fun onAttach(context: Context) {
         super.onAttach(context)
         val callback: OnBackPressedCallback =

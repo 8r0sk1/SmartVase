@@ -5,28 +5,28 @@ import androidx.lifecycle.ViewModel
 import it.polito.did.smartvase.R
 
 class MainViewModel : ViewModel() {
-    public var plantCreated : Boolean=true
-    public var auto : Boolean = false
-    public var notification : Boolean = true
+    var plantCreated : Boolean=true //TODO debug
+    var auto : Boolean = false
+    var notification : Boolean = true
 
     //in percentuale da 0 a 1 per come fatto su dashboard
-    public var waterLevel : Float = .30f
-    public var waterLevelMax : Float = 1.00f
-    public var waterLevelMin : Float = .25f
-    public var soilMoisture : Float = .60f
-    public var soilMoistureMax : Float = .60f
-    public var soilMoistureMin : Float = .25f
-    public var defaultMax: Float =.45f
-    public var defaultMin: Float =.25f
+    var waterLevel : Float = .30f
+    var waterLevelMax : Float = 1.00f
+    var waterLevelMin : Float = .25f
+    var soilMoisture : Float = .60f
+    var soilMoistureMax : Float = .60f
+    var soilMoistureMin : Float = .25f
+    var defaultMax: Float =.45f
+    var defaultMin: Float =.25f
 
-    public var plantName : String = "Ficus69xxx"
+    var plantName : String = "Plant name"
 
-    public lateinit var plantIcon : Drawable //nomi file immagini profilo
-    public var plantIconId : Int = R.mipmap.ic_launcher //nomi file immagini profilo
+//    lateinit var plantIcon : Drawable //nomi file immagini profilo
+    var plantIconId : Int = R.drawable.nficusicon //nomi file immagini profilo
 
-    public var iconSelected : Boolean=true
-    public var setupSetted : Boolean = false
-    public var connected : Boolean = false
+    var iconSelected : Boolean=true
+    var setupSetted : Boolean = false
+    var connected : Boolean = false
 
     init {
         //TODO RICEVERE DA DATABASE VALORI DEFAULT
@@ -48,9 +48,9 @@ class MainViewModel : ViewModel() {
         defaultMax =.45f
         defaultMin =.25f
 
-        plantName = "Ficus69xxx"
+        plantName = "Plant name"
 
-        plantIconId = R.mipmap.ic_launcher //nomi file immagini profilo
+        plantIconId = android.R.drawable.list_selector_background //nomi file immagini profilo
         setupSetted = false
         iconSelected = false
         //TODO mancano ultime variabili

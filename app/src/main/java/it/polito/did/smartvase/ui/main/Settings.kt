@@ -13,6 +13,7 @@ import androidx.core.view.updateLayoutParams
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.transition.TransitionInflater
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import it.polito.did.smartvase.R
 
 class Settings : Fragment() {
@@ -40,8 +41,10 @@ class Settings : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        //val plantName = view.findViewById<TextView>(R.id.plantName4)
-        val plantIcon = view.findViewById<ImageView>(R.id.plantIcon4)
+        val plantName = view.findViewById<TextView>(R.id.plantName4)
+        val avatar = view.findViewById<ImageView>(R.id.avatar4)
+        val plantIcon = view.findViewById<FloatingActionButton>(R.id.plantIcon4)
+
         val maxText = view.findViewById<TextView>(R.id.maxText4)
         val minText = view.findViewById<TextView>(R.id.minText4)
         val dividerMaxSoilMoisture = view.findViewById<ProgressBar>(R.id.dividerMaxSoilMoisture4)
@@ -55,19 +58,9 @@ class Settings : Fragment() {
         val back = view.findViewById<Button>(R.id.back_button4)
         val next = view.findViewById<Button>(R.id.next_button4)
 
-        /*
-        //caricamento default
-        dividerMaxSoilMoisture?.updateLayoutParams<ConstraintLayout.LayoutParams> { verticalBias = 1-viewModel.defaultMax }
-        arrowMax?.updateLayoutParams<ConstraintLayout.LayoutParams> { verticalBias = 1-viewModel.defaultMax }
-        maxText?.updateLayoutParams<ConstraintLayout.LayoutParams> { verticalBias = 1-viewModel.defaultMax }
-        maxText.setText(viewModel.defaultMax.toString()+" %")
+        avatar.setImageResource(tmpMVM.plantIconId)
+        plantName.setText(tmpMVM.plantName)
 
-
-        dividerMinSoilMoisture?.updateLayoutParams<ConstraintLayout.LayoutParams> { verticalBias = 1-viewModel.defaultMin  }
-        arrowMin?.updateLayoutParams<ConstraintLayout.LayoutParams> { verticalBias = 1-viewModel.defaultMin  }
-        minText?.updateLayoutParams<ConstraintLayout.LayoutParams> { verticalBias = 1-viewModel.defaultMax }
-        minText.setText(viewModel.defaultMin.toString()+" %")
-        */
         soilMostureBarEdit(dividerMaxSoilMoisture,arrowMax,maxText,barMax,viewModel.defaultMax)
         soilMostureBarEdit(dividerMinSoilMoisture,arrowMin,minText,barMin,viewModel.defaultMin)
 
@@ -100,22 +93,21 @@ class Settings : Fragment() {
             }
         })
 
-        plantIcon.setOnClickListener{
-            //TODO situazione
-        }
-
-
+        plantIcon.setOnClickListener{findNavController().navigate(R.id.action_settings_to_iconListFragment)}
         back.setOnClickListener {
+            viewModel.setMvm(tmpMVM)
+            viewModel.defaultMax=barMax.progress*0.01f
+            viewModel.defaultMin=barMin.progress*0.01f
+            viewModel.plantName=plantName.text.toString()
             goBack()
         }
-        next.setOnClickListener {
-            findNavController().navigate(R.id.action_settings_to_dashboard) }
+        next.setOnClickListener {findNavController().navigate(R.id.action_settings_to_dashboard) }
     }
 
     fun soilMostureBarEdit(divider:ProgressBar, arrow:ImageView, text:TextView, bar: SeekBar, progressValue:Float){
-        divider?.updateLayoutParams<ConstraintLayout.LayoutParams> { verticalBias = 1-progressValue}
-        arrow?.updateLayoutParams<ConstraintLayout.LayoutParams> { verticalBias = 1-progressValue }
-        text?.updateLayoutParams<ConstraintLayout.LayoutParams> { verticalBias = 1-progressValue }
+        divider.updateLayoutParams<ConstraintLayout.LayoutParams> { verticalBias = 1-progressValue}
+        arrow.updateLayoutParams<ConstraintLayout.LayoutParams> { verticalBias = 1-progressValue }
+        text.updateLayoutParams<ConstraintLayout.LayoutParams> { verticalBias = 1-progressValue }
         text.setText((progressValue*100f).toInt().toString()+" %")
         bar.progress= (progressValue*100f).toInt()
     }

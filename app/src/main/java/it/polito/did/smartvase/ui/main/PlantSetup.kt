@@ -1,5 +1,6 @@
 package it.polito.did.smartvase.ui.main
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Build
 import android.os.Bundle
@@ -8,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -40,22 +42,26 @@ class PlantSetup : Fragment() {
         return inflater.inflate(R.layout.plant_setup, container, false)
     }
 
+    @SuppressLint("ResourceType")
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         val plantName = view.findViewById<TextView>(R.id.plantName3)
         val plantIcon = view.findViewById<FloatingActionButton>(R.id.plantIcon3)
+        val avatar = view.findViewById<ImageView>(R.id.avatar3)
 
         val back = view.findViewById<Button>(R.id.back_button3)
         val next = view.findViewById<Button>(R.id.next_button3)
 
         val tmpMVM = viewModel
 
-        plantIcon.foreground = resources.getDrawable(tmpMVM.plantIconId)
+        avatar.setImageResource(tmpMVM.plantIconId)
         plantName.setText(tmpMVM.plantName)
 
-        plantIcon.setOnClickListener{ findNavController().navigate(R.id.action_plantSetup_to_iconListFragment) }
+        plantIcon.setOnClickListener{
+            findNavController().navigate(R.id.action_plantSetup_to_iconListFragment)
+        }
         back.setOnClickListener {
             viewModel.setMvm(tmpMVM)
             goBack()
@@ -65,13 +71,17 @@ class PlantSetup : Fragment() {
                 val snack = Snackbar.make(it,"Choose a plant icon",Snackbar.LENGTH_SHORT)
                 snack.show()
             }
-            else {
+            else { //avanza
+                viewModel.plantName=plantName.text.toString()
                 findNavController().navigate(R.id.action_plantSetup_to_plantSetup2)
             }
         }
     }
 
-    fun goBack(){findNavController().navigate(R.id.action_plantSetup_to_wifisetup)}
+    fun goBack(){
+        viewModel.reset()
+        findNavController().navigate(R.id.action_plantSetup_to_wifisetup)
+    }
     override fun onAttach(context: Context) {
         super.onAttach(context)
         val callback: OnBackPressedCallback =

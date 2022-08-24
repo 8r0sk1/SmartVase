@@ -51,7 +51,7 @@
         android:backgroundTint="#00FFFFFF"
         android:contentDescription="home"
         android:scaleType="centerInside"
-        android:src="@mipmap/ic_launcher"
+        android:src="@drawable/homepagebutton"
         app:layout_constraintStart_toStartOf="@+id/guideline_left"
         app:layout_constraintTop_toTopOf="@+id/guideline_top" />
 
@@ -62,7 +62,7 @@
         android:backgroundTint="#00FFFFFF"
         android:contentDescription="home"
         android:scaleType="centerInside"
-        android:src="@mipmap/ic_launcher"
+        android:src="@drawable/editbutton"
         app:layout_constraintEnd_toStartOf="@+id/guideline_right"
         app:layout_constraintTop_toTopOf="@+id/guideline_top" />
 
@@ -238,7 +238,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@mipmap/ic_launcher" />
+                app:srcCompat="@drawable/ficusicon" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
@@ -360,6 +360,7 @@
         android:layout_marginBottom="40dp"
         android:clickable="true"
         android:contentDescription="maxSoilMoisture"
+        android:foreground="@drawable/waterbuttonoff"
         app:backgroundTint="#EFEFEF"
         app:layout_constraintBottom_toTopOf="@+id/guideline_bottom"
         app:layout_constraintEnd_toStartOf="@+id/guideline_right"
@@ -371,14 +372,22 @@
         android:id="@+id/notificationButton2"
         android:layout_width="48dp"
         android:layout_height="48dp"
-        android:layout_marginTop="280dp"
+        android:layout_marginBottom="16dp"
         android:clickable="true"
         android:contentDescription="minSoilMoisture"
+        android:foreground="@drawable/notificationoffbutton"
         app:backgroundTint="#EFEFEF"
         app:layout_constraintBottom_toTopOf="@+id/autoWaterButton2"
         app:layout_constraintEnd_toStartOf="@+id/guideline_right"
-        app:layout_constraintStart_toStartOf="@+id/guideline_left"
-        app:layout_constraintTop_toBottomOf="@+id/plantName2"
-        app:layout_constraintVertical_bias="0.754" />
+        app:layout_constraintStart_toStartOf="@+id/guideline_left" />
+
+    <TextView
+        android:id="@+id/notificationState2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ON"
+        app:layout_constraintBottom_toTopOf="@+id/notificationButton2"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_right"
+        app:layout_constraintStart_toStartOf="@+id/guideline_left" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

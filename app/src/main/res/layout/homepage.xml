@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#CB1F332A">
+    android:layout_height="match_parent">
 
     <ImageView
         android:id="@+id/backgroundImage1"
@@ -14,7 +13,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/cool_bg" />
+        app:srcCompat="@drawable/sfondo" />
 
     <ImageView
         android:id="@+id/hider1"
@@ -26,7 +25,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/cool_bg" />
+        app:srcCompat="@drawable/sfondo" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_top"
@@ -76,11 +75,10 @@
         android:id="@+id/profileButton1"
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:backgroundTint="#00FFFFFF"
         android:contentDescription="@string/profile"
         android:elevation="7dp"
         android:scaleType="centerInside"
-        android:src="@mipmap/ic_launcher"
+        android:src="@drawable/userbutton"
         app:layout_constraintEnd_toStartOf="@+id/guideline_right"
         app:layout_constraintTop_toTopOf="@+id/guideline_top"
         tools:ignore="ImageContrastCheck" />
@@ -161,8 +159,7 @@
         android:contentDescription="@string/add"
         android:elevation="7dp"
         android:focusable="true"
-        android:foreground="@mipmap/ic_launcher"
-        android:foregroundTint="#EFEFEF"
+        android:foreground="@drawable/addplantbutton"
         app:backgroundTint="#00C081"
         app:layout_constraintBottom_toTopOf="@+id/guideline_bottom"
         app:layout_constraintEnd_toStartOf="@+id/guideline_right"
@@ -179,8 +176,7 @@
         android:contentDescription="@string/remove"
         android:elevation="3dp"
         android:focusable="true"
-        android:foreground="@mipmap/ic_launcher"
-        android:foregroundTint="#EFEFEF"
+        android:foreground="@drawable/trashbutton"
         android:visibility="invisible"
         app:backgroundTint="#00C081"
         app:layout_constraintEnd_toStartOf="@+id/guideline_right"
@@ -199,21 +195,6 @@
         app:layout_constraintStart_toStartOf="@+id/guideline_left"
         app:layout_constraintTop_toTopOf="@+id/guideline_top">
 
-        <ImageView
-            android:id="@+id/deleteConfirmHider1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:alpha="0.2"
-            android:elevation="2dp"
-            android:visibility="visible"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0"
-            app:srcCompat="@drawable/cool_bg" />
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -223,7 +204,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/deleteConfirmHider1">
+            app:layout_constraintTop_toTopOf="parent">
 
             <TextView
                 android:id="@+id/textView"
@@ -289,7 +270,8 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
                 android:contentDescription="@string/plantcard"
-                android:rotation="90"
+                android:foreground="@color/purple_200"
+                android:scaleX="1.5"
                 android:src="@mipmap/ic_launcher"
                 android:translationY="120dp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -298,7 +280,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="1.0"
-                app:srcCompat="@drawable/cool_bg"
                 tools:ignore="ImageContrastCheck" />
 
             <!-- &lt;!&ndash; Card vuota per immagine pianta &ndash;&gt; -->
@@ -320,7 +301,7 @@
                     android:background="#B300C081">
                     <!--             &lt;!&ndash; Immagine pianta&ndash;&gt; -->
                     <ImageView
-                        android:id="@+id/PlantIcon2"
+                        android:id="@+id/plantIcon1"
                         android:layout_width="0dp"
                         android:layout_height="0dp"
                         android:contentDescription="@string/planticon"
@@ -330,12 +311,12 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@mipmap/ic_launcher" />
+                        app:srcCompat="@drawable/ficusicon" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>
 
             <TextView
-                android:id="@+id/PlantName"
+                android:id="@+id/plantName1"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:fontFamily="sans-serif-black"
@@ -350,7 +331,7 @@
                 tools:layout_editor_absoluteY="0dp" />
 
             <com.google.android.material.switchmaterial.SwitchMaterial
-                android:id="@+id/autoSwitch"
+                android:id="@+id/autoSwitch1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"

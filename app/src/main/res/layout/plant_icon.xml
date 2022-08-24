@@ -52,7 +52,7 @@
         android:layout_below="@+id/Type5"
         android:layout_marginTop="-19dp"
         android:layout_toEndOf="@+id/Type5"
-        android:text="55%" />
+        android:text="55" />
 
     <TextView
         android:id="@+id/defaultValues"

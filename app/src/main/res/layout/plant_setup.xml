@@ -96,7 +96,7 @@
         android:id="@+id/iconaPiantaSetup"
         android:layout_width="130dp"
         android:layout_height="130dp"
-        app:cardBackgroundColor="#EFEFEF"
+        app:cardBackgroundColor="#00FFFFFF"
         app:cardCornerRadius="15dp"
         app:cardElevation="0dp"
         app:layout_constraintEnd_toStartOf="@+id/guideline_right"
@@ -115,14 +115,21 @@
                 android:clickable="true"
                 android:contentDescription="add"
                 android:elevation="2dp"
-                android:foreground="@android:mipmap/sym_def_app_icon"
-                android:foregroundTint="#EFEFEF"
-                app:backgroundTint="#00C081"
+                android:foreground="@drawable/addplantbutton"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:rippleColor="#EFEFEF" />
+
+            <ImageView
+                android:id="@+id/avatar3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>

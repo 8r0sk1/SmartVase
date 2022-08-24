@@ -9,12 +9,14 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import it.polito.did.smartvase.R
 
+class IconAdapter(val data:List<PlantIcon>,val parentFragment: IconListFragment): RecyclerView.Adapter< IconAdapter.IconViewHolder >() {
 
-class IconAdapter(val data:List<PlantIcon>): RecyclerView.Adapter< IconAdapter.IconViewHolder >() {
-
-    companion object {
-        fun iconList() = IconListFragment()
-    }
+   /* var defaultMax: Float = 1f
+    var defaultMin: Float = 1f
+    var type: String = ""
+    var icon: Int = 2
+    var setupSetted: Boolean = true
+    var selected: Boolean = false*/
 
     override fun getItemCount() = data.size
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): IconViewHolder {
@@ -25,8 +27,16 @@ class IconAdapter(val data:List<PlantIcon>): RecyclerView.Adapter< IconAdapter.I
 
     override fun onBindViewHolder(holder:IconViewHolder, position: Int) {
         val u = data[position] //access data item
+        val p: PlantIcon=data[0]
         // l'holder si occuperà di usare i dati
         holder.bind(u)
+        holder.plantSelection.setOnClickListener{
+            p.defaultMax=holder.defaultMax.text.toString().toInt()
+            p.defaultMin=holder.defaultMin.text.toString().toInt()
+            p.type=holder.type.text.toString()
+            p.iconId= holder.iconId
+            parentFragment.setMvm(p) //graziesssignore
+        }
     }
 
     class IconViewHolder(v:View):
@@ -36,15 +46,14 @@ class IconAdapter(val data:List<PlantIcon>): RecyclerView.Adapter< IconAdapter.I
         val type: TextView = v.findViewById(R.id.Type5)
         val defaultMax : TextView = v.findViewById(R.id.defaultMax5)
         val defaultMin : TextView = v.findViewById(R.id.defaultMin5)
+        var iconId: Int =0
 
         fun bind(p: PlantIcon) {
             icon.setImageResource(p.iconId)
             type.setText(p.type)
             defaultMax.setText(p.defaultMax.toString())
             defaultMin.setText(p.defaultMin.toString())
-            plantSelection.setOnClickListener{
-                iconList().goBack()
-            }
+            iconId=p.iconId
         }
     }
 }

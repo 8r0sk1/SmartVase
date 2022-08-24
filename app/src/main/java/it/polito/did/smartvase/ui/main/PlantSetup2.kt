@@ -16,20 +16,17 @@ import it.polito.did.smartvase.R
 import android.widget.SeekBar
 import android.widget.SeekBar.OnSeekBarChangeListener
 import androidx.activity.OnBackPressedCallback
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 
 class PlantSetup2 : Fragment() {
-
-    /*companion object {
-        fun newInstance() = Homepage()
-    }*/
 
     private val viewModel: MainViewModel by activityViewModels<MainViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val inflater = TransitionInflater.from(requireContext())
-        enterTransition = inflater.inflateTransition(R.transition.fade)
+        enterTransition = inflater.inflateTransition(R.transition.slide)
         exitTransition = inflater.inflateTransition(R.transition.fade)
     }
 
@@ -43,6 +40,10 @@ class PlantSetup2 : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val plantName = view.findViewById<TextView>(R.id.plantName32)
+        val avatar = view.findViewById<ImageView>(R.id.avatar32)
+        val plantIcon = view.findViewById<FloatingActionButton>(R.id.plantIcon32)
+
         val maxText = view.findViewById<TextView>(R.id.maxText32)
         val minText = view.findViewById<TextView>(R.id.minText32)
         val dividerMaxSoilMoisture = view.findViewById<ProgressBar>(R.id.dividerMaxSoilMoisture32)
@@ -55,20 +56,14 @@ class PlantSetup2 : Fragment() {
         val back = view.findViewById<Button>(R.id.back_button32)
         val next = view.findViewById<Button>(R.id.next_button32)
 
-        //caricamento default
-        /*dividerMaxSoilMoisture?.updateLayoutParams<ConstraintLayout.LayoutParams> { verticalBias = 1-viewModel.defaultMax }
-        arrowMax?.updateLayoutParams<ConstraintLayout.LayoutParams> { verticalBias = 1-viewModel.defaultMax }
-        maxText?.updateLayoutParams<ConstraintLayout.LayoutParams> { verticalBias = 1-viewModel.defaultMax }
-        maxText.setText((viewModel.defaultMax*100f).toInt().toString()+" %")
-        barMax.progress= (viewModel.defaultMax*100f).toInt()*/
-        soilMostureBarEdit(dividerMaxSoilMoisture,arrowMax,maxText,barMax,viewModel.defaultMax)
+        plantName.setText(viewModel.plantName)
+        avatar.setImageResource(viewModel.plantIconId)
 
-        /*dividerMinSoilMoisture?.updateLayoutParams<ConstraintLayout.LayoutParams> { verticalBias = 1-viewModel.defaultMin  }
-        arrowMin?.updateLayoutParams<ConstraintLayout.LayoutParams> { verticalBias = 1-viewModel.defaultMin  }
-        minText?.updateLayoutParams<ConstraintLayout.LayoutParams> { verticalBias = 1-viewModel.defaultMin }
-        minText.setText((viewModel.defaultMin*100f).toInt().toString()+" %")*/
+        //caricamento default
+        soilMostureBarEdit(dividerMaxSoilMoisture,arrowMax,maxText,barMax,viewModel.defaultMax)
         soilMostureBarEdit(dividerMinSoilMoisture,arrowMin,minText,barMin,viewModel.defaultMin)
 
+        //set divider
         barMax.setOnSeekBarChangeListener(object : OnSeekBarChangeListener {
             var progressChangedValue = barMax.progress*0.01f
             override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {
@@ -98,6 +93,7 @@ class PlantSetup2 : Fragment() {
             }
         })
 
+        plantIcon.setOnClickListener{ findNavController().navigate(R.id.action_plantSetup2_to_iconListFragment)}
         back.setOnClickListener { goBack() }
         next.setOnClickListener {
             viewModel.defaultMax=barMax.progress*0.01f
@@ -108,9 +104,9 @@ class PlantSetup2 : Fragment() {
     }
 
     fun soilMostureBarEdit(divider:ProgressBar,arrow:ImageView,text:TextView,bar:SeekBar,progressValue:Float){
-        divider?.updateLayoutParams<ConstraintLayout.LayoutParams> { verticalBias = 1-progressValue}
-        arrow?.updateLayoutParams<ConstraintLayout.LayoutParams> { verticalBias = 1-progressValue }
-        text?.updateLayoutParams<ConstraintLayout.LayoutParams> { verticalBias = 1-progressValue }
+        divider.updateLayoutParams<ConstraintLayout.LayoutParams> { verticalBias = 1-progressValue}
+        arrow.updateLayoutParams<ConstraintLayout.LayoutParams> { verticalBias = 1-progressValue }
+        text.updateLayoutParams<ConstraintLayout.LayoutParams> { verticalBias = 1-progressValue }
         text.setText((progressValue*100f).toInt().toString()+" %")
         bar.progress= (progressValue*100f).toInt()
     }

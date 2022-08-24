@@ -32,8 +32,9 @@ class MainActivity : AppCompatActivity() {
         ft.commit()
     }*/
 
-    public fun vibration(ms:Long) {
+    public fun vibration(short:Boolean) {
         val vibratorService = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
-        vibratorService.vibrate(ms)
+        if(short) vibratorService.vibrate(75)
+        else vibratorService.vibrate(25)
     }
 }

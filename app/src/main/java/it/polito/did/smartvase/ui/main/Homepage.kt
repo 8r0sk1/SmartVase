@@ -13,7 +13,6 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
-import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
 import it.polito.did.smartvase.R
 import android.widget.*
@@ -26,21 +25,15 @@ import com.google.android.material.switchmaterial.SwitchMaterial
 import android.content.Intent
 import it.polito.did.smartvase.MainActivity
 
-
 class Homepage : Fragment(R.layout.homepage) {
 
     private val viewModel: MainViewModel by activityViewModels<MainViewModel>()
-
-    /*companion object {
-        fun mainActivity() = MainActivity()
-    }*/
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val inflater = TransitionInflater.from(requireContext())
         exitTransition = inflater.inflateTransition(R.transition.fade)
     }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -61,21 +54,26 @@ class Homepage : Fragment(R.layout.homepage) {
         val hider = view.findViewById<ImageView>(R.id.hider1)
         val bg = view.findViewById<ImageView>(R.id.backgroundImage1)
 
-        val plantCard = view.findViewById<CardView>(R.id.cardPlant1) //TODO capire cosa premere per aprire dash
+        val plantCard = view.findViewById<CardView>(R.id.cardPlant1)
+        val plantName = view.findViewById<TextView>(R.id.plantName1)
+        val plantIcon = view.findViewById<ImageView>(R.id.plantIcon1)
         val waterLevel = view.findViewById<ImageView>(R.id.cardWaterLevel1)
         val waterLevelHeight=waterLevel.translationY
-        val auto = view.findViewById<SwitchMaterial>(R.id.autoSwitch)
-        val txtV = view.findViewById<TextView>(R.id.yourPlantText)
+        val auto = view.findViewById<SwitchMaterial>(R.id.autoSwitch1)
 
         val db = Firebase.database.reference
         val ref = db.child("chiave")
 
         if(!viewModel.plantCreated)
             hider.visibility=View.VISIBLE
+        auto.isChecked=viewModel.auto
+        plantName.setText(viewModel.plantName)
+        plantIcon.setImageResource(viewModel.plantIconId)
 
         ref.addValueEventListener(object: ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
-                txtV.text = snapshot.getValue<String>()
+//                txtV.text = snapshot.getValue<String>()
+                //TODO CHE è STA ROBA QUA SOPRA (era la textview di YourPLants)
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -83,19 +81,20 @@ class Homepage : Fragment(R.layout.homepage) {
             }
         })
 
-        waterLevel.translationY +=  viewModel.waterLevel *  waterLevelHeight
+        waterLevel.translationY -=  viewModel.waterLevel *  waterLevelHeight
 
         plantCard.setOnLongClickListener{
             removePlant.visibility= View.VISIBLE
             removePlant.setOnClickListener{
                 if(!removing) {
+                    auto.isClickable=true
                     removing = true
                     deleteConfirm.visibility = View.VISIBLE
                     deleteYes.setOnClickListener {
-                        (activity as MainActivity).vibration(500)
+                        (activity as MainActivity).vibration(false)
                         removePlant.visibility = View.INVISIBLE
                         hider.visibility = View.VISIBLE
-                        viewModel.plantCreated = false
+                        viewModel.reset()
                         removing=false
                         deleteConfirm.visibility=View.INVISIBLE
 
@@ -105,35 +104,43 @@ class Homepage : Fragment(R.layout.homepage) {
                     deleteNo.setOnClickListener {
                         deleteConfirm.visibility = View.INVISIBLE
                         removing = false
+                        auto.isClickable=true
                     }
                 }
-                else (activity as MainActivity).vibration(500)
+                else (activity as MainActivity).vibration(true)
             }
             bg.setOnClickListener{
                 removePlant.visibility=View.INVISIBLE
             }
-            (activity as MainActivity).vibration(500)
+            (activity as MainActivity).vibration(true)
             return@setOnLongClickListener true
         }
 
         addPlant.setOnClickListener {
             if(!removing) findNavController().navigate(R.id.action_homepage_to_wifisetup)
-            else (activity as MainActivity).vibration(500)
+            else (activity as MainActivity).vibration(true)
         }
 
         plantCard.setOnClickListener {
             if(!removing) findNavController().navigate(R.id.action_homepage_to_dashboard)
-            else (activity as MainActivity).vibration(500)
+            else (activity as MainActivity).vibration(true)
         }
 
         auto.setOnCheckedChangeListener { _, isChecked ->
             if(!removing) viewModel.auto = isChecked //TODO aggiornare database
-            else (activity as MainActivity).vibration(500)
+            else (activity as MainActivity).vibration(true)
         }
 
-        //ToDO profile.setOnClickListener { findNavController().navigate(R.id.action_homepage_to_profile) }
-
+        profile.setOnClickListener {
+            if(!removing) findNavController().navigate(R.id.action_homepage_to_profile)
+            else (activity as MainActivity).vibration(true)
+        }
     }
+
+    /*fun buttons(val b:List<View>, clickable){
+        b[0].isClickable=clickable
+    }*/
+
     fun goBack(){
         val a = Intent(Intent.ACTION_MAIN)
         a.addCategory(Intent.CATEGORY_HOME)

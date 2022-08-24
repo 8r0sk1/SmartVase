@@ -22,6 +22,9 @@
         <action
             android:id="@+id/action_homepage_to_wifisetup"
             app:destination="@id/WifiSetup" />
+        <action
+            android:id="@+id/action_homepage_to_profile"
+            app:destination="@id/Profile" />
     </fragment>
 
     <fragment
@@ -61,6 +64,19 @@
         <action
             android:id="@+id/action_plantSetup2_to_plantSetup"
             app:destination="@id/PlantSetup" />
+        <action
+            android:id="@+id/action_plantSetup2_to_iconListFragment"
+            app:destination="@id/IconListFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/Profile"
+        android:name="it.polito.did.smartvase.ui.main.Profile"
+        android:label="Profile"
+        tools:layout="@layout/profile" >
+        <action
+            android:id="@+id/action_profile_to_homepage"
+            app:destination="@id/Homepage" />
     </fragment>
 
     <!--<fragment
@@ -87,6 +103,9 @@
         <action
             android:id="@+id/action_settings_to_dashboard"
             app:destination="@id/Dashboard" />
+        <action
+            android:id="@+id/action_settings_to_iconListFragment"
+            app:destination="@id/IconListFragment" />
     </fragment>
 
     <fragment

@@ -18,10 +18,6 @@ import com.google.android.material.snackbar.Snackbar
 
 class WifiSetup : Fragment() {
 
-    /*companion object {
-        fun newInstance() = Homepage()
-    }*/
-
     private val viewModel: MainViewModel by activityViewModels<MainViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,6 +43,7 @@ class WifiSetup : Fragment() {
 
         val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse("http://www.google.com"))
 
+        //viewModel.plantIcon=resources.getDrawable(R.drawable.nficusicon)
         browserButton.setOnClickListener {
             viewModel.connected=true
             //startActivity(browserIntent)
