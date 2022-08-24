@@ -23,6 +23,8 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import it.polito.did.smartvase.MainActivity
 import it.polito.did.smartvase.R
+import it.polito.did.smartvase.ui.main.MainViewModel
+
 //import it.polito.did.smartvase.ui.main.Homepage
 
 class Dashboard : Fragment() {
@@ -73,8 +75,8 @@ class Dashboard : Fragment() {
         plantIcon?.setImageResource(viewModel.plantIconId)
 
         //testo percentuale riempimento
-        SoilMoisturePercentage?.text= viewModel.waterLevel.toString()
-        WaterLevelPercentage?.text= viewModel.soilMoisture.toString()
+        WaterLevelPercentage?.text= (5*viewModel.waterLevel).toString()+"L"
+        SoilMoisturePercentage?.text= (viewModel.soilMoisture*100).toInt().toString()+"%"
 
         //divisori barre
         dividerMaxSoilMoisture?.updateLayoutParams<ConstraintLayout.LayoutParams> { verticalBias = 1-viewModel.defaultMax  }
@@ -99,9 +101,9 @@ class Dashboard : Fragment() {
             viewModel.auto = !viewModel.auto
             (activity as MainActivity).vibration(true)
             if(viewModel.auto)
-                offText?.text="ON"
+                waterButton(autoWaterButton,offText,true)
             else
-                offText?.text="OFF"
+                waterButton(autoWaterButton,offText,true)
             ref.setValue(1) //TODO VLADDO
             return@setOnLongClickListener true
         }
@@ -113,16 +115,28 @@ class Dashboard : Fragment() {
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.M)
+    @SuppressLint("SetTextI18n")
+    fun waterButton(waterButton:ImageButton, waterState:TextView, state:Boolean){
+        if(state) {
+            waterButton.foreground=resources.getDrawable(R.drawable.waterbuttonon)
+            waterState.setText("ON")
+        }
+        else{
+            waterButton.foreground=resources.getDrawable(R.drawable.waterbuttonoff)
+            waterState.setText("OFF")
+        }
+    }
 
     @RequiresApi(Build.VERSION_CODES.M)
     @SuppressLint("SetTextI18n")
     fun notification(notificationButton:ImageButton, notificationState:TextView, state:Boolean){
         if(state) {
-            notificationButton.foreground=resources.getDrawable(R.drawable.notificationoffbutton)
+            notificationButton.foreground=resources.getDrawable(R.drawable.notificationonbutton)
             notificationState.setText("ON")
         }
         else{
-            notificationButton.foreground=resources.getDrawable(R.drawable.notificationonbutton)
+            notificationButton.foreground=resources.getDrawable(R.drawable.notificationoffbutton)
             notificationState.setText("OFF")
         }
     }

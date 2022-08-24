@@ -375,7 +375,7 @@
         android:layout_marginBottom="16dp"
         android:clickable="true"
         android:contentDescription="minSoilMoisture"
-        android:foreground="@drawable/notificationoffbutton"
+        android:foreground="@drawable/notificationonbutton"
         app:backgroundTint="#EFEFEF"
         app:layout_constraintBottom_toTopOf="@+id/autoWaterButton2"
         app:layout_constraintEnd_toStartOf="@+id/guideline_right"

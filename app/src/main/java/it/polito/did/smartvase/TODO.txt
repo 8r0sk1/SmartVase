@@ -7,7 +7,6 @@ wifisetup 6
 
 animazione nel longpress
 //TODO LUIGIS
-mettere matitina invece di freccina nel setup
 button da migliorare o far diventare floating action button
 in plantIcon un constraintlayout se no l'immagine è brutta nella recyclerview
 layout di profile e wifiSetup

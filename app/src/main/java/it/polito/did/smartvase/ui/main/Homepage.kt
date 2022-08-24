@@ -46,7 +46,7 @@ class Homepage : Fragment(R.layout.homepage) {
         super.onViewCreated(view, savedInstanceState)
 
         val addPlant = view.findViewById<FloatingActionButton>(R.id.addPlantButton1)
-        val profile = view.findViewById<ImageButton>(R.id.profileButton1)
+        val profile = view.findViewById<FloatingActionButton>(R.id.profileButton1)
         val removePlant = view.findViewById<FloatingActionButton>(R.id.removePlantButton1)
         val deleteConfirm = view.findViewById<ConstraintLayout>(R.id.deleteConfirm1)
         val deleteNo = view.findViewById<Button>(R.id.deleteNo1)
