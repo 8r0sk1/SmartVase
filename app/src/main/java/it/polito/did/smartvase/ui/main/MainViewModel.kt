@@ -14,9 +14,9 @@ class MainViewModel : ViewModel() {
     var waterLevelMax : Float = 1.00f
     var waterLevelMin : Float = .25f
     var soilMoisture : Float = .60f
-    var soilMoistureMax : Float = .60f
-    var soilMoistureMin : Float = .25f
-    var defaultMax: Float =.45f
+//    var soilMoistureMax : Float = .60f
+//    var soilMoistureMin : Float = .25f
+    var defaultMax: Float =.95f
     var defaultMin: Float =.25f
 
     var plantName : String = "Plant name"
@@ -43,8 +43,8 @@ class MainViewModel : ViewModel() {
         waterLevelMax = 1.00f
         waterLevelMin = .25f
         soilMoisture = .60f
-        soilMoistureMax = .60f
-        soilMoistureMin = .25f
+//        soilMoistureMax = .60f
+//        soilMoistureMin = .25f
         defaultMax =.45f
         defaultMin =.25f
 
@@ -65,8 +65,8 @@ class MainViewModel : ViewModel() {
         waterLevelMax = v.waterLevelMax
         waterLevelMin = v.waterLevelMin
         soilMoisture = v.soilMoisture
-        soilMoistureMax = v.soilMoistureMax
-        soilMoistureMin = v.soilMoistureMin
+//        soilMoistureMax = v.soilMoistureMax
+//        soilMoistureMin = v.soilMoistureMin
         defaultMax =v.defaultMax
         defaultMin = v.defaultMin
 

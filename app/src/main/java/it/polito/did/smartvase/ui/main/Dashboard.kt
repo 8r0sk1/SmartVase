@@ -1,7 +1,9 @@
 package it.polito.did. smartvase.ui.main
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Color
+import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.activity.OnBackPressedCallback
+import androidx.annotation.RequiresApi
 import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.updateLayoutParams
@@ -21,7 +24,6 @@ import com.google.firebase.ktx.Firebase
 import it.polito.did.smartvase.MainActivity
 import it.polito.did.smartvase.R
 //import it.polito.did.smartvase.ui.main.Homepage
-import it.polito.did.smartvase.ui.main.MainViewModel
 
 class Dashboard : Fragment() {
 
@@ -41,6 +43,8 @@ class Dashboard : Fragment() {
         return inflater.inflate(R.layout.dashboard, container, false)
     }
 
+    @RequiresApi(Build.VERSION_CODES.M)
+    @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -73,8 +77,8 @@ class Dashboard : Fragment() {
         WaterLevelPercentage?.text= viewModel.soilMoisture.toString()
 
         //divisori barre
-        dividerMaxSoilMoisture?.updateLayoutParams<ConstraintLayout.LayoutParams> { verticalBias = 1-viewModel.soilMoistureMax  }
-        dividerMinSoilMoisture?.updateLayoutParams<ConstraintLayout.LayoutParams> { verticalBias = 1-viewModel.soilMoistureMin  }
+        dividerMaxSoilMoisture?.updateLayoutParams<ConstraintLayout.LayoutParams> { verticalBias = 1-viewModel.defaultMax  }
+        dividerMinSoilMoisture?.updateLayoutParams<ConstraintLayout.LayoutParams> { verticalBias = 1-viewModel.defaultMin  }
 
         //riempire barre
         waterBar.translationY +=  viewModel.waterLevel *  barHeight
@@ -105,16 +109,20 @@ class Dashboard : Fragment() {
         notificationButton.setOnClickListener {
             viewModel.notification = !viewModel.notification
             notification(notificationButton,notificationState,viewModel.notification)
+            (activity as MainActivity).vibration(true)
         }
     }
 
+
+    @RequiresApi(Build.VERSION_CODES.M)
+    @SuppressLint("SetTextI18n")
     fun notification(notificationButton:ImageButton, notificationState:TextView, state:Boolean){
         if(state) {
-            notificationButton.setImageResource(R.drawable.notificationoffbutton)
+            notificationButton.foreground=resources.getDrawable(R.drawable.notificationoffbutton)
             notificationState.setText("ON")
         }
         else{
-            notificationButton.setImageResource(R.drawable.notificationonbutton)
+            notificationButton.foreground=resources.getDrawable(R.drawable.notificationonbutton)
             notificationState.setText("OFF")
         }
     }

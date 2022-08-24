@@ -45,23 +45,25 @@ class WifiSetup : Fragment() {
 
         //viewModel.plantIcon=resources.getDrawable(R.drawable.nficusicon)
         browserButton.setOnClickListener {
-            viewModel.connected=true
-            //startActivity(browserIntent)
+            viewModel.connected=true //TODO startActivity(browserIntent)
         }
 
         back.setOnClickListener {goBack() }
         //TODO AUTOMATICAMENTE A PAGINA SUCCESSIVA
         next.setOnClickListener {
             if (!viewModel.connected /*TODO CONTROLLO DATABASE VLADDD*/) {
-                val snack =
-                    Snackbar.make(it, "Open Browser and connect to WiFi", Snackbar.LENGTH_SHORT)
+                val snack = Snackbar.make(it, "Open Browser and connect to WiFi", Snackbar.LENGTH_SHORT)
                 snack.show()
             } else {
-                findNavController().navigate(R.id.action_wifisetup_to_plantsetup)
+                if(viewModel.plantCreated) {
+                    val snack = Snackbar.make(it, "Already connected", Snackbar.LENGTH_LONG)
+                    snack.show()
+                }
+                else
+                    findNavController().navigate(R.id.action_wifisetup_to_plantsetup)
             }
         }
     }
-
     fun goBack(){findNavController().navigate(R.id.action_wifisetup_to_homepage)}
     override fun onAttach(context: Context) {
         super.onAttach(context)

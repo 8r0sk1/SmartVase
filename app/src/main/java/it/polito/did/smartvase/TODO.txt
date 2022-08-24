@@ -14,7 +14,7 @@ layout di profile e wifiSetup
 mettere terrino e acquino sotto alle barre così si nasconde bug //TODO LUIGI dipende come le fai, ora hanno un po' di rottura in basso
 
 
-
+MANCANZA colori in homepage di mancata connessione o scarsa situazione
 rendere sfocato il dietro nel setup e setup2
 redirect al browser
 tutte le schede default

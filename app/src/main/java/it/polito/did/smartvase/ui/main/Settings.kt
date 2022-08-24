@@ -96,12 +96,13 @@ class Settings : Fragment() {
         plantIcon.setOnClickListener{findNavController().navigate(R.id.action_settings_to_iconListFragment)}
         back.setOnClickListener {
             viewModel.setMvm(tmpMVM)
+            goBack()
+        }
+        next.setOnClickListener {
             viewModel.defaultMax=barMax.progress*0.01f
             viewModel.defaultMin=barMin.progress*0.01f
             viewModel.plantName=plantName.text.toString()
-            goBack()
-        }
-        next.setOnClickListener {findNavController().navigate(R.id.action_settings_to_dashboard) }
+            findNavController().navigate(R.id.action_settings_to_dashboard) }
     }
 
     fun soilMostureBarEdit(divider:ProgressBar, arrow:ImageView, text:TextView, bar: SeekBar, progressValue:Float){

@@ -32,6 +32,7 @@ class Homepage : Fragment(R.layout.homepage) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val inflater = TransitionInflater.from(requireContext())
+        enterTransition = inflater.inflateTransition(R.transition.slide)
         exitTransition = inflater.inflateTransition(R.transition.fade)
     }
     override fun onCreateView(
