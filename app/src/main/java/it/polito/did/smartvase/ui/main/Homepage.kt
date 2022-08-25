@@ -53,7 +53,7 @@ class Homepage : Fragment(R.layout.homepage) {
         val deleteYes = view.findViewById<Button>(R.id.deleteYes1)
         var removing :Boolean=false
         val hider = view.findViewById<ImageView>(R.id.hider1)
-        val bg = view.findViewById<ImageView>(R.id.backgroundImage1)
+        val bg = view.findViewById<ConstraintLayout>(R.id.constraintLayout1)
 
         val plantCard = view.findViewById<CardView>(R.id.cardPlant1)
         val plantName = view.findViewById<TextView>(R.id.plantName1)
@@ -64,6 +64,8 @@ class Homepage : Fragment(R.layout.homepage) {
 
         val db = Firebase.database.reference
         val ref = db.child("chiave")
+
+//        (activity as MainActivity).notification(R.drawable.nficusicon,"title","message")
 
         if(!viewModel.plantCreated)
             hider.visibility=View.VISIBLE

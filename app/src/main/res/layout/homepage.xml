@@ -3,17 +3,21 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:id="@+id/constraintLayout1"
+    android:background="@drawable/sfondo"
+    >
 
-    <ImageView
+    <!--<ImageView
         android:id="@+id/backgroundImage1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/sfondo"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/sfondo" />
+        app:srcCompat="@drawable/sfondo" />-->
 
     <ImageView
         android:id="@+id/hider1"
