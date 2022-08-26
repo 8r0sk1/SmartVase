@@ -1,20 +1,17 @@
 package it.polito.did.smartvase
 
-import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
-import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.button.MaterialButton
 import com.google.firebase.auth.FirebaseAuth
-import it.polito.did.smartvase.databinding.SignInBinding
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat.startActivity
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import androidx.transition.TransitionInflater
 import it.polito.did.smartvase.ui.main.MainViewModel
 
 
@@ -24,26 +21,30 @@ class SignIn : Fragment(R.layout.sign_in) {
 
     //private lateinit var binding: SignInBinding
 
-    private lateinit var binding: SignInBinding
+//    private lateinit var binding: SignInBinding
     //private val binding get() = _binding!!
 
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val inflater = TransitionInflater.from(requireContext())
+        enterTransition = inflater.inflateTransition(R.transition.fade)
+        exitTransition = inflater.inflateTransition(R.transition.fade)
+    }
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
+        inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = SignInBinding.inflate(inflater, container, false)
-        val view = binding.root
-        return view
-        //return inflater.inflate(R.layout.sign_in, container, false)
+        return inflater.inflate(R.layout.sign_in, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val signIn=view.findViewById<MaterialButton>(R.id.signIn)
+        val signOut=view.findViewById<MaterialButton>(R.id.signOut)
+        val userDetails=view.findViewById<TextView>(R.id.userDetails)
 
-        val signIn=view.findViewById<Button>(R.id.entra)
         viewModel.auth = FirebaseAuth.getInstance()
 
         if(viewModel.auth.currentUser == null){
@@ -55,15 +56,15 @@ class SignIn : Fragment(R.layout.sign_in) {
         //binding = SignInBinding.inflate(layoutInflater)
         //setContentView(binding.root)
 
-        binding.signIn.setOnClickListener{
+        signIn.setOnClickListener{
             findNavController().navigate(R.id.action_signIn_to_registerActivity)
             /*startActivity(Intent(this, RegisterActivity::class.java))
             finish()*/
         }
 
-        binding.signOut.setOnClickListener{
+        signOut.setOnClickListener{
             viewModel.auth.signOut()
-            binding.userDetails.text = updateData()
+            userDetails.text = updateData()
         }
 
 //        //nascondo la Action Bar (barra con il titolo dell'app)
@@ -74,7 +75,7 @@ class SignIn : Fragment(R.layout.sign_in) {
 
     override fun onResume() {
         super.onResume()
-        binding.userDetails.text = updateData()
+        view?.findViewById<TextView>(R.id.userDetails)?.text = updateData() //TODO da controllare
     }
 
     private fun updateData(): String{

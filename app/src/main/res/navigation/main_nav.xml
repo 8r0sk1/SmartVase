@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_nav"
-    app:startDestination="@id/signIn">
+    app:startDestination="@id/Homepage">
 
     <fragment
         android:id="@+id/Homepage"
@@ -25,6 +25,9 @@
         <action
             android:id="@+id/action_homepage_to_profile"
             app:destination="@id/Profile" />
+        <action
+            android:id="@+id/action_homepage_to_signin"
+            app:destination="@id/signIn" />
     </fragment>
 
     <fragment

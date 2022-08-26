@@ -23,6 +23,7 @@ import androidx.transition.TransitionInflater
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.switchmaterial.SwitchMaterial
 import android.content.Intent
+import com.google.firebase.auth.FirebaseAuth
 import it.polito.did.smartvase.MainActivity
 
 class Homepage : Fragment(R.layout.homepage) {
@@ -31,6 +32,9 @@ class Homepage : Fragment(R.layout.homepage) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        viewModel.auth = FirebaseAuth.getInstance()
+        if(viewModel.auth.currentUser==null)
+            findNavController().navigate(R.id.action_homepage_to_signin)
         val inflater = TransitionInflater.from(requireContext())
         enterTransition = inflater.inflateTransition(R.transition.slide)
         exitTransition = inflater.inflateTransition(R.transition.fade)
@@ -45,13 +49,15 @@ class Homepage : Fragment(R.layout.homepage) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
+
         val addPlant = view.findViewById<FloatingActionButton>(R.id.addPlantButton1)
         val profile = view.findViewById<FloatingActionButton>(R.id.profileButton1)
         val removePlant = view.findViewById<FloatingActionButton>(R.id.removePlantButton1)
         val deleteConfirm = view.findViewById<ConstraintLayout>(R.id.deleteConfirm1)
         val deleteNo = view.findViewById<Button>(R.id.deleteNo1)
         val deleteYes = view.findViewById<Button>(R.id.deleteYes1)
-        var removing :Boolean=false
+        var removing =false
         val hider = view.findViewById<ImageView>(R.id.hider1)
         val bg = view.findViewById<ConstraintLayout>(R.id.constraintLayout1)
 

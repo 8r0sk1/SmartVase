@@ -6,37 +6,46 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat.startActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import androidx.transition.TransitionInflater
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.SignInButton
 import com.google.android.gms.common.api.ApiException
+import com.google.android.material.button.MaterialButton
+import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.GoogleAuthProvider
-import it.polito.did.smartvase.databinding.ActivityLoginBinding
-import it.polito.did.smartvase.databinding.ActivityRegisterBinding
 import it.polito.did.smartvase.ui.main.MainViewModel
 
 class RegisterActivity : Fragment(R.layout.activity_register) {
 
     private val viewModel: MainViewModel by activityViewModels<MainViewModel>()
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val inflater = TransitionInflater.from(requireContext())
+        enterTransition = inflater.inflateTransition(R.transition.fade)
+        exitTransition = inflater.inflateTransition(R.transition.fade)
+    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        return inflater.inflate(R.layout.sign_in, container, false)
+        return inflater.inflate(R.layout.activity_register, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val binding = ActivityRegisterBinding.inflate(layoutInflater)
-
-        //supportActionBar?.title = "Register"
+        val loginTV=view.findViewById<TextView>(R.id.loginTV)
+        val createAccountBtn=view.findViewById<MaterialButton>(R.id.createAccountBtn)
+        val googleBtn=view.findViewById<SignInButton>(R.id.googleBtn)
+        val emailRegister=view.findViewById<TextInputEditText>(R.id.emailRegister)
+        val passwordRegister=view.findViewById<TextInputEditText>(R.id.passwordRegister)
 
         // Configure Google Sign In
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -46,15 +55,15 @@ class RegisterActivity : Fragment(R.layout.activity_register) {
 
         val googleSignInClient = GoogleSignIn.getClient(this@RegisterActivity.requireActivity(), gso)
 
-        binding.loginTV.setOnClickListener{
+        loginTV.setOnClickListener{
             findNavController().navigate(R.id.action_registerActivity_to_loginActivity)
             /*startActivity(Intent(this, LoginActivity::class.java))
             finish()*/
         }
 
-        binding.createAccountBtn.setOnClickListener{
-            val email = binding.emailRegister.text.toString()
-            val password = binding.passwordRegister.text.toString()
+        createAccountBtn.setOnClickListener{
+            val email = emailRegister.text.toString()
+            val password = passwordRegister.text.toString()
             if(email.isNotEmpty() && password.isNotEmpty())
                 viewModel.auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener{
                     if(it.isSuccessful){
@@ -67,11 +76,10 @@ class RegisterActivity : Fragment(R.layout.activity_register) {
                 }
         }
 
-        binding.googleBtn.setOnClickListener{
+        googleBtn.setOnClickListener{
             googleSignInClient.signOut()
             startActivityForResult(googleSignInClient.signInIntent, 13)
         }
-
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
