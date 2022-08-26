@@ -8,38 +8,61 @@ import com.google.android.material.button.MaterialButton
 import com.google.firebase.auth.FirebaseAuth
 import it.polito.did.smartvase.databinding.SignInBinding
 import android.util.Log
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.core.content.ContextCompat.startActivity
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
+import it.polito.did.smartvase.ui.main.MainViewModel
 
 
-class SignIn : AppCompatActivity() {
+class SignIn : Fragment(R.layout.sign_in) {
+
+    private val viewModel: MainViewModel by activityViewModels<MainViewModel>()
+
+    //private lateinit var binding: SignInBinding
 
     private lateinit var binding: SignInBinding
-    lateinit var signIn: MaterialButton
+    //private val binding get() = _binding!!
 
-    companion object{
-        lateinit var auth: FirebaseAuth
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        binding = SignInBinding.inflate(inflater, container, false)
+        val view = binding.root
+        return view
+        //return inflater.inflate(R.layout.sign_in, container, false)
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.sign_in)
-        signIn=findViewById(R.id.entra)
-        auth = FirebaseAuth.getInstance()
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-        if(auth.currentUser == null){
-            startActivity(Intent(this, RegisterActivity::class.java))
-            finish()
+
+        val signIn=view.findViewById<Button>(R.id.entra)
+        viewModel.auth = FirebaseAuth.getInstance()
+
+        if(viewModel.auth.currentUser == null){
+            findNavController().navigate(R.id.action_signIn_to_registerActivity)
+            /*startActivity(Intent(this, RegisterActivity::class.java))
+            finish()*/
         }
 
-        binding = SignInBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        //binding = SignInBinding.inflate(layoutInflater)
+        //setContentView(binding.root)
 
         binding.signIn.setOnClickListener{
-            startActivity(Intent(this, RegisterActivity::class.java))
-            finish()
+            findNavController().navigate(R.id.action_signIn_to_registerActivity)
+            /*startActivity(Intent(this, RegisterActivity::class.java))
+            finish()*/
         }
 
         binding.signOut.setOnClickListener{
-            auth.signOut()
+            viewModel.auth.signOut()
             binding.userDetails.text = updateData()
         }
 
@@ -55,6 +78,6 @@ class SignIn : AppCompatActivity() {
     }
 
     private fun updateData(): String{
-        return "Email: ${auth.currentUser?.email}"
+        return "Email: ${viewModel.auth.currentUser?.email}"
     }
 }

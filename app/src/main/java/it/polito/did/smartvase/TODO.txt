@@ -22,3 +22,4 @@ tutte le schede default
 
 WIFI
 browser, flag di completamento setup da scrivere sul db
+fragment con il controllo se signed o no

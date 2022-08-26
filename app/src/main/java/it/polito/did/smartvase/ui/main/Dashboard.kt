@@ -19,6 +19,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.transition.TransitionInflater
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import it.polito.did.smartvase.MainActivity
@@ -67,6 +68,10 @@ class Dashboard : Fragment() {
 
         val db = Firebase.database.reference
         val ref = db.child("A7/toWaterControl")
+
+        val plants = FirebaseDatabase.getInstance().getReference("plants")
+
+
 
         val barHeight=waterBar.translationY
 

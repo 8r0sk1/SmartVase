@@ -1,21 +1,42 @@
 package it.polito.did.smartvase
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat.startActivity
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.GoogleAuthProvider
+import it.polito.did.smartvase.databinding.ActivityLoginBinding
 import it.polito.did.smartvase.databinding.ActivityRegisterBinding
+import it.polito.did.smartvase.ui.main.MainViewModel
 
-class RegisterActivity : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+class RegisterActivity : Fragment(R.layout.activity_register) {
+
+    private val viewModel: MainViewModel by activityViewModels<MainViewModel>()
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        return inflater.inflate(R.layout.sign_in, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
         val binding = ActivityRegisterBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-        supportActionBar?.title = "Register"
+
+        //supportActionBar?.title = "Register"
 
         // Configure Google Sign In
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -23,24 +44,26 @@ class RegisterActivity : AppCompatActivity() {
             .requestEmail()
             .build()
 
-        val googleSignInClient = GoogleSignIn.getClient(this, gso)
+        val googleSignInClient = GoogleSignIn.getClient(this@RegisterActivity.requireActivity(), gso)
 
         binding.loginTV.setOnClickListener{
-            startActivity(Intent(this, LoginActivity::class.java))
-            finish()
+            findNavController().navigate(R.id.action_registerActivity_to_loginActivity)
+            /*startActivity(Intent(this, LoginActivity::class.java))
+            finish()*/
         }
 
         binding.createAccountBtn.setOnClickListener{
             val email = binding.emailRegister.text.toString()
             val password = binding.passwordRegister.text.toString()
             if(email.isNotEmpty() && password.isNotEmpty())
-                SignIn.auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener{
+                viewModel.auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener{
                     if(it.isSuccessful){
-                        startActivity(Intent(this, LoginActivity::class.java))
-                        finish()
+                        findNavController().navigate(R.id.action_registerActivity_to_loginActivity)
+                        /*startActivity(Intent(this, LoginActivity::class.java))
+                        finish()*/
                     }
                 }.addOnFailureListener{
-                    Toast.makeText(this, it.localizedMessage, Toast.LENGTH_LONG).show()
+                    Toast.makeText(this@RegisterActivity.requireActivity(), it.localizedMessage, Toast.LENGTH_LONG).show()
                 }
         }
 
@@ -53,7 +76,7 @@ class RegisterActivity : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == 13 && resultCode == RESULT_OK) {
+        if (requestCode == 13 && resultCode == Activity.RESULT_OK) {
             val task = GoogleSignIn.getSignedInAccountFromIntent(data)
             val account = task.getResult(ApiException::class.java)!!
             firebaseAuthWithGoogle(account.idToken!!)
@@ -62,14 +85,15 @@ class RegisterActivity : AppCompatActivity() {
 
     private fun firebaseAuthWithGoogle(idToken: String) {
         val credential = GoogleAuthProvider.getCredential(idToken, null)
-        SignIn.auth.signInWithCredential(credential)
-            .addOnCompleteListener(this) { task ->
+        viewModel.auth.signInWithCredential(credential)
+            .addOnCompleteListener() { task ->
                 if (task.isSuccessful) {
-                    startActivity(Intent(this, SignIn::class.java))
-                    finish()
+                    findNavController().navigate(R.id.action_registerActivity_to_signIn)
+                    /*startActivity(Intent(this, SignIn::class.java))
+                    finish()*/
                 }
             }.addOnFailureListener {
-                Toast.makeText(this, it.localizedMessage, Toast.LENGTH_LONG).show()
+                Toast.makeText(this@RegisterActivity.requireActivity(), it.localizedMessage, Toast.LENGTH_LONG).show()
             }
     }
 }

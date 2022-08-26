@@ -2,6 +2,7 @@ package it.polito.did.smartvase.ui.main
 
 import android.graphics.drawable.Drawable
 import androidx.lifecycle.ViewModel
+import com.google.firebase.auth.FirebaseAuth
 import it.polito.did.smartvase.R
 
 class MainViewModel : ViewModel() {
@@ -27,6 +28,8 @@ class MainViewModel : ViewModel() {
     var iconSelected : Boolean=true
     var setupSetted : Boolean = false
     var connected : Boolean = false
+
+    lateinit var auth: FirebaseAuth
 
     init {
         //TODO RICEVERE DA DATABASE VALORI DEFAULT
