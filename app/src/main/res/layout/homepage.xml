@@ -83,6 +83,7 @@
         android:elevation="7dp"
         android:foreground="@drawable/userbutton"
         android:scaleType="centerInside"
+        app:backgroundTint="#00C081"
         app:layout_constraintEnd_toStartOf="@+id/guideline_right"
         app:layout_constraintTop_toTopOf="@+id/guideline_top"
         tools:ignore="ImageContrastCheck" />

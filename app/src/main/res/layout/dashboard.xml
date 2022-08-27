@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#CB1F332A">
+    android:background="#CB246045">
 
     <TextView
         android:id="@+id/soilMoistureText2"
@@ -200,7 +200,7 @@
                         android:layout_height="385dp"
                         android:layout_marginTop="-385dp"
                         android:translationY="385dp"
-                        app:cardBackgroundColor="#1F25A3"
+                        app:cardBackgroundColor="#5FBBE4"
                         app:cardCornerRadius="13dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.0"
@@ -312,7 +312,7 @@
                         android:layout_height="385dp"
                         android:layout_marginTop="-385dp"
                         android:translationY="385dp"
-                        app:cardBackgroundColor="#D3D28B"
+                        app:cardBackgroundColor="#DDE387"
                         app:cardCornerRadius="13dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.0"
@@ -361,7 +361,7 @@
         android:clickable="true"
         android:contentDescription="maxSoilMoisture"
         android:foreground="@drawable/waterbuttonoff"
-        app:backgroundTint="#EFEFEF"
+        app:backgroundTint="#5FBBE4"
         app:layout_constraintBottom_toTopOf="@+id/guideline_bottom"
         app:layout_constraintEnd_toStartOf="@+id/guideline_right"
         app:layout_constraintStart_toStartOf="@+id/guideline_left"
@@ -376,7 +376,7 @@
         android:clickable="true"
         android:contentDescription="minSoilMoisture"
         android:foreground="@drawable/notificationonbutton"
-        app:backgroundTint="#EFEFEF"
+        app:backgroundTint="#45BC86"
         app:layout_constraintBottom_toTopOf="@+id/autoWaterButton2"
         app:layout_constraintEnd_toStartOf="@+id/guideline_right"
         app:layout_constraintStart_toStartOf="@+id/guideline_left" />

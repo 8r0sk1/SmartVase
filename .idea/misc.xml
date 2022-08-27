@@ -50,13 +50,17 @@
         <entry key="..\:/Users/vladf/Documents/DID Github - SmartVase/SmartVase/app/src/main/res/layout/settings.xml" value="0.2671875" />
         <entry key="..\:/Users/vladf/Documents/DID Github - SmartVase/SmartVase/app/src/main/res/layout/sign_in.xml" value="0.25885416666666666" />
         <entry key="app/src/main/res/layout-v23/homepage.xml" value="0.4036458333333333" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.3880208333333333" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.36041666666666666" />
         <entry key="app/src/main/res/layout/dashboard.xml" value="0.2557291666666667" />
         <entry key="app/src/main/res/layout/edit_plant.xml" value="0.2776268115942029" />
         <entry key="app/src/main/res/layout/homepage.xml" value="0.5833333333333334" />
         <entry key="app/src/main/res/layout/homepage_fragment.xml" value="0.36041666666666666" />
         <entry key="app/src/main/res/layout/plant_setup.xml" value="0.36041666666666666" />
+        <entry key="app/src/main/res/layout/plant_setup2.xml" value="0.3880208333333333" />
         <entry key="app/src/main/res/layout/settings.xml" value="0.26412048339843763" />
+        <entry key="app/src/main/res/layout/sign_in.xml" value="0.3880208333333333" />
+        <entry key="app/src/main/res/layout/wifi_setup.xml" value="0.3880208333333333" />
       </map>
     </option>
   </component>

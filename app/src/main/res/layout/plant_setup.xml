@@ -5,7 +5,7 @@
     android:id="@+id/frameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#CB1F332A"
+    android:background="#CB246045"
     tools:context=".ui.main.PlantSetup">
 
     <TextView

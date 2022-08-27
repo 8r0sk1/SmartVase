@@ -5,7 +5,7 @@
     android:id="@+id/frameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#CB1F332A"
+    android:background="#CB296349"
     tools:context=".ui.main.Settings">
 
     <TextView
@@ -162,7 +162,7 @@
                 android:id="@+id/soilMoistureBarEmpty"
                 android:layout_width="55dp"
                 android:layout_height="385dp"
-                app:cardBackgroundColor="#3D7E5F"
+                app:cardBackgroundColor="#31815D"
                 app:cardCornerRadius="13dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -210,7 +210,7 @@
                         android:layout_height="385dp"
                         android:layout_marginTop="-385dp"
                         android:translationY="600dp"
-                        app:cardBackgroundColor="#D3D28B"
+                        app:cardBackgroundColor="#DDE387"
                         app:cardCornerRadius="13dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.0"
