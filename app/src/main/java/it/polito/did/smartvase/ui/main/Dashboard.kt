@@ -65,15 +65,19 @@ class Dashboard : Fragment() {
         val WaterLevelPercentage = view.findViewById<TextView>(R.id.WaterLevelPercentage)
         val dividerMaxSoilMoisture = view.findViewById<ProgressBar>(R.id.dividerMaxSoilMoisture2)
         val dividerMinSoilMoisture = view.findViewById<ProgressBar>(R.id.dividerMinSoilMoisture2)
+        val soilAlert = view.findViewById<ImageView>(R.id.soilAlert2)
+        val waterAlert = view.findViewById<ImageView>(R.id.waterAlert2)
 
         val db = Firebase.database.reference
         val ref = db.child("A7/toWaterControl")
 
         val plants = FirebaseDatabase.getInstance().getReference("plants")
 
-
-
         val barHeight=waterBar.translationY
+        if(viewModel.waterLevel<.10)
+            waterAlert.visibility=View.VISIBLE
+        if(viewModel.soilMoisture<viewModel.defaultMin)
+            soilAlert.visibility=View.VISIBLE
 
         //popolamento viste
         plantName?.setText(viewModel.plantName)

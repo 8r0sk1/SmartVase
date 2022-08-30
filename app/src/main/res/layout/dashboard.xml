@@ -10,7 +10,8 @@
         android:id="@+id/soilMoistureText2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="16dp"
+        android:elevation="4dp"
         android:text="Soil Moisture"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textColor="#EFEFEF"
@@ -22,7 +23,8 @@
         android:id="@+id/waterLevelText2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="16dp"
+        android:elevation="4dp"
         android:text="Water Level"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textColor="#EFEFEF"
@@ -65,6 +67,27 @@
         android:src="@drawable/editbutton"
         app:layout_constraintEnd_toStartOf="@+id/guideline_right"
         app:layout_constraintTop_toTopOf="@+id/guideline_top" />
+
+    <ImageView
+        android:id="@+id/soilAlert2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/soilMoistureBarCorner"
+        app:layout_constraintEnd_toEndOf="@+id/soilMoistureBarCorner"
+        app:layout_constraintStart_toStartOf="@+id/soilMoistureBarCorner"
+        app:layout_constraintTop_toTopOf="@+id/plantName2"
+        app:srcCompat="@android:drawable/ic_dialog_alert" />
+
+    <ImageView
+        android:id="@+id/waterAlert2"
+        android:layout_width="0dp"
+        android:layout_height="odp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/waterLevelBarCorner2"
+        app:layout_constraintEnd_toEndOf="@+id/waterLevelBarCorner2"
+        app:layout_constraintStart_toStartOf="@+id/waterLevelBarCorner2"
+        app:layout_constraintTop_toTopOf="@+id/plantName2"
+        app:srcCompat="@android:drawable/ic_dialog_alert" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_left"
@@ -130,6 +153,18 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline_right"
         app:layout_constraintStart_toStartOf="@+id/guideline_left"
         app:layout_constraintTop_toBottomOf="@+id/AutoTextBig" />
+
+    <ImageView
+        android:id="@+id/waterEndBar"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="370dp"
+        android:elevation="3dp"
+        app:layout_constraintBottom_toBottomOf="@+id/waterLevelBarCorner2"
+        app:layout_constraintEnd_toEndOf="@+id/waterLevelBarCorner2"
+        app:layout_constraintStart_toStartOf="@+id/waterLevelBarCorner2"
+        app:layout_constraintTop_toTopOf="@+id/waterLevelBarCorner2"
+        app:srcCompat="@drawable/waterendbar" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/waterLevelBarCorner2"
@@ -245,6 +280,19 @@
 
 
     <!-- Bordo barra umidità -->
+
+    <ImageView
+        android:id="@+id/soilMostureEnd"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="370dp"
+        android:elevation="3dp"
+        app:layout_constraintBottom_toBottomOf="@+id/soilMoistureBarCorner"
+        app:layout_constraintEnd_toEndOf="@+id/soilMoistureBarCorner"
+        app:layout_constraintStart_toStartOf="@+id/soilMoistureBarCorner"
+        app:layout_constraintTop_toTopOf="@+id/soilMoistureBarCorner"
+        app:srcCompat="@drawable/soilmoistureendbar" />
+
     <androidx.cardview.widget.CardView
         android:id="@+id/soilMoistureBarCorner"
         android:layout_width="60dp"
@@ -260,6 +308,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <!-- Barra vuota umidità -->
+
             <androidx.cardview.widget.CardView
                 android:id="@+id/soilMoistureBarEmpty"
                 android:layout_width="55dp"
@@ -317,7 +366,9 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent">
+
+                    </androidx.cardview.widget.CardView>
                     <!-- Testo volume d'acqua-->
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>
@@ -329,7 +380,7 @@
         android:id="@+id/WaterLevelPercentage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="4dp"
         android:elevation="4dp"
         android:text="50%"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
@@ -343,7 +394,7 @@
         android:id="@+id/SoilMoisturePercentage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="4dp"
         android:elevation="4dp"
         android:text="20%"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
