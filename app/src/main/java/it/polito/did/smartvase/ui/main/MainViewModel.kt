@@ -14,7 +14,7 @@ class MainViewModel : ViewModel() {
     var waterLevel : Float = .30f
     var waterLevelMax : Float = 1.00f
     var waterLevelMin : Float = .25f
-    var soilMoisture : Float = .60f
+    var soilMoisture : Float = .90f
 //    var soilMoistureMax : Float = .60f
 //    var soilMoistureMin : Float = .25f
     var defaultMax: Float =.95f

@@ -92,8 +92,8 @@ class Dashboard : Fragment() {
         dividerMinSoilMoisture?.updateLayoutParams<ConstraintLayout.LayoutParams> { verticalBias = 1-viewModel.defaultMin  }
 
         //riempire barre
-        waterBar.translationY +=  viewModel.waterLevel *  barHeight
-        soilMostureBar.translationY += viewModel.soilMoisture * barHeight
+        waterBar.translationY +=  (1-viewModel.waterLevel) *  barHeight
+        soilMostureBar.translationY += (1-viewModel.soilMoisture) * barHeight
 
         if(viewModel.auto){
             offText?.text="ON"
