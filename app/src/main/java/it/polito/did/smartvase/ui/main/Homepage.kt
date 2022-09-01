@@ -23,6 +23,7 @@ import androidx.transition.TransitionInflater
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.switchmaterial.SwitchMaterial
 import android.content.Intent
+import android.util.Log
 import com.google.firebase.auth.FirebaseAuth
 import it.polito.did.smartvase.MainActivity
 
@@ -33,8 +34,9 @@ class Homepage : Fragment(R.layout.homepage) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel.auth = FirebaseAuth.getInstance()
-        if(viewModel.auth.currentUser==null)
-            findNavController().navigate(R.id.action_homepage_to_signin)
+        Log.d("userrr", viewModel.auth.currentUser.toString())
+        if(!viewModel.loggedIn)
+            findNavController().navigate(R.id.action_homepage_to_registerActivity)
         val inflater = TransitionInflater.from(requireContext())
         enterTransition = inflater.inflateTransition(R.transition.slide)
         exitTransition = inflater.inflateTransition(R.transition.fade)

@@ -56,6 +56,7 @@ class LoginActivity : Fragment(R.layout.activity_login) {
             if(email.isNotEmpty() && password.isNotEmpty())
                 viewModel.auth.signInWithEmailAndPassword(email, password).addOnCompleteListener{
                     if(it.isSuccessful){
+                        viewModel.loggedIn = true
                         findNavController().navigate(R.id.action_loginActivity_to_signIn)
                         /*startActivity(Intent(this, SignIn::class.java))
                         finish()*/

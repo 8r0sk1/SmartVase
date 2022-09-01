@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -21,7 +22,7 @@ class SignIn : Fragment(R.layout.sign_in) {
 
     //private lateinit var binding: SignInBinding
 
-//    private lateinit var binding: SignInBinding
+    //private lateinit var binding: SignInBinding
     //private val binding get() = _binding!!
 
 
@@ -44,6 +45,7 @@ class SignIn : Fragment(R.layout.sign_in) {
         val signIn=view.findViewById<MaterialButton>(R.id.signIn)
         val signOut=view.findViewById<MaterialButton>(R.id.signOut)
         val userDetails=view.findViewById<TextView>(R.id.userDetails)
+        val entraBtn=view.findViewById<MaterialButton>(R.id.entra)
 
         viewModel.auth = FirebaseAuth.getInstance()
 
@@ -71,7 +73,15 @@ class SignIn : Fragment(R.layout.sign_in) {
 //        supportActionBar?.hide()
         signIn.setOnClickListener { println("aAAAAAAAAAAAAAAa")
             Log.e("TAG", "message")}
+
+        entraBtn.setOnClickListener{
+            val userUID = viewModel.auth.currentUser?.uid
+
+            if(userUID!=null)
+                findNavController().navigate(R.id.action_signIn_to_homepage)
+        }
     }
+
 
     override fun onResume() {
         super.onResume()
@@ -79,6 +89,6 @@ class SignIn : Fragment(R.layout.sign_in) {
     }
 
     private fun updateData(): String{
-        return "Email: ${viewModel.auth.currentUser?.email}"
+        return "Email: ${viewModel.auth.currentUser?.email} + UID: ${viewModel.auth.currentUser?.uid}"
     }
 }

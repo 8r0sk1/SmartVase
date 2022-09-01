@@ -29,6 +29,7 @@ class MainViewModel : ViewModel() {
     var setupSetted : Boolean = false
     var connected : Boolean = false
 
+    var loggedIn : Boolean = false
     lateinit var auth: FirebaseAuth
 
     init {
