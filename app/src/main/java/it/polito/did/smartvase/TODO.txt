@@ -11,12 +11,11 @@ button da migliorare o far diventare floating action button - OK
 in plantIcon un constraintlayout se no l'immagine è brutta nella recyclerview
 layout di profile e wifiSetup
 mettere terrino e acquino sotto alle barre così si nasconde bug //TODO LUIGI dipende come le fai, ora hanno un po' di rottura in basso
+tutte le schede piante default
 
 
 MANCANZA colori in homepage di mancata connessione o scarsa situazione
 rendere sfocato il dietro nel setup e setup2
-redirect al browser
-tutte le schede default
 
 //TODO VLAD servizio controllo periodico e notifiche
 

@@ -51,8 +51,6 @@ class Homepage : Fragment(R.layout.homepage) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
-
         val addPlant = view.findViewById<FloatingActionButton>(R.id.addPlantButton1)
         val profile = view.findViewById<FloatingActionButton>(R.id.profileButton1)
         val removePlant = view.findViewById<FloatingActionButton>(R.id.removePlantButton1)
@@ -69,6 +67,7 @@ class Homepage : Fragment(R.layout.homepage) {
         val waterLevel = view.findViewById<ImageView>(R.id.cardWaterLevel1)
         val waterLevelHeight=waterLevel.translationY
         val auto = view.findViewById<SwitchMaterial>(R.id.autoSwitch1)
+        val soilAlert = view.findViewById<ImageView>(R.id.soilAlert1)
 
         val db = Firebase.database.reference
         val ref = db.child("chiave")
@@ -77,6 +76,13 @@ class Homepage : Fragment(R.layout.homepage) {
 
         if(!viewModel.plantCreated)
             hider.visibility=View.VISIBLE
+        else{
+            if(viewModel.waterLevel<.10)
+            //TODO waterAlert.visibility=View.VISIBLE
+                if(viewModel.soilMoisture<viewModel.defaultMin)
+                    soilAlert.visibility=View.VISIBLE
+        }
+
         auto.isChecked=viewModel.auto
         plantName.setText(viewModel.plantName)
         plantIcon.setImageResource(viewModel.plantIconId)

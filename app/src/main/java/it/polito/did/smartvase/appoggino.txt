@@ -1,0 +1,319 @@
+
+class Homepage : Fragment(R.layout.homepage) {
+
+    private val viewModel: MainViewModel by activityViewModels<MainViewModel>()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        Log.d("iao","iiii")
+        viewModel.auth = FirebaseAuth.getInstance()
+        if(viewModel.auth.currentUser==null)
+            findNavController().navigate(R.id.action_homepage_to_signin)
+        val inflater = TransitionInflater.from(requireContext())
+        enterTransition = inflater.inflateTransition(R.transition.slide)
+        exitTransition = inflater.inflateTransition(R.transition.fade)
+    }
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        return inflater.inflate(R.layout.homepage, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val addPlant = view.findViewById<FloatingActionButton>(R.id.addPlantButton1)
+        val profile = view.findViewById<FloatingActionButton>(R.id.profileButton1)
+        val removePlant = view.findViewById<FloatingActionButton>(R.id.removePlantButton1)
+        val deleteConfirm = view.findViewById<ConstraintLayout>(R.id.deleteConfirm1)
+        val deleteNo = view.findViewById<Button>(R.id.deleteNo1)
+        val deleteYes = view.findViewById<Button>(R.id.deleteYes1)
+        var removing =false
+        val hider = view.findViewById<ImageView>(R.id.hider1)
+        val bg = view.findViewById<ConstraintLayout>(R.id.constraintLayout1)
+
+        val plantCard = view.findViewById<CardView>(R.id.cardPlant1)
+        val plantName = view.findViewById<TextView>(R.id.plantName1)
+        val plantIcon = view.findViewById<ImageView>(R.id.plantIcon1)
+        val waterLevel = view.findViewById<ImageView>(R.id.cardWaterLevel1)
+        val waterLevelHeight=waterLevel.translationY
+        val auto = view.findViewById<SwitchMaterial>(R.id.autoSwitch1)
+        val soilAlert = view.findViewById<ImageView>(R.id.soilAlert1)
+
+        val db = Firebase.database.reference
+        val ref = db.child("chiave")
+
+//        (activity as MainActivity).notification(R.drawable.nficusicon,"title","message")
+
+        if(!viewModel.plantCreated)
+            hider.visibility=View.VISIBLE
+        else{
+            if(viewModel.waterLevel<.10)
+            //TODO waterAlert.visibility=View.VISIBLE
+            if(viewModel.soilMoisture<viewModel.defaultMin)
+                soilAlert.visibility=View.VISIBLE
+        }
+
+        auto.isChecked=viewModel.auto
+        plantName.setText(viewModel.plantName)
+        plantIcon.setImageResource(viewModel.plantIconId)
+
+        ref.addValueEventListener(object: ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+//                txtV.text = snapshot.getValue<String>()
+                //TODO CHE è STA ROBA QUA SOPRA (era la textview di YourPLants)
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+        })
+
+        waterLevel.translationY -=  viewModel.waterLevel *  waterLevelHeight
+
+        plantCard.setOnLongClickListener{
+            removePlant.visibility= View.VISIBLE
+            removePlant.setOnClickListener{
+                if(!removing) {
+                    auto.isClickable=true
+                    removing = true
+                    deleteConfirm.visibility = View.VISIBLE
+                    deleteYes.setOnClickListener {
+                        (activity as MainActivity).vibration(false)
+                        removePlant.visibility = View.INVISIBLE
+                        hider.visibility = View.VISIBLE
+                        viewModel.reset()
+                        removing=false
+                        deleteConfirm.visibility=View.INVISIBLE
+
+                        val snack = Snackbar.make(it, "Plant deleted", Snackbar.LENGTH_LONG)
+                        snack.show()
+                    }
+                    deleteNo.setOnClickListener {
+                        deleteConfirm.visibility = View.INVISIBLE
+                        removing = false
+                        auto.isClickable=true
+                    }
+                }
+                else (activity as MainActivity).vibration(true)
+            }
+            bg.setOnClickListener{
+                removePlant.visibility=View.INVISIBLE
+            }
+            (activity as MainActivity).vibration(true)
+            return@setOnLongClickListener true
+        }
+
+        addPlant.setOnClickListener {
+            if(!removing) findNavController().navigate(R.id.action_homepage_to_wifisetup)
+            else (activity as MainActivity).vibration(true)
+        }
+
+        plantCard.setOnClickListener {
+            if(!removing) findNavController().navigate(R.id.action_homepage_to_dashboard)
+            else (activity as MainActivity).vibration(true)
+        }
+
+        auto.setOnCheckedChangeListener { _, isChecked ->
+            if(!removing) viewModel.auto = isChecked //TODO aggiornare database
+            else (activity as MainActivity).vibration(true)
+        }
+
+        profile.setOnClickListener {
+            if(!removing) findNavController().navigate(R.id.action_homepage_to_profile)
+            else (activity as MainActivity).vibration(true)
+        }
+    }
+
+    /*fun buttons(val b:List<View>, clickable){
+        b[0].isClickable=clickable
+    }*/
+
+    fun goBack(){
+        val a = Intent(Intent.ACTION_MAIN)
+        a.addCategory(Intent.CATEGORY_HOME)
+        a.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+        startActivity(a)
+    }
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        val callback: OnBackPressedCallback =
+            object : OnBackPressedCallback(true)
+            {
+                override fun handleOnBackPressed() {
+                    // Leave empty do disable back press or
+                    // write your code which you want
+                    goBack()
+                }
+            }
+        requireActivity().onBackPressedDispatcher.addCallback(
+            this,
+            callback
+        )
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+class Dashboard : Fragment() {
+
+    private val viewModel: MainViewModel by activityViewModels<MainViewModel>()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val inflater = TransitionInflater.from(requireContext())
+        enterTransition = inflater.inflateTransition(R.transition.slide)
+        exitTransition = inflater.inflateTransition(R.transition.fade)
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        return inflater.inflate(R.layout.dashboard, container, false)
+    }
+
+    @RequiresApi(Build.VERSION_CODES.M)
+    @SuppressLint("SetTextI18n")
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val waterBar = view.findViewById<CardView>(R.id.waterLevelBar2)
+        val soilMostureBar = view.findViewById<CardView>(R.id.soilMoistureBar2)
+        val plantName = view.findViewById<TextView>(R.id.plantName2)
+        val plantIcon = view.findViewById<ImageView>(R.id.PlantIcon2)
+        val offText = view.findViewById<TextView>(R.id.offText2)
+        val homeButton = view.findViewById<ImageButton>(R.id.homeButton2)
+        val editButton = view.findViewById<ImageButton>(R.id.editButton2)
+        val autoWaterButton = view.findViewById<FloatingActionButton>(R.id.autoWaterButton2)
+        val notificationButton = view.findViewById<ImageButton>(R.id.notificationButton2)
+        val notificationState = view.findViewById<TextView>(R.id.notificationState2)
+        val SoilMoisturePercentage = view.findViewById<TextView>(R.id.SoilMoisturePercentage)
+        val WaterLevelPercentage = view.findViewById<TextView>(R.id.WaterLevelPercentage)
+        val dividerMaxSoilMoisture = view.findViewById<ProgressBar>(R.id.dividerMaxSoilMoisture2)
+        val dividerMinSoilMoisture = view.findViewById<ProgressBar>(R.id.dividerMinSoilMoisture2)
+        val soilAlert = view.findViewById<ImageView>(R.id.soilAlert2)
+        val waterAlert = view.findViewById<ImageView>(R.id.waterAlert2)
+
+        val db = Firebase.database.reference
+        val ref = db.child("A7/toWaterControl")
+
+        val plants = FirebaseDatabase.getInstance().getReference("plants")
+
+        val barHeight=waterBar.translationY
+        if(viewModel.waterLevel<.10)
+            waterAlert.visibility=View.VISIBLE
+        if(viewModel.soilMoisture<viewModel.defaultMin)
+            soilAlert.visibility=View.VISIBLE
+
+        //popolamento viste
+        plantName?.setText(viewModel.plantName)
+        plantIcon?.setImageResource(viewModel.plantIconId)
+
+        //testo percentuale riempimento
+        WaterLevelPercentage?.text= (5*viewModel.waterLevel).toString()+"L"
+        SoilMoisturePercentage?.text= (viewModel.soilMoisture*100).toInt().toString()+"%"
+
+        //divisori barre
+        dividerMaxSoilMoisture?.updateLayoutParams<ConstraintLayout.LayoutParams> { verticalBias = 1-viewModel.defaultMax  }
+        dividerMinSoilMoisture?.updateLayoutParams<ConstraintLayout.LayoutParams> { verticalBias = 1-viewModel.defaultMin  }
+
+        //riempire barre
+        waterBar.translationY +=  viewModel.waterLevel *  barHeight
+        soilMostureBar.translationY += viewModel.soilMoisture * barHeight
+
+        if(viewModel.auto){
+            offText?.text="ON"
+            offText?.setTextColor(Color.RED)
+        }
+        if(!viewModel.notification){
+            notification(notificationButton,notificationState,false)
+        }
+
+        homeButton.setOnClickListener { goBack() }
+        editButton.setOnClickListener { findNavController().navigate(R.id.action_dashboard_to_settings) } //ancora da capire come fare, se con altro fragment
+
+        autoWaterButton.setOnLongClickListener{
+            viewModel.auto = !viewModel.auto
+            (activity as MainActivity).vibration(true)
+            if(viewModel.auto)
+                waterButton(autoWaterButton,offText,true)
+            else
+                waterButton(autoWaterButton,offText,false)
+            //ref.setValue(1) //TODO VLADDO
+            return@setOnLongClickListener true
+        }
+
+        notificationButton.setOnClickListener {
+            viewModel.notification = !viewModel.notification
+            notification(notificationButton,notificationState,viewModel.notification)
+            (activity as MainActivity).vibration(true)
+        }
+    }
+
+    @RequiresApi(Build.VERSION_CODES.M)
+    @SuppressLint("SetTextI18n")
+    fun waterButton(waterButton:ImageButton, waterState:TextView, state:Boolean){
+        if(state) {
+            waterButton.foreground=resources.getDrawable(R.drawable.waterbuttonon)
+            waterState.setText("ON")
+        }
+        else{
+            waterButton.foreground=resources.getDrawable(R.drawable.waterbuttonoff)
+            waterState.setText("OFF")
+        }
+    }
+
+    @RequiresApi(Build.VERSION_CODES.M)
+    @SuppressLint("SetTextI18n")
+    fun notification(notificationButton:ImageButton, notificationState:TextView, state:Boolean){
+        if(state) {
+            notificationButton.foreground=resources.getDrawable(R.drawable.notificationonbutton)
+            notificationState.setText("ON")
+        }
+        else{
+            notificationButton.foreground=resources.getDrawable(R.drawable.notificationoffbutton)
+            notificationState.setText("OFF")
+        }
+    }
+    fun goBack(){findNavController().navigate(R.id.action_dashboard_to_homepage)}
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        val callback: OnBackPressedCallback =
+            object : OnBackPressedCallback(true)
+            {
+                override fun handleOnBackPressed() {
+                    // Leave empty do disable back press or
+                    // write your code which you want
+                    goBack()
+                }
+            }
+        requireActivity().onBackPressedDispatcher.addCallback(
+            this,
+            callback
+        )
+    }
+}

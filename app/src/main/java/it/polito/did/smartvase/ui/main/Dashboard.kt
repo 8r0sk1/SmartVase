@@ -112,7 +112,7 @@ class Dashboard : Fragment() {
             if(viewModel.auto)
                 waterButton(autoWaterButton,offText,true)
             else
-                waterButton(autoWaterButton,offText,true)
+                waterButton(autoWaterButton,offText,false)
             ref.setValue(1) //TODO VLADDO
             return@setOnLongClickListener true
         }

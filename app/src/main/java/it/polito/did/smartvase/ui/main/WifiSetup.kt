@@ -81,5 +81,6 @@ class WifiSetup : Fragment() {
             callback
         )
     }
+    //TODO LOL LOL LOL ovveride fun onResume
 
 }
