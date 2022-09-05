@@ -189,6 +189,18 @@
         app:layout_constraintStart_toStartOf="@+id/guideline_left"
         app:layout_constraintTop_toBottomOf="@+id/cardPlant1" />
 
+    <ImageView
+        android:id="@+id/soilAlert1"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:elevation="3dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/cardPlant1"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_right"
+        app:layout_constraintStart_toEndOf="@+id/cardPlant1"
+        app:layout_constraintTop_toBottomOf="@+id/yourPlantText"
+        app:srcCompat="@android:drawable/ic_dialog_alert" />
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/deleteConfirm1"
         android:layout_width="0dp"
@@ -204,7 +216,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="200dp"
-            android:background="#8000C081"
+            android:background="#4500C081"
             android:elevation="3dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -230,6 +242,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
                 android:layout_marginBottom="32dp"
+                android:backgroundTint="#45BC86"
                 android:text="No"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -241,10 +254,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="32dp"
                 android:layout_marginBottom="32dp"
+                android:backgroundTint="#45BC86"
                 android:text="Yes"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -269,24 +284,13 @@
             android:elevation="2dp">
 
             <ImageView
-                android:id="@+id/soilAlert1"
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginBottom="8dp"
-                android:elevation="3dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:srcCompat="@android:drawable/ic_dialog_alert" />
-
-            <ImageView
                 android:id="@+id/cardWaterLevel1"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
                 android:contentDescription="@string/plantcard"
-                android:foreground="#ADE8ED"
+                android:foreground="@drawable/low_seawaves"
                 android:scaleX="1.5"
                 android:src="@mipmap/ic_launcher"
                 android:translationY="120dp"

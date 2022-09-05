@@ -11,10 +11,6 @@ import it.polito.did.smartvase.R
 
 class Profile : Fragment() {
 
-    /*companion object {
-        fun newInstance() = Homepage()
-    }*/
-
     private val viewModel: MainViewModel by activityViewModels<MainViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,5 +29,8 @@ class Profile : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        //TODO popolamento indirizzo mail, (nome cognome), qualsiasi dato presente (forse solo password a sto punto e dare possibilità di cambiarla)
+        //TODO logout -> reindirazzamento a signin.kt
     }
 }

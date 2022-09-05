@@ -18,10 +18,6 @@ import it.polito.did.smartvase.R
 
 class Settings : Fragment() {
 
-    /*companion object {
-        fun newInstance() = Homepage()
-    }*/
-
     private val viewModel: MainViewModel by activityViewModels<MainViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {

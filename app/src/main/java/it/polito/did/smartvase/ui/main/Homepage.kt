@@ -115,7 +115,7 @@ class Homepage : Fragment(R.layout.homepage) {
                         removing=false
                         deleteConfirm.visibility=View.INVISIBLE
 
-                        val snack = Snackbar.make(it, "Plant deleted", Snackbar.LENGTH_LONG)
+                        val snack = Snackbar.make(it, "Pl![](../../../../../../../../../../../../../../../AppData/Local/Temp/seawaves.jpg)ant deleted", Snackbar.LENGTH_LONG)
                         snack.show()
                     }
                     deleteNo.setOnClickListener {
