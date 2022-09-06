@@ -35,8 +35,14 @@ class Homepage : Fragment(R.layout.homepage) {
         super.onCreate(savedInstanceState)
         viewModel.auth = FirebaseAuth.getInstance()
         Log.d("userrr", viewModel.auth.currentUser.toString())
-        if(!viewModel.loggedIn)
-            findNavController().navigate(R.id.action_homepage_to_registerActivity)
+
+        fastAccessNoLogin()
+
+        // DA DE-COMMENTARE PER FARE IL LOGIN
+        // E COMMENTARE LA LINEA CHE LANCIA "fastAccessNoLogin"
+        /*(!viewModel.loggedIn)
+            findNavController().navigate(R.id.action_homepage_to_registerActivity)*/
+
         val inflater = TransitionInflater.from(requireContext())
         enterTransition = inflater.inflateTransition(R.transition.slide)
         exitTransition = inflater.inflateTransition(R.transition.fade)
@@ -157,6 +163,19 @@ class Homepage : Fragment(R.layout.homepage) {
     /*fun buttons(val b:List<View>, clickable){
         b[0].isClickable=clickable
     }*/
+
+    fun fastAccessNoLogin(){
+        val email = "vlad@gmail.com"
+        val password = "vlad1234"
+        viewModel.auth.signInWithEmailAndPassword(email, password).addOnCompleteListener{
+            if(it.isSuccessful){
+                viewModel.loggedIn = true
+                viewModel.idUtente = viewModel.auth.currentUser?.uid
+            }
+        }.addOnFailureListener{
+            Toast.makeText(this@Homepage.requireActivity(), it.localizedMessage, Toast.LENGTH_LONG).show()
+        }
+    }
 
     fun goBack(){
         val a = Intent(Intent.ACTION_MAIN)
