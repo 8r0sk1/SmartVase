@@ -23,7 +23,7 @@ class MainViewModel : ViewModel() {
     var plantName : String = "Plant name"
 
 //    lateinit var plantIcon : Drawable //nomi file immagini profilo
-    var plantIconId : Int = R.drawable.nficusicon //nomi file immagini profilo
+    var plantIconId : Int = R.drawable.ficusicon //nomi file immagini profilo
 
     var iconSelected : Boolean=true
     var setupSetted : Boolean = false
@@ -31,6 +31,8 @@ class MainViewModel : ViewModel() {
 
     var loggedIn : Boolean = false
     lateinit var auth: FirebaseAuth
+    var idUtente : String? = null
+
 
     init {
         //TODO RICEVERE DA DATABASE VALORI DEFAULT

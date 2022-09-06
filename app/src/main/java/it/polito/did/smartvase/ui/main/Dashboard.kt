@@ -117,6 +117,10 @@ class Dashboard : Fragment() {
             return@setOnLongClickListener true
         }
 
+        autoWaterButton.setOnClickListener{
+            db.child("plants/" + viewModel.idUtente).child("BC:FF:4D:5F:2E:51").child("name").setValue("vlad")
+        }
+
         notificationButton.setOnClickListener {
             viewModel.notification = !viewModel.notification
             notification(notificationButton,notificationState,viewModel.notification)
