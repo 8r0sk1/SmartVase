@@ -98,7 +98,7 @@
             android:layout_weight="0.3"
             android:gravity="center_vertical"
             android:text="@string/register"
-            android:textColor="@color/black"
+            android:textColor="#DDE387"
             android:textSize="18sp"
             android:textStyle="bold" />
     </LinearLayout>

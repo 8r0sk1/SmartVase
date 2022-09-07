@@ -5,7 +5,7 @@
     android:id="@+id/frameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/sfondo2"
+    android:background="@drawable/sfondosfocato2"
     tools:context=".ui.main.Settings">
 
     <TextView
@@ -52,6 +52,19 @@
         android:orientation="vertical"
         app:layout_constraintGuide_end="32dp"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textSetup4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="You can edit\nyour plant name and type\nor the soil moisture levels"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="#6E6E6E"
+        android:textSize="18dp"
+        app:layout_constraintBottom_toBottomOf="@+id/soilMoistureBarCornerMin"
+        app:layout_constraintEnd_toStartOf="@+id/soilMoistureBarCorner"
+        app:layout_constraintStart_toStartOf="@+id/guideline_left"
+        app:layout_constraintTop_toTopOf="@+id/soilMoistureBarCornerMin" />
 
     <Button
         android:id="@+id/back_button4"
@@ -119,29 +132,6 @@
                 tools:src="@tools:sample/avatars" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
-
-    <TextView
-        android:id="@+id/textSetup4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Choose your plant type and name for it."
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textColor="#EFEFEF"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline_bottom"
-        app:layout_constraintEnd_toStartOf="@+id/guideline_right"
-        app:layout_constraintStart_toStartOf="@+id/guideline_left"
-        app:layout_constraintTop_toTopOf="@+id/guideline_top" />
-
-    <TextView
-        android:id="@+id/textView42"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="EDIT SETUP"
-        android:textSize="34sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/guideline_left"
-        app:layout_constraintTop_toBottomOf="@+id/textSetup4" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/soilMoistureBarCorner"
@@ -239,6 +229,7 @@
             android:layout_height="match_parent">
             <!-- Barra vuota umidità -->
 
+
             <SeekBar
                 android:id="@+id/barMin4"
                 android:layout_width="390dp"
@@ -250,9 +241,10 @@
                 android:scaleY="4"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.502"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
 
             <ImageView
                 android:id="@+id/arrowMin4"
