@@ -13,12 +13,12 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/Theme.SmartVase">
+        android:theme="@style/Theme.SmartVase"
+        android:largeHeap="true" >
 
-<!--        android:largeHeap="true" METTI DENTRO APPLICATION SE outofmemory-->
-<receiver
-    android:name=".ui.main.Notification"
-    android:enabled="true"/>
+<!--<receiver-->
+<!--    android:name=".ui.main.Notification"-->
+<!--    android:enabled="true"/>-->
         <activity
             android:name=".RegisterActivity"
             android:exported="false"

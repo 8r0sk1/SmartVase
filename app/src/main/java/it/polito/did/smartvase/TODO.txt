@@ -4,6 +4,7 @@ SETUP 3  setup2 32
 Setting 4 42
 planticon 5
 wifisetup 6
+profile 7
 
 animazione nel longpress
 //TODO LUIGIS

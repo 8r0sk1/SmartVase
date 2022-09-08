@@ -290,7 +290,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
                 android:contentDescription="@string/plantcard"
-                android:foreground="@drawable/low_seawaves"
+                android:foreground="@drawable/waterendbar"
                 android:scaleX="1.5"
                 android:src="@mipmap/ic_launcher"
                 android:translationY="120dp"
@@ -316,8 +316,7 @@
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="#B300C081">
+                    android:layout_height="match_parent">
                     <!--             &lt;!&ndash; Immagine pianta&ndash;&gt; -->
                     <ImageView
                         android:id="@+id/plantIcon1"
@@ -325,12 +324,11 @@
                         android:layout_height="0dp"
                         android:contentDescription="@string/planticon"
                         android:outlineProvider="paddedBounds"
-                        android:src="@mipmap/ic_launcher"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/ficusicon" />
+                        app:srcCompat="@drawable/nficusicon" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>
 
