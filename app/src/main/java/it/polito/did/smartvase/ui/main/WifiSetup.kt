@@ -77,77 +77,8 @@ class WifiSetup : Fragment() {
                     findNavController().navigate(R.id.action_wifisetup_to_plantsetup)
             }
         }
-        val requestPermissionLauncher =
-            registerForActivityResult(ActivityResultContracts.RequestPermission()
-            ) { isGranted: Boolean ->
-                if (isGranted) {
-                    // Permission is granted. Continue the action or workflow in your
-                    // app.
-                } else {
-                    // Explain to the user that the feature is unavailable because the
-                    // features requires a permission that the user has denied. At the
-                    // same time, respect the user's decision. Don't link to system
-                    // settings in an effort to convince the user to change their
-                    // decision.
-                }
-            }
-        when {
-            ContextCompat.checkSelfPermission(
-                (activity as MainActivity),
-                Manifest.permission.ACCESS_FINE_LOCATION
-            ) == PackageManager.PERMISSION_GRANTED -> {
-                // You can use the API that requires the permission.
-            }
-            shouldShowRequestPermissionRationale(Manifest.permission.ACCESS_FINE_LOCATION) -> {
-                // In an educational UI, explain to the user why your app requires this
-                // permission for a specific feature to behave as expected. In this UI,
-                // include a "cancel" or "no thanks" button that allows the user to
-                // continue using your app without granting the permission.
-                //TODO
-            }
-            else -> {
-                // You can directly ask for the permission.
-                // The registered ActivityResultCallback gets the result of this request.
-                requestPermissionLauncher.launch(
-                    Manifest.permission.ACCESS_FINE_LOCATION)
-            }
-        }
-        val requestPermissionLauncher2 =
-            registerForActivityResult(ActivityResultContracts.RequestPermission()
-            ) { isGranted: Boolean ->
-                if (isGranted) {
-                    // Permission is granted. Continue the action or workflow in your
-                    // app.
-                } else {
-                    // Explain to the user that the feature is unavailable because the
-                    // features requires a permission that the user has denied. At the
-                    // same time, respect the user's decision. Don't link to system
-                    // settings in an effort to convince the user to change their
-                    // decision.
-                }
-            }
-        when {
-            ContextCompat.checkSelfPermission(
-                (activity as MainActivity),
-                Manifest.permission.ACCESS_COARSE_LOCATION
-            ) == PackageManager.PERMISSION_GRANTED -> {
-                // You can use the API that requires the permission.
-            }
-            shouldShowRequestPermissionRationale(Manifest.permission.ACCESS_FINE_LOCATION) -> {
-                // In an educational UI, explain to the user why your app requires this
-                // permission for a specific feature to behave as expected. In this UI,
-                // include a "cancel" or "no thanks" button that allows the user to
-                // continue using your app without granting the permission.
-                //TODO
-            }
-            else -> {
-                // You can directly ask for the permission.
-                // The registered ActivityResultCallback gets the result of this request.
-                requestPermissionLauncher2.launch(
-                    Manifest.permission.ACCESS_COARSE_LOCATION)
-            }
-        }
-        view.findViewById<TextView>(R.id.franco6).setText(enableWiFi())
+        view.findViewById<TextView>(R.id.franco6).setText(getMac())
+
     }
 
     fun goBack(){findNavController().navigate(R.id.action_wifisetup_to_homepage)}
@@ -168,15 +99,10 @@ class WifiSetup : Fragment() {
         )
     }
 
-    private fun enableWiFi() : String{
+    private fun getMac() : String{
         wifiManager = context?.getSystemService(Context.WIFI_SERVICE) as WifiManager
         Log.d("mamma", wifiManager.connectionInfo.toString())
-        return wifiManager.connectionInfo.macAddress
-    }
-    fun getMac(): String {
-        val wifiMgr = getApplicationContext<Context>().getSystemService(WIFI_SERVICE) as WifiManager
-        val wifiInfo = wifiMgr.connectionInfo
-        return wifiInfo.toString()
+        return wifiManager.connectionInfo.ssid.toString()
     }
 
 }
