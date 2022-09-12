@@ -10,7 +10,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import it.polito.did.smartvase.R
 
-class PlantSetup3 : Fragment() {
+class caccaPlantSetup3 : Fragment() {
 
     companion object {
         fun newInstance() = Homepage()

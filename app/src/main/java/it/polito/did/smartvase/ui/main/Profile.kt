@@ -1,12 +1,17 @@
 package it.polito.did.smartvase.ui.main
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import androidx.transition.TransitionInflater
+import com.google.android.material.button.MaterialButton
 import it.polito.did.smartvase.R
 
 class Profile : Fragment() {
@@ -30,7 +35,39 @@ class Profile : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        //TODO popolamento indirizzo mail, (nome cognome), qualsiasi dato presente (forse solo password a sto punto e dare possibilità di cambiarla)
-        //TODO logout -> reindirazzamento a signin.kt
+        val back = view.findViewById<Button>(R.id.back_button7)
+        val logout = view.findViewById<MaterialButton>(R.id.logout7)
+        val email = view.findViewById<MaterialButton>(R.id.email7)
+
+        email.setText(viewModel.auth.currentUser?.email)
+        logout.setOnClickListener {
+            //TODO VLAD LOGOUT
+            findNavController().navigate(R.id.action_profile_to_homepage)
+        }
+        back.setOnClickListener {
+            //viewModel.setMvm(tmpMVM)
+            goBack()
+        }
+    }
+
+    fun goBack(){
+        viewModel.reset()
+        findNavController().navigate(R.id.action_plantSetup_to_wifisetup)
+    }
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        val callback: OnBackPressedCallback =
+            object : OnBackPressedCallback(true)
+            {
+                override fun handleOnBackPressed() {
+                    // Leave empty do disable back press or
+                    // write your code which you want
+                    goBack()
+                }
+            }
+        requireActivity().onBackPressedDispatcher.addCallback(
+            this,
+            callback
+        )
     }
 }

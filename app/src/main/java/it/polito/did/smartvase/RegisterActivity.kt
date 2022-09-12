@@ -75,6 +75,7 @@ class RegisterActivity : Fragment(R.layout.activity_register) {
                 }.addOnFailureListener{
                     Toast.makeText(this@RegisterActivity.requireActivity(), it.localizedMessage, Toast.LENGTH_LONG).show()
                 }
+            //TODO vlad aggiungere a Users l'id nuovo
         }
 
         googleBtn.setOnClickListener{

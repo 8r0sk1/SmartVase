@@ -74,18 +74,18 @@
         android:id="@+id/browserButton6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="#DDE387"
-        android:text="Open Browser"
+        android:backgroundTint="#33DDE387"
+        android:text="Open setup"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/connect6" />
 
     <TextView
-        android:id="@+id/franco6"
+        android:id="@+id/tutorial6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        android:text="Connect to SmartVase Wi-Fi and complete the setup"
         app:layout_constraintBottom_toTopOf="@+id/browserButton6"
         app:layout_constraintEnd_toStartOf="@+id/guideline_right2"
         app:layout_constraintStart_toStartOf="@+id/guideline_left2"
@@ -95,10 +95,23 @@
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:clickable="false"
         android:text="Request Permissions"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/browserButton6" />
+
+    <Button
+        android:id="@+id/connect6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#DDE387"
+        android:text="Connect to SmartVase Wi-Fi"
+        app:layout_constraintBottom_toTopOf="@+id/guideline_bottom2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline_top2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

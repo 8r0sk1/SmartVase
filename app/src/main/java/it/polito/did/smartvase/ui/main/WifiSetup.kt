@@ -1,10 +1,7 @@
 package it.polito.did.smartvase.ui.main
 
-import android.Manifest
 import android.content.Context
-import android.content.Context.WIFI_SERVICE
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.net.Uri
 import android.net.wifi.WifiManager
 import android.os.Bundle
@@ -15,15 +12,11 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.activity.OnBackPressedCallback
-import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
-import androidx.test.core.app.ApplicationProvider.getApplicationContext
 import androidx.transition.TransitionInflater
 import com.google.android.material.snackbar.Snackbar
-import it.polito.did.smartvase.MainActivity
 import it.polito.did.smartvase.R
 
 
@@ -53,14 +46,17 @@ class WifiSetup : Fragment() {
         val browserButton = view.findViewById<Button>(R.id.browserButton6)
         val back = view.findViewById<Button>(R.id.back_button6)
         val next = view.findViewById<Button>(R.id.next_button6)
+        val connect = view.findViewById<Button>(R.id.connect6)
 
-        val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse("http://www.google.com"))
+        val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse("http://www.msftconnecttest.com/redirect"))
 
                 //viewModel.plantIcon=resources.getDrawable(R.drawable.nficusicon)
         browserButton.setOnClickListener {
-            viewModel.connected=true //TODO startActivity(browserIntent)
+            viewModel.connected=true
+        //TODO startActivity(browserIntent)
         }
-
+        connect.setOnClickListener {
+        }
 
         back.setOnClickListener {goBack() }
         //TODO AUTOMATICAMENTE A PAGINA SUCCESSIVA
@@ -77,7 +73,7 @@ class WifiSetup : Fragment() {
                     findNavController().navigate(R.id.action_wifisetup_to_plantsetup)
             }
         }
-        view.findViewById<TextView>(R.id.franco6).setText(getMac())
+        view.findViewById<TextView>(R.id.tutorial6).setText(getMac())
 
     }
 
@@ -104,5 +100,7 @@ class WifiSetup : Fragment() {
         Log.d("mamma", wifiManager.connectionInfo.toString())
         return wifiManager.connectionInfo.ssid.toString()
     }
+
+
 
 }

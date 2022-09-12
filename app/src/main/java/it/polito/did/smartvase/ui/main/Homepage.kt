@@ -115,13 +115,16 @@ class Homepage : Fragment(R.layout.homepage) {
                     deleteConfirm.visibility = View.VISIBLE
                     deleteYes.setOnClickListener {
                         (activity as MainActivity).vibration(false)
+
                         removePlant.visibility = View.INVISIBLE
                         hider.visibility = View.VISIBLE
                         viewModel.reset()
                         removing=false
                         deleteConfirm.visibility=View.INVISIBLE
 
-                        val snack = Snackbar.make(it, "Pl![](../../../../../../../../../../../../../../../AppData/Local/Temp/seawaves.jpg)ant deleted", Snackbar.LENGTH_LONG)
+                        //TODO VLAD distruggere users->viewmodel.idutente->plant1
+
+                        val snack = Snackbar.make(it, "Plant deleted", Snackbar.LENGTH_LONG)
                         snack.show()
                     }
                     deleteNo.setOnClickListener {

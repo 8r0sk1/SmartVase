@@ -99,7 +99,7 @@ class PlantSetup2 : Fragment() {
             viewModel.defaultMax=barMax.progress*0.01f
             viewModel.defaultMin=barMin.progress*0.01f
             viewModel.plantCreated=true
-            //TODO VLAD db
+            //TODO VLAD aggiungere viewmodel.mac come valore di User->viewmodel.idutente->plant1
             findNavController().navigate(R.id.action_plantSetup2_to_dashboard) }
     }
 
