@@ -3,6 +3,8 @@ package it.polito.did.smartvase.ui.main
 import android.graphics.drawable.Drawable
 import androidx.lifecycle.ViewModel
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import it.polito.did.smartvase.R
 
 class MainViewModel : ViewModel() {
@@ -32,7 +34,10 @@ class MainViewModel : ViewModel() {
     lateinit var auth: FirebaseAuth
     var loggedIn : Boolean = false
     var idUtente : String? = null
-    var plantMacAddress : String? = null
+    var plantMacAddress : String? = "02:02:02:02"
+
+    val db = Firebase.database.reference
+    val ref = db.child("chiave")
 
 
     init {

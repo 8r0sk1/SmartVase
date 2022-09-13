@@ -68,8 +68,8 @@ class Dashboard : Fragment() {
         val soilAlert = view.findViewById<ImageView>(R.id.soilAlert2)
         val waterAlert = view.findViewById<ImageView>(R.id.waterAlert2)
 
-        val db = Firebase.database.reference
-        val ref = db.child("A7/toWaterControl")
+        //val db = Firebase.database.reference
+        //val ref = db.child("A7/toWaterControl")
 
         val plants = FirebaseDatabase.getInstance().getReference("plants")
 
@@ -113,12 +113,12 @@ class Dashboard : Fragment() {
                 waterButton(autoWaterButton,offText,true)
             else
                 waterButton(autoWaterButton,offText,false)
-            ref.setValue(1) //TODO VLADDO
+            viewModel.ref.setValue(1) //TODO VLADDO da cambiare il path della reference in mainviewmodel
             return@setOnLongClickListener true
         }
 
         autoWaterButton.setOnClickListener{
-            db.child("plants/" + viewModel.idUtente).child("BC:FF:4D:5F:2E:51").child("name").setValue("vlad")
+            viewModel.db.child("plants/" + viewModel.idUtente).child("BC:FF:4D:5F:2E:51").child("name").setValue("vlad")
         }
 
         notificationButton.setOnClickListener {

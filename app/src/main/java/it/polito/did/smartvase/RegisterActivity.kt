@@ -68,6 +68,7 @@ class RegisterActivity : Fragment(R.layout.activity_register) {
             if(email.isNotEmpty() && password.isNotEmpty())
                 viewModel.auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener{
                     if(it.isSuccessful){
+                        viewModel.db.child("users/" + viewModel.auth.currentUser?.uid).setValue("")
                         findNavController().navigate(R.id.action_registerActivity_to_loginActivity)
                         /*startActivity(Intent(this, LoginActivity::class.java))
                         finish()*/

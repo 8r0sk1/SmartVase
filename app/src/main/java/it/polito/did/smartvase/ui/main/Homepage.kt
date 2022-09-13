@@ -36,12 +36,12 @@ class Homepage : Fragment(R.layout.homepage) {
         viewModel.auth = FirebaseAuth.getInstance()
         Log.d("userrr", viewModel.auth.currentUser.toString())
 
-        fastAccessNoLogin()
+        //fastAccessNoLogin()
 
         // DA DE-COMMENTARE PER FARE IL LOGIN
         // E COMMENTARE LA LINEA CHE LANCIA "fastAccessNoLogin"
-        /*(!viewModel.loggedIn)
-            findNavController().navigate(R.id.action_homepage_to_registerActivity)*/
+        if(!viewModel.loggedIn)
+            findNavController().navigate(R.id.action_homepage_to_registerActivity)
 
         val inflater = TransitionInflater.from(requireContext())
         enterTransition = inflater.inflateTransition(R.transition.slide)
@@ -63,7 +63,7 @@ class Homepage : Fragment(R.layout.homepage) {
         val deleteConfirm = view.findViewById<ConstraintLayout>(R.id.deleteConfirm1)
         val deleteNo = view.findViewById<Button>(R.id.deleteNo1)
         val deleteYes = view.findViewById<Button>(R.id.deleteYes1)
-        var removing =false
+        var removing = false
         val hider = view.findViewById<ImageView>(R.id.hider1)
         val bg = view.findViewById<ConstraintLayout>(R.id.constraintLayout1)
 
@@ -75,8 +75,8 @@ class Homepage : Fragment(R.layout.homepage) {
         val auto = view.findViewById<SwitchMaterial>(R.id.autoSwitch1)
         val soilAlert = view.findViewById<ImageView>(R.id.soilAlert1)
 
-        val db = Firebase.database.reference
-        val ref = db.child("chiave")
+        /*val db = Firebase.database.reference
+        val ref = db.child("chiave")*/
 
 //        (activity as MainActivity).notification(R.drawable.nficusicon,"title","message")
 
@@ -93,10 +93,10 @@ class Homepage : Fragment(R.layout.homepage) {
         plantName.setText(viewModel.plantName)
         plantIcon.setImageResource(viewModel.plantIconId)
 
-        ref.addValueEventListener(object: ValueEventListener{
+        viewModel.ref.addValueEventListener(object: ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
 //                txtV.text = snapshot.getValue<String>()
-                //TODO CHE è STA ROBA QUA SOPRA (era la textview di YourPLants)
+                //TODO vlad da cambiare il percorso di ref dentro mainviewmodel
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -121,6 +121,8 @@ class Homepage : Fragment(R.layout.homepage) {
                         viewModel.reset()
                         removing=false
                         deleteConfirm.visibility=View.INVISIBLE
+
+                        viewModel.db.child("users/" + viewModel.auth.currentUser?.uid).setValue("")
 
                         //TODO VLAD distruggere users->viewmodel.idutente->plant1
 

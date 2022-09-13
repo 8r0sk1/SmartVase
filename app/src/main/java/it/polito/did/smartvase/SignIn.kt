@@ -75,9 +75,7 @@ class SignIn : Fragment(R.layout.sign_in) {
             Log.e("TAG", "message")}
 
         entraBtn.setOnClickListener{
-            val userUID = viewModel.auth.currentUser?.uid
-
-            if(userUID!=null)
+            if(viewModel.auth.currentUser?.uid!=null)
                 findNavController().navigate(R.id.action_signIn_to_homepage)
         }
     }
