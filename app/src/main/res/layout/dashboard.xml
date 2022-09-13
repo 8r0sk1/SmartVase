@@ -283,7 +283,7 @@
     <!-- Bordo barra umidità -->
 
     <ImageView
-        android:id="@+id/soilMostureEnd"
+        android:id="@+id/soilMoistureEnd"
         android:layout_width="60dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="370dp"

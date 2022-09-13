@@ -34,7 +34,7 @@ class MainViewModel : ViewModel() {
     lateinit var auth: FirebaseAuth
     var loggedIn : Boolean = false
     var idUtente : String? = null
-    var plantMacAddress : String? = "02:02:02:02"
+    var plantMacAddress : String = "BC:FF:4D:5F:2E:51"
 
     val db = Firebase.database.reference
     val ref = db.child("chiave")

@@ -57,15 +57,15 @@ class Settings : Fragment() {
         avatar.setImageResource(tmpMVM.plantIconId)
         plantName.setText(tmpMVM.plantName)
 
-        soilMostureBarEdit(dividerMaxSoilMoisture,arrowMax,maxText,barMax,viewModel.defaultMax)
-        soilMostureBarEdit(dividerMinSoilMoisture,arrowMin,minText,barMin,viewModel.defaultMin)
+        soilMoistureBarEdit(dividerMaxSoilMoisture,arrowMax,maxText,barMax,viewModel.defaultMax)
+        soilMoistureBarEdit(dividerMinSoilMoisture,arrowMin,minText,barMin,viewModel.defaultMin)
 
         barMax.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             var progressChangedValue = barMax.progress*0.01f
             override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {
                 progressChangedValue = progress*0.01f
                 if(progressChangedValue*100f>barMin.progress+1)
-                    soilMostureBarEdit(dividerMaxSoilMoisture,arrowMax,maxText,barMax,progressChangedValue)
+                    soilMoistureBarEdit(dividerMaxSoilMoisture,arrowMax,maxText,barMax,progressChangedValue)
             }
             override fun onStartTrackingTouch(seekBar: SeekBar) {
                 return
@@ -79,7 +79,7 @@ class Settings : Fragment() {
             override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {
                 progressChangedValue = progress*0.01f
                 if(progressChangedValue*100f<barMax.progress-1)
-                    soilMostureBarEdit(dividerMinSoilMoisture,arrowMin,minText,barMin,progressChangedValue)
+                    soilMoistureBarEdit(dividerMinSoilMoisture,arrowMin,minText,barMin,progressChangedValue)
             }
             override fun onStartTrackingTouch(seekBar: SeekBar) {
                 return
@@ -98,10 +98,13 @@ class Settings : Fragment() {
             viewModel.defaultMax=barMax.progress*0.01f
             viewModel.defaultMin=barMin.progress*0.01f
             viewModel.plantName=plantName.text.toString()
+            viewModel.db.child("plants" + viewModel.plantMacAddress).child("soilMoistureMin").setValue(viewModel.defaultMin)
+            viewModel.db.child("plants" + viewModel.plantMacAddress).child("soilMoistureMax").setValue(viewModel.defaultMax)
+            viewModel.db.child("plants" + viewModel.plantMacAddress).child("soilMoistureMin").setValue(viewModel.plantName)
             findNavController().navigate(R.id.action_settings_to_dashboard) }
     }
 
-    fun soilMostureBarEdit(divider:ProgressBar, arrow:ImageView, text:TextView, bar: SeekBar, progressValue:Float){
+    fun soilMoistureBarEdit(divider:ProgressBar, arrow:ImageView, text:TextView, bar: SeekBar, progressValue:Float){
         divider.updateLayoutParams<ConstraintLayout.LayoutParams> { verticalBias = 1-progressValue}
         arrow.updateLayoutParams<ConstraintLayout.LayoutParams> { verticalBias = 1-progressValue }
         text.updateLayoutParams<ConstraintLayout.LayoutParams> { verticalBias = 1-progressValue }

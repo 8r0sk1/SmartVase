@@ -109,16 +109,20 @@ class Dashboard : Fragment() {
         autoWaterButton.setOnLongClickListener{
             viewModel.auto = !viewModel.auto
             (activity as MainActivity).vibration(true)
-            if(viewModel.auto)
-                waterButton(autoWaterButton,offText,true)
-            else
-                waterButton(autoWaterButton,offText,false)
+            if(viewModel.auto) {
+                waterButton(autoWaterButton, offText, true)
+                viewModel.db.child("plants").child("BC:FF:4D:5F:2E:51").child("auto_mode").setValue(1)
+            }
+            else {
+                waterButton(autoWaterButton, offText, false)
+                viewModel.db.child("plants").child("BC:FF:4D:5F:2E:51").child("auto_mode").setValue(0)
+            }
             viewModel.ref.setValue(1) //TODO VLADDO da cambiare il path della reference in mainviewmodel
             return@setOnLongClickListener true
         }
 
         autoWaterButton.setOnClickListener{
-            viewModel.db.child("plants/" + viewModel.idUtente).child("BC:FF:4D:5F:2E:51").child("name").setValue("vlad")
+            viewModel.db.child("plants").child("BC:FF:4D:5F:2E:51").child("to_water_control").setValue(1)
         }
 
         notificationButton.setOnClickListener {

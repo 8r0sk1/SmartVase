@@ -24,6 +24,8 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.switchmaterial.SwitchMaterial
 import android.content.Intent
 import android.util.Log
+import androidx.core.content.ContextCompat.startActivity
+import com.google.android.gms.common.config.GservicesValue.value
 import com.google.firebase.auth.FirebaseAuth
 import it.polito.did.smartvase.MainActivity
 
@@ -36,17 +38,35 @@ class Homepage : Fragment(R.layout.homepage) {
         viewModel.auth = FirebaseAuth.getInstance()
         Log.d("userrr", viewModel.auth.currentUser.toString())
 
-        //fastAccessNoLogin()
+        fastAccessNoLogin()
 
         // DA DE-COMMENTARE PER FARE IL LOGIN
         // E COMMENTARE LA LINEA CHE LANCIA "fastAccessNoLogin"
-        if(!viewModel.loggedIn)
-            findNavController().navigate(R.id.action_homepage_to_registerActivity)
+        /*if(!viewModel.loggedIn)
+            findNavController().navigate(R.id.action_homepage_to_registerActivity)*/
 
         val inflater = TransitionInflater.from(requireContext())
         enterTransition = inflater.inflateTransition(R.transition.slide)
         exitTransition = inflater.inflateTransition(R.transition.fade)
+
+        //getDataFromDB()
     }
+
+    fun getDataFromDB(){
+        //viewModel.plantMacAddress = viewModel.db.child("plants").toString()
+        viewModel.db.child("plants").child(viewModel.plantMacAddress).get().addOnSuccessListener {
+            Log.i("cosucce", it.value.toString())
+        }.addOnFailureListener{
+            Log.e("cosucce", "Error getting data", it)
+        }
+        //viewModel.plantName = viewModel.db.child("plants").child(viewModel.plantMacAddress!!).child("name").get.toString()
+        /*viewModel.soilMoisture = viewModel.db.child("plants").child(viewModel.plantMacAddress!!).child("soilMoisture") as Float
+        viewModel.defaultMax = viewModel.db.child("plants").child(viewModel.plantMacAddress!!).child("soilMoistureMax") as Float
+        viewModel.defaultMin = viewModel.db.child("plants").child(viewModel.plantMacAddress!!).child("soilMoistureMin") as Float
+        viewModel.waterLevel = viewModel.db.child("plants").child(viewModel.plantMacAddress!!).child("waterLevel") as Float
+        viewModel.plantIconId = viewModel.db.child("plants").child(viewModel.plantMacAddress!!).child("imagePlant") as Int*/
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -56,6 +76,8 @@ class Homepage : Fragment(R.layout.homepage) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        getDataFromDB()
 
         val addPlant = view.findViewById<FloatingActionButton>(R.id.addPlantButton1)
         val profile = view.findViewById<FloatingActionButton>(R.id.profileButton1)

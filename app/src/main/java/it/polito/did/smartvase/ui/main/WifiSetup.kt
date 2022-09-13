@@ -69,7 +69,28 @@ class WifiSetup : Fragment() {
 
         back.setOnClickListener {goBack() }
         next.setOnClickListener {
-            if (!viewModel.connected /*TODO vlad cercare se esiste viewmodel.mac nel db*/) {
+
+            // TODO vitto mac address
+            viewModel.db.child("plants").child("02:02:02:02:02:02").get().addOnSuccessListener {
+                if(it.value==null)
+                    Log.d("cosucce", "Connettiti scemo")
+                if(viewModel.plantCreated) {
+                    //val snack = Snackbar.make(it, "Already connected", Snackbar.LENGTH_LONG)
+                    //snack.show()
+                    //Log.i("cosucce", viewModel.plantMacAddress)
+                    //Log.i("cosucce", "Got value ${it.value}")
+                    Log.d("cosucce", "Ok")
+                }
+                else
+                    findNavController().navigate(R.id.action_wifisetup_to_plantsetup)
+            }.addOnFailureListener{
+                //val snack = Snackbar.make(it, "DB Connection Lost.", Snackbar.LENGTH_SHORT)
+                //snack.show()
+                Log.d("cosucce", "Connettiti scemo")
+            }
+
+            Log.d("chiaveval", viewModel.db.child("chiave").get().toString())
+            /*if (viewModel.db.child("plants").child(viewModel.plantMacAddress.toString()).get().equals(null)) {
                 val snack = Snackbar.make(it, "Connect to Wi-Fi and complete the setup", Snackbar.LENGTH_SHORT)
                 snack.show()
             } else {
@@ -79,7 +100,7 @@ class WifiSetup : Fragment() {
                 }
                 else
                     findNavController().navigate(R.id.action_wifisetup_to_plantsetup)
-            }
+            }*/
         }
         view.findViewById<TextView>(R.id.tutorial6).setText(getSSid()) //TODO togliere
 
@@ -113,7 +134,7 @@ class WifiSetup : Fragment() {
         //if(getMac()=="SmartVase")
         if (getSSid().substring(1, 9) == "AndroidW")//TODO debug
         {
-            viewModel.plantMacAddress=getSSid().replace(":","").substring(10)
+            //viewModel.plantMacAddress=getSSid().replace(":","").substring(10)
             return true
         }
         return false
