@@ -11,11 +11,8 @@ import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.widget.RemoteViews
 import androidx.core.app.NotificationCompat
-import it.polito.did.smartvase.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
-
-//    private lateinit var binding:ActivityMainBinding
 
     lateinit var notificationManager : NotificationManager
     lateinit var notificationChannel : NotificationChannel

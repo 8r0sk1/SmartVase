@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.TextView
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -24,7 +25,6 @@ class Profile : Fragment() {
         enterTransition = inflater.inflateTransition(R.transition.slide)
         exitTransition = inflater.inflateTransition(R.transition.slide)
     }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -37,11 +37,11 @@ class Profile : Fragment() {
 
         val back = view.findViewById<Button>(R.id.back_button7)
         val logout = view.findViewById<MaterialButton>(R.id.logout7)
-        val email = view.findViewById<MaterialButton>(R.id.email7)
+        val email = view.findViewById<TextView>(R.id.email7)
 
         email.setText(viewModel.auth.currentUser?.email)
         logout.setOnClickListener {
-            //TODO VLAD LOGOUT
+            viewModel.loggedIn=false
             findNavController().navigate(R.id.action_profile_to_homepage)
         }
         back.setOnClickListener {

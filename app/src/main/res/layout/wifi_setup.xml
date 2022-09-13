@@ -74,9 +74,9 @@
         android:id="@+id/browserButton6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="#33DDE387"
+        android:layout_marginTop="32dp"
+        android:backgroundTint="#3DA375"
         android:text="Open setup"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/connect6" />
@@ -90,7 +90,7 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline_right2"
         app:layout_constraintStart_toStartOf="@+id/guideline_left2"
         app:layout_constraintTop_toTopOf="@+id/guideline_top2" />
-
+<!--
     <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"
@@ -101,7 +101,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/browserButton6" />
+        app:layout_constraintTop_toBottomOf="@+id/browserButton6" />-->
 
     <Button
         android:id="@+id/connect6"

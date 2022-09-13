@@ -56,8 +56,8 @@ class IconListFragment : Fragment() {
 
     fun setMvm(p:PlantIcon){
         if(!viewModel.plantCreated) {
-            viewModel.defaultMax = p.defaultMax * .1f //TODO PRENDERE I VALORI DEFAULT dal tipo pianta
-            viewModel.defaultMin = p.defaultMin * .1f
+            viewModel.defaultMax = p.defaultMax * .01f //TODO PRENDERE I VALORI DEFAULT dal tipo pianta
+            viewModel.defaultMin = p.defaultMin * .01f
             viewModel.plantName = p.type
         }
 //      viewModel.plantIcon = resources.getDrawable(p.iconId)
