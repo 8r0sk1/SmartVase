@@ -12,6 +12,8 @@
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION "/>
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION "/>
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM"/>
+    <uses-permission android:name="android.permission.USE_EXACT_ALARM"/>
 
 
     <application
@@ -22,11 +24,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SmartVase"
         android:largeHeap="true" >
-
-<!--<receiver-->
-<!--    android:name=".ui.main.Notification"-->
-<!--    android:enabled="true"/>-->
-
         <activity
             android:name=".MainActivity"
             android:exported="true" >
@@ -40,7 +37,6 @@
             android:name=".ui.main.gardenerService"
             android:enabled="true"
             android:exported="true" />
-
     </application>
 
 </manifest>

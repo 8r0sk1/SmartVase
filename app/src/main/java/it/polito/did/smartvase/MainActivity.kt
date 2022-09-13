@@ -1,5 +1,6 @@
 package it.polito.did.smartvase
 
+import android.annotation.SuppressLint
 import android.app.*
 import android.content.Context
 import android.content.Intent
@@ -10,9 +11,11 @@ import android.os.Vibrator
 import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.widget.RemoteViews
+import android.widget.Toast
 import androidx.core.app.NotificationCompat
+import it.polito.did.smartvase.ui.main.UpdateDBService
 import it.polito.did.smartvase.ui.main.gardenerService
-import kotlin.system.exitProcess
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -22,13 +25,45 @@ class MainActivity : AppCompatActivity() {
     private val channelId = "com.example.vicky.notificationexample"
     private val description = "Test notification"
 
+    lateinit var alarmIntent: PendingIntent
+
+    @SuppressLint("ShortAlarm")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        binding = ActivityMainBinding.inflate(layoutInflater)
-        startService(Intent(applicationContext, gardenerService::class.java))
+
         setContentView(R.layout.activity_main)
-        //nascondo la Action Bar (barra con il titolo dell'app)
         supportActionBar?.hide()
+
+        Intent(this, UpdateDBService::class.java).also { intent ->
+            startService(intent)
+        }
+
+
+        val myIntent = Intent(this@MainActivity, gardenerService::class.java)
+        alarmIntent = PendingIntent.getService(this@MainActivity, 0, myIntent, 0)
+        val alarmMgr: AlarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        val calendar: Calendar = Calendar.getInstance()
+        calendar.timeInMillis = System.currentTimeMillis()
+        //calendar.add(Calendar.SECOND, 3)
+        alarmMgr.set(AlarmManager.RTC_WAKEUP, calendar.timeInMillis, alarmIntent)
+        Toast.makeText(baseContext, "Starting Service Alarm", Toast.LENGTH_LONG).show()
+
+        alarmMgr?.setRepeating(
+            AlarmManager.RTC_WAKEUP,
+            calendar.timeInMillis,
+            //AlarmManager.INTERVAL_FIFTEEN_MINUTES
+            60000,
+            alarmIntent
+        )
+    }
+
+    fun writeInternalStorage(text: String) {
+        val fileName = "test.txt"
+        val fileBody = text
+
+        applicationContext.openFileOutput(fileName, Context.MODE_PRIVATE).use { output ->
+            output.write(fileBody.toByteArray())
+        }
     }
 
     //TODO per usarlo negli altri fragment         (activity as MainActivity).notification(R.drawable.nficusicon,"title","message")
@@ -65,7 +100,7 @@ class MainActivity : AppCompatActivity() {
         notificationManager.notify(1234,builder.build())
     }
 
-    public fun vibration(short:Boolean) {
+    fun vibration(short:Boolean) {
         val vibratorService = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
         if(short) vibratorService.vibrate(75)
         else vibratorService.vibrate(25)
