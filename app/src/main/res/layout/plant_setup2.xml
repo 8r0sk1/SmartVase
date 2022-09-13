@@ -342,6 +342,16 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
-
+    <ImageView
+        android:id="@+id/soilMostureEnd"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="370dp"
+        android:elevation="3dp"
+        app:layout_constraintBottom_toBottomOf="@+id/soilMoistureBarCorner"
+        app:layout_constraintEnd_toEndOf="@+id/soilMoistureBarCorner"
+        app:layout_constraintStart_toStartOf="@+id/soilMoistureBarCorner"
+        app:layout_constraintTop_toTopOf="@+id/soilMoistureBarCorner"
+        app:srcCompat="@drawable/soilmoistureendbar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

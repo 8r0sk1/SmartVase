@@ -36,7 +36,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
+        <service
+            android:name=".ui.main.gardenerService"
+            android:enabled="true"
+            android:exported="true" />
 
     </application>
 

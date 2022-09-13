@@ -50,10 +50,7 @@ class Profile : Fragment() {
         }
     }
 
-    fun goBack(){
-        viewModel.reset()
-        findNavController().navigate(R.id.action_plantSetup_to_wifisetup)
-    }
+    fun goBack(){findNavController().navigate(R.id.action_profile_to_homepage) }
     override fun onAttach(context: Context) {
         super.onAttach(context)
         val callback: OnBackPressedCallback =

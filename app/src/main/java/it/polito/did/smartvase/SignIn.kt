@@ -1,5 +1,6 @@
 package it.polito.did.smartvase
 
+import android.content.Context
 import android.os.Bundle
 import com.google.android.material.button.MaterialButton
 import com.google.firebase.auth.FirebaseAuth
@@ -9,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -80,6 +82,26 @@ class SignIn : Fragment(R.layout.sign_in) {
         }
     }
 
+    fun goBack(){
+
+        //(activity as MainActivity).finish()
+    }
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        val callback: OnBackPressedCallback =
+            object : OnBackPressedCallback(true)
+            {
+                override fun handleOnBackPressed() {
+                    // Leave empty do disable back press or
+                    // write your code which you want
+                    goBack()
+                }
+            }
+        requireActivity().onBackPressedDispatcher.addCallback(
+            this,
+            callback
+        )
+    }
 
     override fun onResume() {
         super.onResume()

@@ -6,20 +6,12 @@ planticon 5
 wifisetup 6
 profile 7
 
-animazione nel longpress
+longpress auto
 //TODO LUIGIS
-button da migliorare o far diventare floating action button - OK
 in plantIcon un constraintlayout se no l'immagine è brutta nella recyclerview
-layout di profile e wifiSetup
-mettere terrino e acquino sotto alle barre così si nasconde bug //TODO LUIGI dipende come le fai, ora hanno un po' di rottura in basso
 tutte le schede piante default
 
 
 MANCANZA colori in homepage di mancata connessione o scarsa situazione
 rendere sfocato il dietro nel setup e setup2
-
-//TODO VLAD servizio controllo periodico e notifiche
-
-WIFI
-browser, flag di completamento setup da scrivere sul db
-fragment con il controllo se signed o no
+mainviemodel: tutte le variabli in set e reset

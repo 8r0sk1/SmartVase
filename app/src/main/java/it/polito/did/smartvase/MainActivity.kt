@@ -11,6 +11,7 @@ import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.widget.RemoteViews
 import androidx.core.app.NotificationCompat
+import it.polito.did.smartvase.ui.main.gardenerService
 
 class MainActivity : AppCompatActivity() {
 
@@ -23,6 +24,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 //        binding = ActivityMainBinding.inflate(layoutInflater)
+        startService(Intent(applicationContext, gardenerService::class.java))
         setContentView(R.layout.activity_main)
         //nascondo la Action Bar (barra con il titolo dell'app)
         supportActionBar?.hide()
