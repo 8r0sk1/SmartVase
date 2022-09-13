@@ -61,7 +61,6 @@ class WifiSetup : Fragment() {
             browserButton.visibility=View.INVISIBLE
 
         connect.setOnClickListener {
-            viewModel.connected=true
             startActivity( Intent(Settings.ACTION_WIFI_SETTINGS))
 
             if(wifiConnected())
@@ -69,7 +68,6 @@ class WifiSetup : Fragment() {
         }
 
         back.setOnClickListener {goBack() }
-        //TODO AUTOMATICAMENTE A PAGINA SUCCESSIVA
         next.setOnClickListener {
             if (!viewModel.connected /*TODO vlad cercare se esiste viewmodel.mac nel db*/) {
                 val snack = Snackbar.make(it, "Connect to Wi-Fi and complete the setup", Snackbar.LENGTH_SHORT)
@@ -83,7 +81,7 @@ class WifiSetup : Fragment() {
                     findNavController().navigate(R.id.action_wifisetup_to_plantsetup)
             }
         }
-        view.findViewById<TextView>(R.id.tutorial6).setText(getMac()) //TODO togliere
+        view.findViewById<TextView>(R.id.tutorial6).setText(getSSid()) //TODO togliere
 
     }
 
@@ -111,16 +109,19 @@ class WifiSetup : Fragment() {
         )
     }
 
-    private fun wifiConnected() : Boolean{
+    private fun wifiConnected() : Boolean {
         //if(getMac()=="SmartVase")
-        if(getMac()=="AndroidW")//TODO debug
+        if (getSSid().substring(1, 9) == "AndroidW")//TODO debug
+        {
+            viewModel.plantMacAddress=getSSid().replace(":","").substring(10)
             return true
+        }
         return false
     }
-    private fun getMac() : String{
+    private fun getSSid() : String{
         wifiManager = context?.getSystemService(Context.WIFI_SERVICE) as WifiManager
         Log.d("mamma", wifiManager.connectionInfo.toString())
-        return wifiManager.connectionInfo.ssid.substring(1,9)
+        return wifiManager.connectionInfo.ssid
     }
 
 
