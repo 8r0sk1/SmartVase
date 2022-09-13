@@ -1,6 +1,7 @@
 package it.polito.did.smartvase
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -9,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -106,5 +108,25 @@ class RegisterActivity : Fragment(R.layout.activity_register) {
             }.addOnFailureListener {
                 Toast.makeText(this@RegisterActivity.requireActivity(), it.localizedMessage, Toast.LENGTH_LONG).show()
             }
+    }
+    fun goBack(){
+        Log.d("ciao","ciaoaaaaaaaaaaaaaaa")
+        (activity as MainActivity).finish()
+    }
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        val callback: OnBackPressedCallback =
+            object : OnBackPressedCallback(true)
+            {
+                override fun handleOnBackPressed() {
+                    // Leave empty do disable back press or
+                    // write your code which you want
+                    goBack()
+                }
+            }
+        requireActivity().onBackPressedDispatcher.addCallback(
+            this,
+            callback
+        )
     }
 }

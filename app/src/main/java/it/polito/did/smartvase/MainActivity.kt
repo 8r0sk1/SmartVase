@@ -12,6 +12,7 @@ import android.graphics.Color
 import android.widget.RemoteViews
 import androidx.core.app.NotificationCompat
 import it.polito.did.smartvase.ui.main.gardenerService
+import kotlin.system.exitProcess
 
 class MainActivity : AppCompatActivity() {
 

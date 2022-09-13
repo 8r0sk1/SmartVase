@@ -182,6 +182,12 @@ class Homepage : Fragment(R.layout.homepage) {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        if(!viewModel.loggedIn)
+            findNavController().navigate(R.id.action_homepage_to_registerActivity)
+    }
+
     fun goBack(){
         val a = Intent(Intent.ACTION_MAIN)
         a.addCategory(Intent.CATEGORY_HOME)

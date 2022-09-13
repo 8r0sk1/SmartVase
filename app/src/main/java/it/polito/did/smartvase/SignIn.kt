@@ -82,26 +82,6 @@ class SignIn : Fragment(R.layout.sign_in) {
         }
     }
 
-    fun goBack(){
-
-        //(activity as MainActivity).finish()
-    }
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        val callback: OnBackPressedCallback =
-            object : OnBackPressedCallback(true)
-            {
-                override fun handleOnBackPressed() {
-                    // Leave empty do disable back press or
-                    // write your code which you want
-                    goBack()
-                }
-            }
-        requireActivity().onBackPressedDispatcher.addCallback(
-            this,
-            callback
-        )
-    }
 
     override fun onResume() {
         super.onResume()
