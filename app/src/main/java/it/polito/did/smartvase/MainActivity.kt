@@ -11,12 +11,7 @@ import android.os.Vibrator
 import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.widget.RemoteViews
-import android.widget.Toast
 import androidx.core.app.NotificationCompat
-import it.polito.did.smartvase.ui.main.UpdateDBService
-import it.polito.did.smartvase.ui.main.gardenerService
-import java.util.*
-
 class MainActivity : AppCompatActivity() {
 
     lateinit var notificationManager : NotificationManager
@@ -26,6 +21,8 @@ class MainActivity : AppCompatActivity() {
     private val description = "Test notification"
 
     lateinit var alarmIntent: PendingIntent
+
+
 
     @SuppressLint("ShortAlarm")
     override fun onCreate(savedInstanceState: Bundle?) {

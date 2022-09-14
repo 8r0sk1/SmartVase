@@ -32,6 +32,7 @@ class Dashboard : Fragment() {
 
     private val viewModel: MainViewModel by activityViewModels<MainViewModel>()
 
+    fun Long.toBoolean() = this>0
     fun getDataFromDB(){
         viewModel.db.child("plants").child(viewModel.plantMacAddress).get().addOnSuccessListener {
             viewModel.plantMacAddress = it.value.toString()
@@ -46,43 +47,43 @@ class Dashboard : Fragment() {
         }
 
         viewModel.db.child("plants").child(viewModel.plantMacAddress).child("soilMoisture").get().addOnSuccessListener {
-            viewModel.soilMoisture = it.value as Float
+            viewModel.soilMoisture = (it.value as Double).toFloat()
         }.addOnFailureListener{
             Toast.makeText(context, "Error getting data from DB", Toast.LENGTH_SHORT).show()
         }
 
         viewModel.db.child("plants").child(viewModel.plantMacAddress).child("soilMoistureMin").get().addOnSuccessListener {
-            viewModel.defaultMin = it.value as Float
+            viewModel.defaultMin = (it.value as Double).toFloat()
         }.addOnFailureListener{
             Toast.makeText(context, "Error getting data from DB", Toast.LENGTH_SHORT).show()
         }
 
         viewModel.db.child("plants").child(viewModel.plantMacAddress).child("soilMoistureMax").get().addOnSuccessListener {
-            viewModel.defaultMax = it.value as Float
+            viewModel.defaultMax = (it.value as Double).toFloat()
         }.addOnFailureListener{
             Toast.makeText(context, "Error getting data from DB", Toast.LENGTH_SHORT).show()
         }
 
         viewModel.db.child("plants").child(viewModel.plantMacAddress).child("waterLevel").get().addOnSuccessListener {
-            viewModel.waterLevel = it.value as Float
+            viewModel.waterLevel = (it.value as Double).toFloat()
         }.addOnFailureListener{
             Toast.makeText(context, "Error getting data from DB", Toast.LENGTH_SHORT).show()
         }
 
         viewModel.db.child("plants").child(viewModel.plantMacAddress).child("imagePlant").get().addOnSuccessListener {
-            viewModel.plantIconId = it.value as Int
+            viewModel.plantIconId = (it.value as Long).toInt()
         }.addOnFailureListener{
             Toast.makeText(context, "Error getting data from DB", Toast.LENGTH_SHORT).show()
         }
 
         viewModel.db.child("plants").child(viewModel.plantMacAddress).child("notify_mode").get().addOnSuccessListener {
-            viewModel.notification = it.value as Boolean
+            viewModel.notification = (it.value as Long).toBoolean()
         }.addOnFailureListener{
             Toast.makeText(context, "Error getting data from DB", Toast.LENGTH_SHORT).show()
         }
 
         viewModel.db.child("plants").child(viewModel.plantMacAddress).child("auto_mode").get().addOnSuccessListener {
-            viewModel.auto = it.value as Boolean
+            viewModel.auto = (it.value as Long).toBoolean()
         }.addOnFailureListener{
             Toast.makeText(context, "Error getting data from DB", Toast.LENGTH_SHORT).show()
         }
