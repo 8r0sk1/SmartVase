@@ -28,68 +28,88 @@ class Homepage : Fragment(R.layout.homepage) {
 
     fun Long.toBoolean() = this>0
     fun getDataFromDB(){
-        viewModel.db.child("plants").child(viewModel.plantMacAddress).get().addOnSuccessListener {
+        var goon=true
+        viewModel.auth.currentUser?.let {
+            viewModel.db.child("users").child(it.uid).child(viewModel.plantMacAddress).get().addOnSuccessListener {
+                if(it.value==null)
+                    goon=true
+            }.addOnFailureListener{
+                Toast.makeText(context, "Error getting data from DB", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        /*viewModel.db.child("plants").child(viewModel.plantMacAddress).get().addOnSuccessListener {
             viewModel.plantMacAddress = it.value.toString()
         }.addOnFailureListener{
             Toast.makeText(context, "Error getting data from DB", Toast.LENGTH_SHORT).show()
-        }
+        }*/
+        if(goon) {
+            viewModel.db.child("plants").child(viewModel.plantMacAddress).child("name").get()
+                .addOnSuccessListener {
+                    viewModel.plantName = it.value.toString()
+                }.addOnFailureListener {
+                Toast.makeText(context, "Error getting data from DB", Toast.LENGTH_SHORT).show()
+            }
 
-        viewModel.db.child("plants").child(viewModel.plantMacAddress).child("name").get().addOnSuccessListener {
-            viewModel.plantName = it.value.toString()
-        }.addOnFailureListener{
-            Toast.makeText(context, "Error getting data from DB", Toast.LENGTH_SHORT).show()
-        }
+            viewModel.db.child("plants").child(viewModel.plantMacAddress).child("soilMoisture")
+                .get().addOnSuccessListener {
+                viewModel.soilMoisture = (it.value as Double).toFloat()
+            }.addOnFailureListener {
+                Toast.makeText(context, "Error getting data from DB", Toast.LENGTH_SHORT).show()
+            }
 
-        viewModel.db.child("plants").child(viewModel.plantMacAddress).child("soilMoisture").get().addOnSuccessListener {
-            viewModel.soilMoisture = (it.value as Double).toFloat()
-        }.addOnFailureListener{
-            Toast.makeText(context, "Error getting data from DB", Toast.LENGTH_SHORT).show()
-        }
+            viewModel.db.child("plants").child(viewModel.plantMacAddress).child("soilMoistureMin")
+                .get().addOnSuccessListener {
+                viewModel.defaultMin = (it.value as Double).toFloat()
+            }.addOnFailureListener {
+                Toast.makeText(context, "Error getting data from DB", Toast.LENGTH_SHORT).show()
+            }
 
-        viewModel.db.child("plants").child(viewModel.plantMacAddress).child("soilMoistureMin").get().addOnSuccessListener {
-            viewModel.defaultMin = (it.value as Double).toFloat()
-        }.addOnFailureListener{
-            Toast.makeText(context, "Error getting data from DB", Toast.LENGTH_SHORT).show()
-        }
+            viewModel.db.child("plants").child(viewModel.plantMacAddress).child("soilMoistureMax")
+                .get().addOnSuccessListener {
+                viewModel.defaultMax = (it.value as Double).toFloat()
+            }.addOnFailureListener {
+                Toast.makeText(context, "Error getting data from DB", Toast.LENGTH_SHORT).show()
+            }
 
-        viewModel.db.child("plants").child(viewModel.plantMacAddress).child("soilMoistureMax").get().addOnSuccessListener {
-            viewModel.defaultMax = (it.value as Double).toFloat()
-        }.addOnFailureListener{
-            Toast.makeText(context, "Error getting data from DB", Toast.LENGTH_SHORT).show()
-        }
+            viewModel.db.child("plants").child(viewModel.plantMacAddress).child("waterLevel").get()
+                .addOnSuccessListener {
+                    viewModel.waterLevel = (it.value as Double).toFloat()
+                }.addOnFailureListener {
+                Toast.makeText(context, "Error getting data from DB", Toast.LENGTH_SHORT).show()
+            }
 
-        viewModel.db.child("plants").child(viewModel.plantMacAddress).child("waterLevel").get().addOnSuccessListener {
-            viewModel.waterLevel = (it.value as Double).toFloat()
-        }.addOnFailureListener{
-            Toast.makeText(context, "Error getting data from DB", Toast.LENGTH_SHORT).show()
-        }
+            viewModel.db.child("plants").child(viewModel.plantMacAddress).child("imagePlant").get()
+                .addOnSuccessListener {
+                    viewModel.plantIconId = (it.value as Long).toInt()
+                }.addOnFailureListener {
+                Toast.makeText(context, "Error getting data from DB", Toast.LENGTH_SHORT).show()
+            }
 
-        viewModel.db.child("plants").child(viewModel.plantMacAddress).child("imagePlant").get().addOnSuccessListener {
-            viewModel.plantIconId = (it.value as Long).toInt()
-        }.addOnFailureListener{
-            Toast.makeText(context, "Error getting data from DB", Toast.LENGTH_SHORT).show()
-        }
+            viewModel.db.child("plants").child(viewModel.plantMacAddress).child("notify_mode").get()
+                .addOnSuccessListener {
+                    viewModel.notification = (it.value as Long).toBoolean()
+                }.addOnFailureListener {
+                Toast.makeText(context, "Error getting data from DB", Toast.LENGTH_SHORT).show()
+            }
 
-        viewModel.db.child("plants").child(viewModel.plantMacAddress).child("notify_mode").get().addOnSuccessListener {
-            viewModel.notification = (it.value as Long).toBoolean()
-        }.addOnFailureListener{
-            Toast.makeText(context, "Error getting data from DB", Toast.LENGTH_SHORT).show()
+            viewModel.db.child("plants").child(viewModel.plantMacAddress).child("auto_mode").get()
+                .addOnSuccessListener {
+                    viewModel.auto = (it.value as Long).toBoolean()
+                }.addOnFailureListener {
+                Toast.makeText(context, "Error getting data from DB", Toast.LENGTH_SHORT).show()
+            }
         }
-
-        viewModel.db.child("plants").child(viewModel.plantMacAddress).child("auto_mode").get().addOnSuccessListener {
-            viewModel.auto = (it.value as Long).toBoolean()
-        }.addOnFailureListener{
-            Toast.makeText(context, "Error getting data from DB", Toast.LENGTH_SHORT).show()
-        }
-
     }
+
+    val account = (activity as MainActivity).readUser()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel.auth = FirebaseAuth.getInstance()
         Log.d("userrr", viewModel.auth.currentUser.toString())
-
-        fastAccessNoLogin()
+        //if(!account.isEmpty())
+            fastAccessNoLogin()
 
         // DA DE-COMMENTARE PER FARE IL LOGIN
         // E COMMENTARE LA LINEA CHE LANCIA "fastAccessNoLogin"
@@ -112,8 +132,6 @@ class Homepage : Fragment(R.layout.homepage) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        getDataFromDB()
 
         val addPlant = view.findViewById<FloatingActionButton>(R.id.addPlantButton1)
         val profile = view.findViewById<FloatingActionButton>(R.id.profileButton1)
@@ -210,8 +228,8 @@ class Homepage : Fragment(R.layout.homepage) {
     }
 
     fun fastAccessNoLogin(){
-        val email = "vlad@gmail.com"
-        val password = "vlad1234"
+        val email = account[0]
+        val password = account[1]
         viewModel.auth.signInWithEmailAndPassword(email, password).addOnCompleteListener{
             if(it.isSuccessful){
                 viewModel.loggedIn = true
@@ -224,6 +242,7 @@ class Homepage : Fragment(R.layout.homepage) {
 
     override fun onResume() {
         super.onResume()
+        (activity as MainActivity).readUser()
         if(!viewModel.loggedIn)
             findNavController().navigate(R.id.action_homepage_to_registerActivity)
     }

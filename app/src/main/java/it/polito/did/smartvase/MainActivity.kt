@@ -10,6 +10,7 @@ import android.os.Bundle
 import android.os.Vibrator
 import android.graphics.BitmapFactory
 import android.graphics.Color
+import android.util.Log
 import android.widget.RemoteViews
 import androidx.core.app.NotificationCompat
 class MainActivity : AppCompatActivity() {
@@ -22,15 +23,12 @@ class MainActivity : AppCompatActivity() {
 
     lateinit var alarmIntent: PendingIntent
 
-
-
     @SuppressLint("ShortAlarm")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_main)
         supportActionBar?.hide()
-
         /*Intent(this, UpdateDBService::class.java).also { intent ->
             startService(intent)
         }
@@ -55,13 +53,25 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun writeInternalStorage(text: String) {
-        val fileName = "test.txt"
+        val fileName = "logged.txt"
         val fileBody = text
 
         applicationContext.openFileOutput(fileName, Context.MODE_PRIVATE).use { output ->
             output.write(fileBody.toByteArray())
         }
     }
+    //TODO per leggere utente (activity as MainActivity).readUser()
+    fun readUser() : List<String> {
+        var text: List<String>
+        applicationContext.openFileInput("logged.txt").use { stream ->
+            val text = stream.bufferedReader().use {
+                it.readText()
+            }
+            return text.split(";")
+        }
+        return emptyList()
+    }
+
 
     //TODO per usarlo negli altri fragment         (activity as MainActivity).notification(R.drawable.nficusicon,"title","message")
     fun notification(imgID:Int, title: String, message:String){
