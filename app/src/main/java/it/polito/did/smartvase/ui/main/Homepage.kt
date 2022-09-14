@@ -28,7 +28,7 @@ class Homepage : Fragment(R.layout.homepage) {
 
     fun Long.toBoolean() = this>0
     fun getDataFromDB(){
-        var goon=true
+        /*var goon=true
         viewModel.auth.currentUser?.let {
             viewModel.db.child("users").child(it.uid).child(viewModel.plantMacAddress).get().addOnSuccessListener {
                 if(it.value==null)
@@ -37,13 +37,13 @@ class Homepage : Fragment(R.layout.homepage) {
                 Toast.makeText(context, "Error getting data from DB", Toast.LENGTH_SHORT).show()
             }
         }
-
+*/
         /*viewModel.db.child("plants").child(viewModel.plantMacAddress).get().addOnSuccessListener {
             viewModel.plantMacAddress = it.value.toString()
         }.addOnFailureListener{
             Toast.makeText(context, "Error getting data from DB", Toast.LENGTH_SHORT).show()
         }*/
-        if(goon) {
+//        if(goon) {
             viewModel.db.child("plants").child(viewModel.plantMacAddress).child("name").get()
                 .addOnSuccessListener {
                     viewModel.plantName = it.value.toString()
@@ -99,9 +99,7 @@ class Homepage : Fragment(R.layout.homepage) {
                 }.addOnFailureListener {
                 Toast.makeText(context, "Error getting data from DB", Toast.LENGTH_SHORT).show()
             }
-        }
     }
-
 
     fun fastAccessNoLogin(user: String, psw:String){
         Log.d("account ",user+psw)
@@ -110,6 +108,7 @@ class Homepage : Fragment(R.layout.homepage) {
             if(it.isSuccessful){
                 viewModel.loggedIn = true
                 viewModel.idUtente = viewModel.auth.currentUser?.uid
+                getDataFromDB()
             }
         }.addOnFailureListener{
             Toast.makeText(this@Homepage.requireActivity(), it.localizedMessage, Toast.LENGTH_LONG).show()
@@ -120,7 +119,7 @@ class Homepage : Fragment(R.layout.homepage) {
         super.onCreate(savedInstanceState)
         viewModel.auth = FirebaseAuth.getInstance()
         Log.d("userrr", viewModel.auth.currentUser.toString())
-
+        viewModel.plantMacAddress="BC:FF:4D:5F:2E:51"
 //        (activity as MainActivity).writeInternalStorage("vittorio@gmail.com;vittorio1234") //TODO se siamo in pericolo
         val account = (activity as MainActivity).readUser()
         if(account[0]!="0")
@@ -134,6 +133,10 @@ class Homepage : Fragment(R.layout.homepage) {
         enterTransition = inflater.inflateTransition(R.transition.slide)
         exitTransition = inflater.inflateTransition(R.transition.fade)
 
+        /*if(viewModel.porcata) {
+            viewModel.porcata=false
+            findNavController().navigate(R.id.action_homepage_to_homepage)
+        }*/
     }
 
     override fun onCreateView(
@@ -163,8 +166,9 @@ class Homepage : Fragment(R.layout.homepage) {
         val waterLevelHeight=waterLevel.translationY
         val auto = view.findViewById<SwitchMaterial>(R.id.autoSwitch1)
         val soilAlert = view.findViewById<ImageView>(R.id.soilAlert1)
+        val refresh = view.findViewById<ImageButton>(R.id.refresh1)
 
-        getDataFromDB()
+
         if(!viewModel.plantCreated)
             hider.visibility=View.VISIBLE
         else{
@@ -184,11 +188,14 @@ class Homepage : Fragment(R.layout.homepage) {
 
         waterLevel.translationY -=  viewModel.waterLevel *  waterLevelHeight
 
+        refresh.setOnClickListener { findNavController().navigate(R.id.action_homepage_to_homepage) }
+
         plantCard.setOnLongClickListener{
             removePlant.visibility= View.VISIBLE
             removePlant.setOnClickListener{
                 if(!removing) {
-                    auto.isClickable=true
+                    auto.isClickable=false
+                    refresh.isClickable=false
                     removing = true
                     deleteConfirm.visibility = View.VISIBLE
                     deleteYes.setOnClickListener {
@@ -208,6 +215,7 @@ class Homepage : Fragment(R.layout.homepage) {
                     deleteNo.setOnClickListener {
                         deleteConfirm.visibility = View.INVISIBLE
                         removing = false
+                        refresh.isClickable=true
                         auto.isClickable=true
                     }
                 }
@@ -242,11 +250,11 @@ class Homepage : Fragment(R.layout.homepage) {
     }
 
 
-    override fun onResume() {
+    /*override fun onResume() {
         super.onResume()
         if(!viewModel.loggedIn)
             findNavController().navigate(R.id.action_homepage_to_registerActivity)
-    }
+    }*/
 
     fun goBack(){
         val a = Intent(Intent.ACTION_MAIN)

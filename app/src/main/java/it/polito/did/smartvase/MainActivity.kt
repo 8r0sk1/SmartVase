@@ -52,6 +52,10 @@ class MainActivity : AppCompatActivity() {
         )*/
     }
 
+    fun reload(){
+        finish();
+        startActivity(getIntent());
+    }
     fun writeInternalStorage(text: String) {
         val fileName = "logged.txt"
         val fileBody = text

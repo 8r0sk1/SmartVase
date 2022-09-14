@@ -19,6 +19,80 @@ import it.polito.did.smartvase.R
 class Settings : Fragment() {
 
     private val viewModel: MainViewModel by activityViewModels<MainViewModel>()
+    fun Long.toBoolean() = this>0
+    fun getDataFromDB(){
+        /*var goon=true
+        viewModel.auth.currentUser?.let {
+            viewModel.db.child("users").child(it.uid).child(viewModel.plantMacAddress).get().addOnSuccessListener {
+                if(it.value==null)
+                    goon=true
+            }.addOnFailureListener{
+                Toast.makeText(context, "Error getting data from DB", Toast.LENGTH_SHORT).show()
+            }
+        }
+*/
+        /*viewModel.db.child("plants").child(viewModel.plantMacAddress).get().addOnSuccessListener {
+            viewModel.plantMacAddress = it.value.toString()
+        }.addOnFailureListener{
+            Toast.makeText(context, "Error getting data from DB", Toast.LENGTH_SHORT).show()
+        }*/
+//        if(goon) {
+        viewModel.db.child("plants").child(viewModel.plantMacAddress).child("name").get()
+            .addOnSuccessListener {
+                viewModel.plantName = it.value.toString()
+            }.addOnFailureListener {
+                Toast.makeText(context, "Error getting data from DB", Toast.LENGTH_SHORT).show()
+            }
+
+        viewModel.db.child("plants").child(viewModel.plantMacAddress).child("soilMoisture")
+            .get().addOnSuccessListener {
+                viewModel.soilMoisture = (it.value as Double).toFloat()
+            }.addOnFailureListener {
+                Toast.makeText(context, "Error getting data from DB", Toast.LENGTH_SHORT).show()
+            }
+
+        viewModel.db.child("plants").child(viewModel.plantMacAddress).child("soilMoistureMin")
+            .get().addOnSuccessListener {
+                viewModel.defaultMin = (it.value as Double).toFloat()
+            }.addOnFailureListener {
+                Toast.makeText(context, "Error getting data from DB", Toast.LENGTH_SHORT).show()
+            }
+
+        viewModel.db.child("plants").child(viewModel.plantMacAddress).child("soilMoistureMax")
+            .get().addOnSuccessListener {
+                viewModel.defaultMax = (it.value as Double).toFloat()
+            }.addOnFailureListener {
+                Toast.makeText(context, "Error getting data from DB", Toast.LENGTH_SHORT).show()
+            }
+
+        viewModel.db.child("plants").child(viewModel.plantMacAddress).child("waterLevel").get()
+            .addOnSuccessListener {
+                viewModel.waterLevel = (it.value as Double).toFloat()
+            }.addOnFailureListener {
+                Toast.makeText(context, "Error getting data from DB", Toast.LENGTH_SHORT).show()
+            }
+
+        viewModel.db.child("plants").child(viewModel.plantMacAddress).child("imagePlant").get()
+            .addOnSuccessListener {
+                viewModel.plantIconId = (it.value as Long).toInt()
+            }.addOnFailureListener {
+                Toast.makeText(context, "Error getting data from DB", Toast.LENGTH_SHORT).show()
+            }
+
+        viewModel.db.child("plants").child(viewModel.plantMacAddress).child("notify_mode").get()
+            .addOnSuccessListener {
+                viewModel.notification = (it.value as Long).toBoolean()
+            }.addOnFailureListener {
+                Toast.makeText(context, "Error getting data from DB", Toast.LENGTH_SHORT).show()
+            }
+
+        viewModel.db.child("plants").child(viewModel.plantMacAddress).child("auto_mode").get()
+            .addOnSuccessListener {
+                viewModel.auto = (it.value as Long).toBoolean()
+            }.addOnFailureListener {
+                Toast.makeText(context, "Error getting data from DB", Toast.LENGTH_SHORT).show()
+            }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

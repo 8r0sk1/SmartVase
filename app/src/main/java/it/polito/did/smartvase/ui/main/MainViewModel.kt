@@ -1,6 +1,5 @@
 package it.polito.did.smartvase.ui.main
 
-import android.graphics.drawable.Drawable
 import androidx.lifecycle.ViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.ktx.database

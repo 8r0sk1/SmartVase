@@ -114,6 +114,7 @@
                 android:contentDescription="add"
                 android:elevation="2dp"
                 android:foreground="@drawable/editbutton"
+                android:visibility="gone"
                 app:backgroundTint="#00C081"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

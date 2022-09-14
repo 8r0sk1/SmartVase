@@ -17,6 +17,9 @@
             android:id="@+id/action_homepage_to_settings"
             app:destination="@id/Settings" />
         <action
+            android:id="@+id/action_homepage_to_homepage"
+            app:destination="@id/Homepage" />
+        <action
             android:id="@+id/action_homepage_to_dashboard"
             app:destination="@id/Dashboard" />
         <action
