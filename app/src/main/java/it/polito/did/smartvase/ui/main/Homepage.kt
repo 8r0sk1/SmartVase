@@ -53,18 +53,49 @@ class Homepage : Fragment(R.layout.homepage) {
     }
 
     fun getDataFromDB(){
-        //viewModel.plantMacAddress = viewModel.db.child("plants").toString()
+
         viewModel.db.child("plants").child(viewModel.plantMacAddress).get().addOnSuccessListener {
-            Log.i("cosucce", it.value.toString())
+            viewModel.plantMacAddress = it.value.toString()
         }.addOnFailureListener{
             Log.e("cosucce", "Error getting data", it)
         }
-        //viewModel.plantName = viewModel.db.child("plants").child(viewModel.plantMacAddress!!).child("name").get.toString()
-        /*viewModel.soilMoisture = viewModel.db.child("plants").child(viewModel.plantMacAddress!!).child("soilMoisture") as Float
-        viewModel.defaultMax = viewModel.db.child("plants").child(viewModel.plantMacAddress!!).child("soilMoistureMax") as Float
-        viewModel.defaultMin = viewModel.db.child("plants").child(viewModel.plantMacAddress!!).child("soilMoistureMin") as Float
-        viewModel.waterLevel = viewModel.db.child("plants").child(viewModel.plantMacAddress!!).child("waterLevel") as Float
-        viewModel.plantIconId = viewModel.db.child("plants").child(viewModel.plantMacAddress!!).child("imagePlant") as Int*/
+
+        viewModel.db.child("plants").child(viewModel.plantMacAddress).child("name").get().addOnSuccessListener {
+            viewModel.plantName = it.value.toString()
+        }.addOnFailureListener{
+            Log.e("cosucce", "Error getting data", it)
+        }
+
+        viewModel.db.child("plants").child(viewModel.plantMacAddress).child("soilMoisture").get().addOnSuccessListener {
+            viewModel.soilMoisture = it.value as Float
+        }.addOnFailureListener{
+            Log.e("cosucce", "Error getting data", it)
+        }
+
+        viewModel.db.child("plants").child(viewModel.plantMacAddress).child("soilMoistureMin").get().addOnSuccessListener {
+            viewModel.defaultMin = it.value as Float
+        }.addOnFailureListener{
+            Log.e("cosucce", "Error getting data", it)
+        }
+
+        viewModel.db.child("plants").child(viewModel.plantMacAddress).child("soilMoistureMax").get().addOnSuccessListener {
+            viewModel.defaultMax = it.value as Float
+        }.addOnFailureListener{
+            Log.e("cosucce", "Error getting data", it)
+        }
+
+        viewModel.db.child("plants").child(viewModel.plantMacAddress).child("waterLevel").get().addOnSuccessListener {
+            viewModel.waterLevel = it.value as Float
+        }.addOnFailureListener{
+            Log.e("cosucce", "Error getting data", it)
+        }
+
+        viewModel.db.child("plants").child(viewModel.plantMacAddress).child("imagePlant").get().addOnSuccessListener {
+            viewModel.plantIconId = it.value as Int
+        }.addOnFailureListener{
+            Log.e("cosucce", "Error getting data", it)
+        }
+
     }
 
     override fun onCreateView(
