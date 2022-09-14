@@ -13,6 +13,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.transition.TransitionInflater
 import com.google.android.material.button.MaterialButton
+import it.polito.did.smartvase.MainActivity
 import it.polito.did.smartvase.R
 
 class Profile : Fragment() {
@@ -42,6 +43,7 @@ class Profile : Fragment() {
         email.setText(viewModel.auth.currentUser?.email)
         logout.setOnClickListener {
             viewModel.loggedIn=false
+            (activity as MainActivity).writeInternalStorage("0;0")
             findNavController().navigate(R.id.action_profile_to_homepage)
         }
         back.setOnClickListener {

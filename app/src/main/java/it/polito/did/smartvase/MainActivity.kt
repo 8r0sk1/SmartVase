@@ -62,14 +62,13 @@ class MainActivity : AppCompatActivity() {
     }
     //TODO per leggere utente (activity as MainActivity).readUser()
     fun readUser() : List<String> {
-        var text: List<String>
         applicationContext.openFileInput("logged.txt").use { stream ->
             val text = stream.bufferedReader().use {
                 it.readText()
             }
             return text.split(";")
         }
-        return emptyList()
+        return "0;0".split(";")
     }
 
 

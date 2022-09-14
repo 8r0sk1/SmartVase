@@ -61,6 +61,7 @@ class LoginActivity : Fragment(R.layout.activity_login) {
                     if(it.isSuccessful){
                         viewModel.loggedIn = true
                         viewModel.idUtente = viewModel.auth.currentUser?.uid
+                        (activity as MainActivity).writeInternalStorage(email+";"+password)
                         findNavController().navigate(R.id.action_loginActivity_to_homepage)
                         //findNavController().navigate(R.id.action_loginActivity_to_signIn)
                         /*startActivity(Intent(this, SignIn::class.java))

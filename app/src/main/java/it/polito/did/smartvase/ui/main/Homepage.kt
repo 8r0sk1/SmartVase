@@ -102,25 +102,38 @@ class Homepage : Fragment(R.layout.homepage) {
         }
     }
 
-    val account = (activity as MainActivity).readUser()
+
+    fun fastAccessNoLogin(user: String, psw:String){
+        Log.d("account ",user+psw)
+        viewModel.loggedIn=true
+        viewModel.auth.signInWithEmailAndPassword(user, psw).addOnCompleteListener{
+            if(it.isSuccessful){
+                viewModel.loggedIn = true
+                viewModel.idUtente = viewModel.auth.currentUser?.uid
+            }
+        }.addOnFailureListener{
+            Toast.makeText(this@Homepage.requireActivity(), it.localizedMessage, Toast.LENGTH_LONG).show()
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel.auth = FirebaseAuth.getInstance()
         Log.d("userrr", viewModel.auth.currentUser.toString())
-        //if(!account.isEmpty())
-            fastAccessNoLogin()
+
+//        (activity as MainActivity).writeInternalStorage("vittorio@gmail.com;vittorio1234") //TODO se siamo in pericolo
+        val account = (activity as MainActivity).readUser()
+        if(account[0]!="0")
+            fastAccessNoLogin(account[0],account[1])
 
         // DA DE-COMMENTARE PER FARE IL LOGIN
         // E COMMENTARE LA LINEA CHE LANCIA "fastAccessNoLogin"
         /*if(!viewModel.loggedIn)
             findNavController().navigate(R.id.action_homepage_to_registerActivity)*/
-
         val inflater = TransitionInflater.from(requireContext())
         enterTransition = inflater.inflateTransition(R.transition.slide)
         exitTransition = inflater.inflateTransition(R.transition.fade)
 
-        getDataFromDB()
     }
 
     override fun onCreateView(
@@ -151,6 +164,7 @@ class Homepage : Fragment(R.layout.homepage) {
         val auto = view.findViewById<SwitchMaterial>(R.id.autoSwitch1)
         val soilAlert = view.findViewById<ImageView>(R.id.soilAlert1)
 
+        getDataFromDB()
         if(!viewModel.plantCreated)
             hider.visibility=View.VISIBLE
         else{
@@ -227,22 +241,9 @@ class Homepage : Fragment(R.layout.homepage) {
         }
     }
 
-    fun fastAccessNoLogin(){
-        val email = account[0]
-        val password = account[1]
-        viewModel.auth.signInWithEmailAndPassword(email, password).addOnCompleteListener{
-            if(it.isSuccessful){
-                viewModel.loggedIn = true
-                viewModel.idUtente = viewModel.auth.currentUser?.uid
-            }
-        }.addOnFailureListener{
-            Toast.makeText(this@Homepage.requireActivity(), it.localizedMessage, Toast.LENGTH_LONG).show()
-        }
-    }
 
     override fun onResume() {
         super.onResume()
-        (activity as MainActivity).readUser()
         if(!viewModel.loggedIn)
             findNavController().navigate(R.id.action_homepage_to_registerActivity)
     }
