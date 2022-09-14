@@ -55,10 +55,7 @@ class WifiSetup : Fragment() {
         val next = view.findViewById<Button>(R.id.next_button6)
         val connect = view.findViewById<Button>(R.id.connect6)
 
-
         val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse("http://www.msftconnecttest.com/redirect"))
-
-                //viewModel.plantIcon=resources.getDrawable(R.drawable.nficusicon)
 
         browserButton.setOnClickListener {
             startActivity(browserIntent)

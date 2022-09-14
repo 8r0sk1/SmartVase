@@ -32,11 +32,69 @@ class Dashboard : Fragment() {
 
     private val viewModel: MainViewModel by activityViewModels<MainViewModel>()
 
+    fun getDataFromDB(){
+        viewModel.db.child("plants").child(viewModel.plantMacAddress).get().addOnSuccessListener {
+            viewModel.plantMacAddress = it.value.toString()
+        }.addOnFailureListener{
+            Toast.makeText(context, "Error getting data from DB", Toast.LENGTH_SHORT).show()
+        }
+
+        viewModel.db.child("plants").child(viewModel.plantMacAddress).child("name").get().addOnSuccessListener {
+            viewModel.plantName = it.value.toString()
+        }.addOnFailureListener{
+            Toast.makeText(context, "Error getting data from DB", Toast.LENGTH_SHORT).show()
+        }
+
+        viewModel.db.child("plants").child(viewModel.plantMacAddress).child("soilMoisture").get().addOnSuccessListener {
+            viewModel.soilMoisture = it.value as Float
+        }.addOnFailureListener{
+            Toast.makeText(context, "Error getting data from DB", Toast.LENGTH_SHORT).show()
+        }
+
+        viewModel.db.child("plants").child(viewModel.plantMacAddress).child("soilMoistureMin").get().addOnSuccessListener {
+            viewModel.defaultMin = it.value as Float
+        }.addOnFailureListener{
+            Toast.makeText(context, "Error getting data from DB", Toast.LENGTH_SHORT).show()
+        }
+
+        viewModel.db.child("plants").child(viewModel.plantMacAddress).child("soilMoistureMax").get().addOnSuccessListener {
+            viewModel.defaultMax = it.value as Float
+        }.addOnFailureListener{
+            Toast.makeText(context, "Error getting data from DB", Toast.LENGTH_SHORT).show()
+        }
+
+        viewModel.db.child("plants").child(viewModel.plantMacAddress).child("waterLevel").get().addOnSuccessListener {
+            viewModel.waterLevel = it.value as Float
+        }.addOnFailureListener{
+            Toast.makeText(context, "Error getting data from DB", Toast.LENGTH_SHORT).show()
+        }
+
+        viewModel.db.child("plants").child(viewModel.plantMacAddress).child("imagePlant").get().addOnSuccessListener {
+            viewModel.plantIconId = it.value as Int
+        }.addOnFailureListener{
+            Toast.makeText(context, "Error getting data from DB", Toast.LENGTH_SHORT).show()
+        }
+
+        viewModel.db.child("plants").child(viewModel.plantMacAddress).child("notify_mode").get().addOnSuccessListener {
+            viewModel.notification = it.value as Boolean
+        }.addOnFailureListener{
+            Toast.makeText(context, "Error getting data from DB", Toast.LENGTH_SHORT).show()
+        }
+
+        viewModel.db.child("plants").child(viewModel.plantMacAddress).child("auto_mode").get().addOnSuccessListener {
+            viewModel.auto = it.value as Boolean
+        }.addOnFailureListener{
+            Toast.makeText(context, "Error getting data from DB", Toast.LENGTH_SHORT).show()
+        }
+
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val inflater = TransitionInflater.from(requireContext())
         enterTransition = inflater.inflateTransition(R.transition.slide)
         exitTransition = inflater.inflateTransition(R.transition.fade)
+        getDataFromDB()
     }
 
     override fun onCreateView(
@@ -67,9 +125,6 @@ class Dashboard : Fragment() {
         val dividerMinSoilMoisture = view.findViewById<ProgressBar>(R.id.dividerMinSoilMoisture2)
         val soilAlert = view.findViewById<ImageView>(R.id.soilAlert2)
         val waterAlert = view.findViewById<ImageView>(R.id.waterAlert2)
-
-        //val db = Firebase.database.reference
-        //val ref = db.child("A7/toWaterControl")
 
         val plants = FirebaseDatabase.getInstance().getReference("plants")
 

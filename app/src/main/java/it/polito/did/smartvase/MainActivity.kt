@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         supportActionBar?.hide()
 
-        Intent(this, UpdateDBService::class.java).also { intent ->
+        /*Intent(this, UpdateDBService::class.java).also { intent ->
             startService(intent)
         }
 
@@ -54,7 +54,7 @@ class MainActivity : AppCompatActivity() {
             //AlarmManager.INTERVAL_FIFTEEN_MINUTES
             60000,
             alarmIntent
-        )
+        )*/
     }
 
     fun writeInternalStorage(text: String) {

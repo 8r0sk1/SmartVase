@@ -9,11 +9,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.ValueEventListener
-import com.google.firebase.database.ktx.database
-import com.google.firebase.ktx.Firebase
 import it.polito.did.smartvase.R
 import android.widget.*
 import androidx.activity.OnBackPressedCallback
@@ -24,14 +19,69 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.switchmaterial.SwitchMaterial
 import android.content.Intent
 import android.util.Log
-import androidx.core.content.ContextCompat.startActivity
-import com.google.android.gms.common.config.GservicesValue.value
 import com.google.firebase.auth.FirebaseAuth
 import it.polito.did.smartvase.MainActivity
 
 class Homepage : Fragment(R.layout.homepage) {
 
     private val viewModel: MainViewModel by activityViewModels<MainViewModel>()
+
+    fun getDataFromDB(){
+        viewModel.db.child("plants").child(viewModel.plantMacAddress).get().addOnSuccessListener {
+            viewModel.plantMacAddress = it.value.toString()
+        }.addOnFailureListener{
+            Toast.makeText(context, "Error getting data from DB", Toast.LENGTH_SHORT).show()
+        }
+
+        viewModel.db.child("plants").child(viewModel.plantMacAddress).child("name").get().addOnSuccessListener {
+            viewModel.plantName = it.value.toString()
+        }.addOnFailureListener{
+            Toast.makeText(context, "Error getting data from DB", Toast.LENGTH_SHORT).show()
+        }
+
+        viewModel.db.child("plants").child(viewModel.plantMacAddress).child("soilMoisture").get().addOnSuccessListener {
+            viewModel.soilMoisture = it.value as Float
+        }.addOnFailureListener{
+            Toast.makeText(context, "Error getting data from DB", Toast.LENGTH_SHORT).show()
+        }
+
+        viewModel.db.child("plants").child(viewModel.plantMacAddress).child("soilMoistureMin").get().addOnSuccessListener {
+            viewModel.defaultMin = it.value as Float
+        }.addOnFailureListener{
+            Toast.makeText(context, "Error getting data from DB", Toast.LENGTH_SHORT).show()
+        }
+
+        viewModel.db.child("plants").child(viewModel.plantMacAddress).child("soilMoistureMax").get().addOnSuccessListener {
+            viewModel.defaultMax = it.value as Float
+        }.addOnFailureListener{
+            Toast.makeText(context, "Error getting data from DB", Toast.LENGTH_SHORT).show()
+        }
+
+        viewModel.db.child("plants").child(viewModel.plantMacAddress).child("waterLevel").get().addOnSuccessListener {
+            viewModel.waterLevel = it.value as Float
+        }.addOnFailureListener{
+            Toast.makeText(context, "Error getting data from DB", Toast.LENGTH_SHORT).show()
+        }
+
+        viewModel.db.child("plants").child(viewModel.plantMacAddress).child("imagePlant").get().addOnSuccessListener {
+            viewModel.plantIconId = it.value as Int
+        }.addOnFailureListener{
+            Toast.makeText(context, "Error getting data from DB", Toast.LENGTH_SHORT).show()
+        }
+
+        viewModel.db.child("plants").child(viewModel.plantMacAddress).child("notify_mode").get().addOnSuccessListener {
+            viewModel.notification = it.value as Boolean
+        }.addOnFailureListener{
+            Toast.makeText(context, "Error getting data from DB", Toast.LENGTH_SHORT).show()
+        }
+
+        viewModel.db.child("plants").child(viewModel.plantMacAddress).child("auto_mode").get().addOnSuccessListener {
+            viewModel.auto = it.value as Boolean
+        }.addOnFailureListener{
+            Toast.makeText(context, "Error getting data from DB", Toast.LENGTH_SHORT).show()
+        }
+
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,53 +99,7 @@ class Homepage : Fragment(R.layout.homepage) {
         enterTransition = inflater.inflateTransition(R.transition.slide)
         exitTransition = inflater.inflateTransition(R.transition.fade)
 
-        //getDataFromDB()
-    }
-
-    fun getDataFromDB(){
-
-        viewModel.db.child("plants").child(viewModel.plantMacAddress).get().addOnSuccessListener {
-            viewModel.plantMacAddress = it.value.toString()
-        }.addOnFailureListener{
-            Log.e("cosucce", "Error getting data", it)
-        }
-
-        viewModel.db.child("plants").child(viewModel.plantMacAddress).child("name").get().addOnSuccessListener {
-            viewModel.plantName = it.value.toString()
-        }.addOnFailureListener{
-            Log.e("cosucce", "Error getting data", it)
-        }
-
-        viewModel.db.child("plants").child(viewModel.plantMacAddress).child("soilMoisture").get().addOnSuccessListener {
-            viewModel.soilMoisture = it.value as Float
-        }.addOnFailureListener{
-            Log.e("cosucce", "Error getting data", it)
-        }
-
-        viewModel.db.child("plants").child(viewModel.plantMacAddress).child("soilMoistureMin").get().addOnSuccessListener {
-            viewModel.defaultMin = it.value as Float
-        }.addOnFailureListener{
-            Log.e("cosucce", "Error getting data", it)
-        }
-
-        viewModel.db.child("plants").child(viewModel.plantMacAddress).child("soilMoistureMax").get().addOnSuccessListener {
-            viewModel.defaultMax = it.value as Float
-        }.addOnFailureListener{
-            Log.e("cosucce", "Error getting data", it)
-        }
-
-        viewModel.db.child("plants").child(viewModel.plantMacAddress).child("waterLevel").get().addOnSuccessListener {
-            viewModel.waterLevel = it.value as Float
-        }.addOnFailureListener{
-            Log.e("cosucce", "Error getting data", it)
-        }
-
-        viewModel.db.child("plants").child(viewModel.plantMacAddress).child("imagePlant").get().addOnSuccessListener {
-            viewModel.plantIconId = it.value as Int
-        }.addOnFailureListener{
-            Log.e("cosucce", "Error getting data", it)
-        }
-
+        getDataFromDB()
     }
 
     override fun onCreateView(
@@ -128,34 +132,22 @@ class Homepage : Fragment(R.layout.homepage) {
         val auto = view.findViewById<SwitchMaterial>(R.id.autoSwitch1)
         val soilAlert = view.findViewById<ImageView>(R.id.soilAlert1)
 
-        /*val db = Firebase.database.reference
-        val ref = db.child("chiave")*/
-
-//        (activity as MainActivity).notification(R.drawable.nficusicon,"title","message")
-
         if(!viewModel.plantCreated)
             hider.visibility=View.VISIBLE
         else{
-            if(viewModel.waterLevel<.10)
-            //TODO waterAlert.visibility=View.VISIBLE
-                if(viewModel.soilMoisture<viewModel.defaultMin)
-                    soilAlert.visibility=View.VISIBLE
+            if(viewModel.waterLevel<.10){
+                plantCard.setBackgroundColor(0xCCDF0C49.toInt())
+                (activity as MainActivity).notification(viewModel.plantIconId,"Please load some water",(5*viewModel.waterLevel).toString()+" L left")
+                if(viewModel.soilMoisture<viewModel.defaultMin) {
+                    (activity as MainActivity).notification(viewModel.plantIconId,"Please water this plant",(viewModel.soilMoisture*100).toInt().toString()+"% Soil moisture")
+                    soilAlert.visibility = View.VISIBLE
+                }
+            }
         }
 
         auto.isChecked=viewModel.auto
         plantName.setText(viewModel.plantName)
         plantIcon.setImageResource(viewModel.plantIconId)
-
-        viewModel.ref.addValueEventListener(object: ValueEventListener{
-            override fun onDataChange(snapshot: DataSnapshot) {
-//                txtV.text = snapshot.getValue<String>()
-                //TODO vlad da cambiare il percorso di ref dentro mainviewmodel
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
-            }
-        })
 
         waterLevel.translationY -=  viewModel.waterLevel *  waterLevelHeight
 
@@ -175,9 +167,7 @@ class Homepage : Fragment(R.layout.homepage) {
                         removing=false
                         deleteConfirm.visibility=View.INVISIBLE
 
-                        viewModel.db.child("users/" + viewModel.auth.currentUser?.uid).setValue("")
-
-                        //TODO VLAD distruggere users->viewmodel.idutente->plant1
+                        viewModel.db.child("users/" + viewModel.auth.currentUser?.uid).removeValue()
 
                         val snack = Snackbar.make(it, "Plant deleted", Snackbar.LENGTH_LONG)
                         snack.show()
@@ -217,10 +207,6 @@ class Homepage : Fragment(R.layout.homepage) {
             else (activity as MainActivity).vibration(true)
         }
     }
-
-    /*fun buttons(val b:List<View>, clickable){
-        b[0].isClickable=clickable
-    }*/
 
     fun fastAccessNoLogin(){
         val email = "vlad@gmail.com"

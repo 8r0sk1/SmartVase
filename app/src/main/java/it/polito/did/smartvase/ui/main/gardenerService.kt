@@ -40,7 +40,6 @@ class gardenerService :  Service() {
         super.onTaskRemoved(rootIntent)
     }
 
-
     lateinit var notificationManager : NotificationManager
     lateinit var notificationChannel : NotificationChannel
     lateinit var builder : NotificationCompat.Builder
