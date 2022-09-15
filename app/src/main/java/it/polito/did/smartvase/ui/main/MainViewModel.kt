@@ -38,6 +38,7 @@ class MainViewModel : ViewModel() {
     val db = Firebase.database.reference
     val ref = db.child("chiave")
 
+    var porcata=true
 
     init {
         //TODO RICEVERE DA DATABASE VALORI DEFAULT

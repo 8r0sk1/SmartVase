@@ -47,6 +47,7 @@ class Homepage : Fragment(R.layout.homepage) {
             viewModel.db.child("plants").child(viewModel.plantMacAddress).child("name").get()
                 .addOnSuccessListener {
                     viewModel.plantName = it.value.toString()
+                    Log.d("caccaaaaa",viewModel.plantName)
                 }.addOnFailureListener {
                 Toast.makeText(context, "Error getting data from DB", Toast.LENGTH_SHORT).show()
             }
@@ -96,10 +97,16 @@ class Homepage : Fragment(R.layout.homepage) {
             viewModel.db.child("plants").child(viewModel.plantMacAddress).child("auto_mode").get()
                 .addOnSuccessListener {
                     viewModel.auto = (it.value as Long).toBoolean()
+                    if(viewModel.porcata) {
+                        viewModel.porcata=false
+                        refreshFrag()
+                    }
                 }.addOnFailureListener {
                 Toast.makeText(context, "Error getting data from DB", Toast.LENGTH_SHORT).show()
+
             }
     }
+    fun refreshFrag(){findNavController().navigate(R.id.action_homepage_to_homepage)}
 
     fun fastAccessNoLogin(user: String, psw:String){
         Log.d("account ",user+psw)
@@ -108,7 +115,7 @@ class Homepage : Fragment(R.layout.homepage) {
             if(it.isSuccessful){
                 viewModel.loggedIn = true
                 viewModel.idUtente = viewModel.auth.currentUser?.uid
-                getDataFromDB()
+
             }
         }.addOnFailureListener{
             Toast.makeText(this@Homepage.requireActivity(), it.localizedMessage, Toast.LENGTH_LONG).show()
@@ -118,6 +125,9 @@ class Homepage : Fragment(R.layout.homepage) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel.auth = FirebaseAuth.getInstance()
+
+        getDataFromDB()
+
         Log.d("userrr", viewModel.auth.currentUser.toString())
         viewModel.plantMacAddress="BC:FF:4D:5F:2E:51"
 //        (activity as MainActivity).writeInternalStorage("vittorio@gmail.com;vittorio1234") //TODO se siamo in pericolo
@@ -130,7 +140,7 @@ class Homepage : Fragment(R.layout.homepage) {
         /*if(!viewModel.loggedIn)
             findNavController().navigate(R.id.action_homepage_to_registerActivity)*/
         val inflater = TransitionInflater.from(requireContext())
-        enterTransition = inflater.inflateTransition(R.transition.slide)
+        enterTransition = inflater.inflateTransition(R.transition.fade)
         exitTransition = inflater.inflateTransition(R.transition.fade)
 
         /*if(viewModel.porcata) {
@@ -166,8 +176,12 @@ class Homepage : Fragment(R.layout.homepage) {
         val waterLevelHeight=waterLevel.translationY
         val auto = view.findViewById<SwitchMaterial>(R.id.autoSwitch1)
         val soilAlert = view.findViewById<ImageView>(R.id.soilAlert1)
-        val refresh = view.findViewById<ImageButton>(R.id.refresh1)
 
+        val refresh = view.findViewById<ImageButton>(R.id.refresh1)
+        val loading = view.findViewById<ConstraintLayout>(R.id.loading1)
+        loading.visibility=View.VISIBLE
+        if(!viewModel.porcata)
+            loading.visibility=View.GONE
 
         if(!viewModel.plantCreated)
             hider.visibility=View.VISIBLE
@@ -188,7 +202,7 @@ class Homepage : Fragment(R.layout.homepage) {
 
         waterLevel.translationY -=  viewModel.waterLevel *  waterLevelHeight
 
-        refresh.setOnClickListener { findNavController().navigate(R.id.action_homepage_to_homepage) }
+        refresh.setOnClickListener { refreshFrag() }
 
         plantCard.setOnLongClickListener{
             removePlant.visibility= View.VISIBLE
@@ -229,11 +243,13 @@ class Homepage : Fragment(R.layout.homepage) {
         }
 
         addPlant.setOnClickListener {
+            viewModel.porcata=true
             if(!removing) findNavController().navigate(R.id.action_homepage_to_wifisetup)
             else (activity as MainActivity).vibration(true)
         }
 
         plantCard.setOnClickListener {
+            viewModel.porcata=true
             if(!removing) findNavController().navigate(R.id.action_homepage_to_dashboard)
             else (activity as MainActivity).vibration(true)
         }
@@ -244,9 +260,11 @@ class Homepage : Fragment(R.layout.homepage) {
         }
 
         profile.setOnClickListener {
+            viewModel.porcata=true
             if(!removing) findNavController().navigate(R.id.action_homepage_to_profile)
             else (activity as MainActivity).vibration(true)
         }
+
     }
 
 

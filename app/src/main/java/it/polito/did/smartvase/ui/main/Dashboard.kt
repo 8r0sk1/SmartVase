@@ -5,6 +5,7 @@ import android.content.Context
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -53,6 +54,7 @@ class Dashboard : Fragment() {
         viewModel.db.child("plants").child(viewModel.plantMacAddress).child("name").get()
             .addOnSuccessListener {
                 viewModel.plantName = it.value.toString()
+                Log.d("caccaaaaa",viewModel.plantName)
             }.addOnFailureListener {
                 Toast.makeText(context, "Error getting data from DB", Toast.LENGTH_SHORT).show()
             }
@@ -102,15 +104,21 @@ class Dashboard : Fragment() {
         viewModel.db.child("plants").child(viewModel.plantMacAddress).child("auto_mode").get()
             .addOnSuccessListener {
                 viewModel.auto = (it.value as Long).toBoolean()
+                if(viewModel.porcata) {
+                    viewModel.porcata=false
+                    refreshFrag()
+                }
             }.addOnFailureListener {
                 Toast.makeText(context, "Error getting data from DB", Toast.LENGTH_SHORT).show()
+
             }
     }
+    fun refreshFrag(){findNavController().navigate(R.id.action_dashboard_to_dashboard)}
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val inflater = TransitionInflater.from(requireContext())
-        enterTransition = inflater.inflateTransition(R.transition.slide)
+        enterTransition = inflater.inflateTransition(R.transition.fade)
         exitTransition = inflater.inflateTransition(R.transition.fade)
         getDataFromDB()
     }
@@ -146,6 +154,12 @@ class Dashboard : Fragment() {
 
         val plants = FirebaseDatabase.getInstance().getReference("plants")
 
+        val refresh = view.findViewById<ImageButton>(R.id.refresh2)
+        val loading = view.findViewById<ConstraintLayout>(R.id.loading2)
+        loading.visibility=View.VISIBLE
+        if(!viewModel.porcata)
+            loading.visibility=View.GONE
+
         val barHeight=waterBar.translationY
         if(viewModel.waterLevel<.10)
             waterAlert.visibility=View.VISIBLE
@@ -175,7 +189,7 @@ class Dashboard : Fragment() {
         if(!viewModel.notification){
             notification(notificationButton,notificationState,false)
         }
-
+        refresh.setOnClickListener { refreshFrag() }
         homeButton.setOnClickListener { goBack() }
         editButton.setOnClickListener { findNavController().navigate(R.id.action_dashboard_to_settings) } //ancora da capire come fare, se con altro fragment
 
@@ -230,7 +244,10 @@ class Dashboard : Fragment() {
             notificationState.setText("OFF")
         }
     }
-    fun goBack(){findNavController().navigate(R.id.action_dashboard_to_homepage)}
+    fun goBack(){
+        viewModel.porcata=true
+        findNavController().navigate(R.id.action_dashboard_to_homepage)
+    }
     override fun onAttach(context: Context) {
         super.onAttach(context)
         val callback: OnBackPressedCallback =
