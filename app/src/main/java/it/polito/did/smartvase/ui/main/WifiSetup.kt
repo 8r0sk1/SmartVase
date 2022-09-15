@@ -1,9 +1,7 @@
 package it.polito.did.smartvase.ui.main
 
-import android.Manifest
 import android.content.Context
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.net.Uri
 import android.net.wifi.WifiManager
 import android.os.Bundle
@@ -13,16 +11,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.TextView
 import androidx.activity.OnBackPressedCallback
-import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.transition.TransitionInflater
 import com.google.android.material.snackbar.Snackbar
-import it.polito.did.smartvase.MainActivity
 import it.polito.did.smartvase.R
 
 @Suppress("DEPRECATION")
@@ -36,7 +30,6 @@ class WifiSetup : Fragment() {
         val inflater = TransitionInflater.from(requireContext())
         enterTransition = inflater.inflateTransition(R.transition.slide)
         exitTransition = inflater.inflateTransition(R.transition.fade)
-        requestPerm()
     }
 
     override fun onCreateView(
@@ -65,35 +58,27 @@ class WifiSetup : Fragment() {
 
         connect.setOnClickListener {
             startActivity( Intent(Settings.ACTION_WIFI_SETTINGS))
-
-            if(wifiConnected())
-                browserButton.visibility=View.VISIBLE
+            viewModel.wifiPage=true
         }
 
         back.setOnClickListener {goBack() }
         next.setOnClickListener {
-
-            // TODO vitto mac address
-            viewModel.db.child("plants").child("02:02:02:02:02:02").get().addOnSuccessListener {
-                if(it.value==null)
+            if (wifiConnected()) {
+                viewModel.db.child("plants").child(viewModel.plantName).get().addOnSuccessListener {
+                    if (it.value == null)
+                        Log.d("cosucce", "Connettiti scemo")
+                    if (viewModel.plantCreated) {
+                        val snack = Snackbar.make(view, "Already connected", Snackbar.LENGTH_LONG)
+                        snack.show()
+                    } else
+                        findNavController().navigate(R.id.action_wifisetup_to_plantsetup)
+                }.addOnFailureListener {
+                    val snack = Snackbar.make(view, "DB Connection Lost.", Snackbar.LENGTH_SHORT)
+                    snack.show()
                     Log.d("cosucce", "Connettiti scemo")
-                if(viewModel.plantCreated) {
-                    //val snack = Snackbar.make(it, "Already connected", Snackbar.LENGTH_LONG)
-                    //snack.show()
-                    //Log.i("cosucce", viewModel.plantMacAddress)
-                    //Log.i("cosucce", "Got value ${it.value}")
-                    Log.d("cosucce", "Ok")
                 }
-                else
-                    findNavController().navigate(R.id.action_wifisetup_to_plantsetup)
-            }.addOnFailureListener{
-                //val snack = Snackbar.make(it, "DB Connection Lost.", Snackbar.LENGTH_SHORT)
-                //snack.show()
-                Log.d("cosucce", "Connettiti scemo")
-            }
 
-            Log.d("chiaveval", viewModel.db.child("chiave").get().toString())
-            /*if (viewModel.db.child("plants").child(viewModel.plantMacAddress.toString()).get().equals(null)) {
+                /*if (viewModel.db.child("plants").child(viewModel.plantMacAddress.toString()).get().equals(null)) {
                 val snack = Snackbar.make(it, "Connect to Wi-Fi and complete the setup", Snackbar.LENGTH_SHORT)
                 snack.show()
             } else {
@@ -104,9 +89,11 @@ class WifiSetup : Fragment() {
                 else
                     findNavController().navigate(R.id.action_wifisetup_to_plantsetup)
             }*/
+            }else   {
+                val snack = Snackbar.make(it, "Connect to Wi-Fi and complete the setup", Snackbar.LENGTH_SHORT)
+                snack.show()
+            }
         }
-        view.findViewById<TextView>(R.id.tutorial6).setText(getSSid()) //TODO togliere
-
     }
 
     override fun onResume() {
@@ -135,91 +122,16 @@ class WifiSetup : Fragment() {
 
     private fun wifiConnected() : Boolean {
         //if(getMac()=="SmartVase")
-        if (getSSid().substring(1, 9) == "AndroidW")//TODO debug
+        if (getSSid().substring(1, 9) == "SmartVas")
         {
             //viewModel.plantMacAddress=getSSid().replace(":","").substring(10)
             return true
         }
-        return false
+        return viewModel.wifiPage
     }
     private fun getSSid() : String{
         wifiManager = context?.getSystemService(Context.WIFI_SERVICE) as WifiManager
         Log.d("mamma", wifiManager.connectionInfo.toString())
         return wifiManager.connectionInfo.ssid
-    }
-
-    private fun requestPerm() {
-        val requestPermissionLauncher =
-            registerForActivityResult(
-                ActivityResultContracts.RequestPermission()
-            ) { isGranted: Boolean ->
-                if (isGranted) {
-                    // Permission is granted. Continue the action or workflow in your
-                    // app.
-                } else {
-                    // Explain to the user that the feature is unavailable because the
-                    // features requires a permission that the user has denied. At the
-                    // same time, respect the user's decision. Don't link to system
-                    // settings in an effort to convince the user to change their
-                    // decision.
-                }
-            }
-        when {
-            ContextCompat.checkSelfPermission(
-                (activity as MainActivity),
-                Manifest.permission.ACCESS_FINE_LOCATION
-            ) == PackageManager.PERMISSION_GRANTED -> {
-                // You can use the API that requires the permission.
-            }
-            shouldShowRequestPermissionRationale(Manifest.permission.ACCESS_WIFI_STATE) -> {
-                // In an educational UI, explain to the user why your app requires this
-                // permission for a specific feature to behave as expected. In this UI,
-                // include a "cancel" or "no thanks" button that allows the user to
-                // continue using your app without granting the permission.
-                //TODO
-            }
-            else -> {
-                // You can directly ask for the permission.
-                // The registered ActivityResultCallback gets the result of this request.
-                requestPermissionLauncher.launch(
-                    Manifest.permission.ACCESS_FINE_LOCATION)
-            }
-        }
-        val requestPermissionLauncher2 =
-            registerForActivityResult(
-                ActivityResultContracts.RequestPermission()
-            ) { isGranted: Boolean ->
-                if (isGranted) {
-                    // Permission is granted. Continue the action or workflow in your
-                    // app.
-                } else {
-                    // Explain to the user that the feature is unavailable because the
-                    // features requires a permission that the user has denied. At the
-                    // same time, respect the user's decision. Don't link to system
-                    // settings in an effort to convince the user to change their
-                    // decision.
-                }
-            }
-        when {
-            ContextCompat.checkSelfPermission(
-                (activity as MainActivity),
-                Manifest.permission.ACCESS_COARSE_LOCATION
-            ) == PackageManager.PERMISSION_GRANTED -> {
-                // You can use the API that requires the permission.
-            }
-            shouldShowRequestPermissionRationale(Manifest.permission.ACCESS_FINE_LOCATION) -> {
-                // In an educational UI, explain to the user why your app requires this
-                // permission for a specific feature to behave as expected. In this UI,
-                // include a "cancel" or "no thanks" button that allows the user to
-                // continue using your app without granting the permission.
-                //TODO
-            }
-            else -> {
-                // You can directly ask for the permission.
-                // The registered ActivityResultCallback gets the result of this request.
-                requestPermissionLauncher2.launch(
-                    Manifest.permission.ACCESS_COARSE_LOCATION)
-            }
-        }
     }
 }

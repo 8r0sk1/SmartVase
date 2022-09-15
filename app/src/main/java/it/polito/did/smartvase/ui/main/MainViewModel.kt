@@ -39,6 +39,7 @@ class MainViewModel : ViewModel() {
     val ref = db.child("chiave")
 
     var porcata=true
+    var wifiPage=false
 
     init {
         //TODO RICEVERE DA DATABASE VALORI DEFAULT

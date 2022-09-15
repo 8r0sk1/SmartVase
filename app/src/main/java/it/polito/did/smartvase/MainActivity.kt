@@ -1,6 +1,5 @@
 package it.polito.did.smartvase
 
-import android.annotation.SuppressLint
 import android.app.*
 import android.content.Context
 import android.content.Intent
@@ -10,7 +9,6 @@ import android.os.Bundle
 import android.os.Vibrator
 import android.graphics.BitmapFactory
 import android.graphics.Color
-import android.util.Log
 import android.widget.RemoteViews
 import androidx.core.app.NotificationCompat
 class MainActivity : AppCompatActivity() {
@@ -21,9 +19,9 @@ class MainActivity : AppCompatActivity() {
     private val channelId = "com.example.vicky.notificationexample"
     private val description = "Test notification"
 
-    lateinit var alarmIntent: PendingIntent
+    //lateinit var alarmIntent: PendingIntent
 
-    @SuppressLint("ShortAlarm")
+    //@SuppressLint("ShortAlarm")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -52,10 +50,6 @@ class MainActivity : AppCompatActivity() {
         )*/
     }
 
-    fun reload(){
-        finish();
-        startActivity(getIntent());
-    }
     fun writeInternalStorage(text: String) {
         val fileName = "logged.txt"
         val fileBody = text

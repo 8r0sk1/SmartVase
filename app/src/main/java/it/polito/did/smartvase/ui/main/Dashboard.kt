@@ -21,13 +21,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.transition.TransitionInflater
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ktx.database
-import com.google.firebase.ktx.Firebase
 import it.polito.did.smartvase.MainActivity
 import it.polito.did.smartvase.R
-import it.polito.did.smartvase.ui.main.MainViewModel
-
-//import it.polito.did.smartvase.ui.main.Homepage
 
 class Dashboard : Fragment() {
 
@@ -161,10 +156,14 @@ class Dashboard : Fragment() {
             loading.visibility=View.GONE
 
         val barHeight=waterBar.translationY
-        if(viewModel.waterLevel<.10)
-            waterAlert.visibility=View.VISIBLE
-        if(viewModel.soilMoisture<viewModel.defaultMin)
-            soilAlert.visibility=View.VISIBLE
+        if(viewModel.waterLevel<.10) {
+            waterAlert.visibility = View.VISIBLE
+            (activity as MainActivity).notification(viewModel.plantIconId,"Please load some water",(5 * viewModel.waterLevel).toString() + " L left")
+        }
+        if(viewModel.soilMoisture<viewModel.defaultMin) {
+            (activity as MainActivity).notification(viewModel.plantIconId,"Please water this plant",(viewModel.soilMoisture*100).toInt().toString()+"% Soil moisture")
+            soilAlert.visibility = View.VISIBLE
+        }
 
         //popolamento viste
         plantName?.setText(viewModel.plantName)

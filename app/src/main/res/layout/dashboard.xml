@@ -417,7 +417,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="4dp"
         android:elevation="4dp"
-        android:text="50%"
+        android:text="5L"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         android:textColor="#3E3E3E"
         android:textSize="24sp"

@@ -255,7 +255,9 @@ class Homepage : Fragment(R.layout.homepage) {
         }
 
         auto.setOnCheckedChangeListener { _, isChecked ->
-            if(!removing) viewModel.auto = isChecked //TODO aggiornare database
+            if(!removing) {
+                viewModel.auto = isChecked //TODO vlad aggiornare database
+            }
             else (activity as MainActivity).vibration(true)
         }
 
