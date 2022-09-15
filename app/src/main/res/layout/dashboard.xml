@@ -18,7 +18,9 @@
             android:id="@+id/loadingPanel"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center">
+            android:gravity="center"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="0dp">
 
             <ProgressBar
                 android:layout_width="100dp"
@@ -35,10 +37,10 @@
         android:backgroundTint="#00FFFFFF"
         android:contentDescription="home"
         android:scaleType="centerInside"
-        android:src="?attr/actionModeCloseDrawable"
+        android:src="@drawable/refreshbutton"
         app:layout_constraintEnd_toStartOf="@+id/soilMoistureBarCorner"
         app:layout_constraintStart_toEndOf="@+id/waterLevelBarCorner2"
-        app:layout_constraintTop_toTopOf="@+id/plantName2" />
+        app:layout_constraintTop_toBottomOf="@+id/plantName2" />
 
     <TextView
         android:id="@+id/soilMoistureText2"
@@ -74,7 +76,7 @@
         android:fontFamily="sans-serif-black"
         android:text="Ficus"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:textColor="#EFEFEF"
+        android:textColor="#5E5E5E"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="@+id/iconaPianta"
         app:layout_constraintStart_toStartOf="@+id/iconaPianta"
