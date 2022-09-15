@@ -1,26 +1,26 @@
 package it.polito.did.smartvase.ui.main
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.activityViewModels
-import androidx.navigation.fragment.findNavController
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import it.polito.did.smartvase.R
 import android.widget.*
 import androidx.activity.OnBackPressedCallback
 import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import androidx.transition.TransitionInflater
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.switchmaterial.SwitchMaterial
-import android.content.Intent
-import android.util.Log
 import com.google.firebase.auth.FirebaseAuth
 import it.polito.did.smartvase.MainActivity
+import it.polito.did.smartvase.R
 
 class Homepage : Fragment(R.layout.homepage) {
 
@@ -97,6 +97,7 @@ class Homepage : Fragment(R.layout.homepage) {
             viewModel.db.child("plants").child(viewModel.plantMacAddress).child("auto_mode").get()
                 .addOnSuccessListener {
                     viewModel.auto = (it.value as Long).toBoolean()
+                    Log.d("panettone", "ue buono")
                     if(viewModel.porcata) {
                         viewModel.porcata=false
                         refreshFrag()
@@ -130,7 +131,7 @@ class Homepage : Fragment(R.layout.homepage) {
 
         Log.d("userrr", viewModel.auth.currentUser.toString())
         viewModel.plantMacAddress="BC:FF:4D:5F:2E:51"
-//        (activity as MainActivity).writeInternalStorage("vittorio@gmail.com;vittorio1234") //TODO se siamo in pericolo
+        //(activity as MainActivity).writeInternalStorage("vittorio@gmail.com;vittorio1234") //TODO se siamo in pericolo
         val account = (activity as MainActivity).readUser()
         if(account[0]!="0")
             fastAccessNoLogin(account[0],account[1])
@@ -179,7 +180,7 @@ class Homepage : Fragment(R.layout.homepage) {
 
         val refresh = view.findViewById<ImageButton>(R.id.refresh1)
         val loading = view.findViewById<ConstraintLayout>(R.id.loading1)
-        loading.visibility=View.VISIBLE
+        //loading.visibility=View.VISIBLE
         if(!viewModel.porcata)
             loading.visibility=View.GONE
 
@@ -257,6 +258,10 @@ class Homepage : Fragment(R.layout.homepage) {
         auto.setOnCheckedChangeListener { _, isChecked ->
             if(!removing) {
                 viewModel.auto = isChecked //TODO vlad aggiornare database
+                if(isChecked)
+                    viewModel.db.child("plants").child(viewModel.plantMacAddress).child("auto_mode").setValue(1)
+                else
+                    viewModel.db.child("plants").child(viewModel.plantMacAddress).child("auto_mode").setValue(0)
             }
             else (activity as MainActivity).vibration(true)
         }

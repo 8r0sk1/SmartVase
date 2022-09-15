@@ -21,7 +21,7 @@ class MainViewModel : ViewModel() {
     var defaultMax: Float =.95f
     var defaultMin: Float =.25f
 
-    var plantName : String = "Plant name"
+    var plantName : String = "Ficus"
 
 //    lateinit var plantIcon : Drawable //nomi file immagini profilo
     var plantIconId : Int = R.drawable.ficusicon //nomi file immagini profilo
@@ -89,5 +89,4 @@ class MainViewModel : ViewModel() {
         setupSetted = v.setupSetted
         iconSelected = v.iconSelected
     }
-
 }

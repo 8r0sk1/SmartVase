@@ -37,6 +37,13 @@
                 android:layout_width="100dp"
                 android:layout_height="80dp"
                 android:indeterminate="true" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardTouchable"
+                android:layout_width="320dp"
+                android:layout_height="120dp"
+                android:visibility="invisible"
+                app:cardCornerRadius="15dp"></androidx.cardview.widget.CardView>
         </RelativeLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -397,16 +404,5 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardTouchable"
-        android:layout_width="320dp"
-        android:layout_height="120dp"
-        android:visibility="invisible"
-        app:cardCornerRadius="15dp"
-        app:layout_constraintBottom_toBottomOf="@+id/cardPlant1"
-        app:layout_constraintEnd_toEndOf="@+id/cardPlant1"
-        app:layout_constraintStart_toStartOf="@+id/cardPlant1"
-        app:layout_constraintTop_toTopOf="@+id/cardPlant1"></androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
