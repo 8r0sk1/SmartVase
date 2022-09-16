@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.RelativeLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -38,6 +39,7 @@ class LoginActivity : Fragment(R.layout.activity_login) {
         val loginBtn=view.findViewById<MaterialButton>(R.id.loginBtn)
         val emailLogin=view.findViewById<TextInputEditText>(R.id.emailLogin)
         val passwordLogin=view.findViewById<TextInputEditText>(R.id.passwordLogin)
+        val loading=view.findViewById<RelativeLayout>(R.id.loadingPanell)
 
         //supportActionBar?.title = "Login"
 
@@ -48,6 +50,8 @@ class LoginActivity : Fragment(R.layout.activity_login) {
         }
 
         loginBtn.setOnClickListener{
+            //(activity as MainActivity).writeInternalStorage("0;0")
+            loading.visibility=View.VISIBLE
             val email = emailLogin.text.toString()
             val password = passwordLogin.text.toString()
             if(email.isNotEmpty() && password.isNotEmpty())
@@ -61,9 +65,12 @@ class LoginActivity : Fragment(R.layout.activity_login) {
                         /*startActivity(Intent(this, SignIn::class.java))
                         finish()*/
                     }
+                    else loading.visibility=View.INVISIBLE
                 }.addOnFailureListener{
+                    loading.visibility=View.VISIBLE
                     Toast.makeText(this@LoginActivity.requireActivity(), it.localizedMessage, Toast.LENGTH_LONG).show()
                 }
+            else loading.visibility=View.INVISIBLE
         }
     }
 

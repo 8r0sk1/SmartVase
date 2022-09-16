@@ -9,8 +9,11 @@ import android.os.Bundle
 import android.os.Vibrator
 import android.graphics.BitmapFactory
 import android.graphics.Color
+import android.util.Log
 import android.widget.RemoteViews
+import android.widget.Toast
 import androidx.core.app.NotificationCompat
+
 class MainActivity : AppCompatActivity() {
 
     lateinit var notificationManager : NotificationManager
@@ -20,13 +23,23 @@ class MainActivity : AppCompatActivity() {
     private val description = "Test notification"
 
     //lateinit var alarmIntent: PendingIntent
+    val fileName = "logged.txt"
 
     //@SuppressLint("ShortAlarm")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        /*if(File(fileName).exists())
+            writeInternalStorage("0;0")
+        else*/
+        /*if (File(fileName).length() == 0L)
+            writeInternalStorage("0;0")
+*/writeInternalStorage("0;0")
+
         setContentView(R.layout.activity_main)
         supportActionBar?.hide()
+
+
         /*Intent(this, UpdateDBService::class.java).also { intent ->
             startService(intent)
         }
@@ -51,16 +64,17 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun writeInternalStorage(text: String) {
-        val fileName = "logged.txt"
         val fileBody = text
 
+        Toast.makeText(baseContext, "read "+applicationContext.openFileOutput(fileName, Context.MODE_PRIVATE).toString(), Toast.LENGTH_LONG).show()
         applicationContext.openFileOutput(fileName, Context.MODE_PRIVATE).use { output ->
+
             output.write(fileBody.toByteArray())
         }
     }
     //TODO per leggere utente (activity as MainActivity).readUser()
     fun readUser() : List<String> {
-        applicationContext.openFileInput("logged.txt").use { stream ->
+        applicationContext.openFileInput(fileName).use { stream ->
             val text = stream.bufferedReader().use {
                 it.readText()
             }

@@ -21,6 +21,7 @@ import com.google.android.material.switchmaterial.SwitchMaterial
 import com.google.firebase.auth.FirebaseAuth
 import it.polito.did.smartvase.MainActivity
 import it.polito.did.smartvase.R
+import kotlin.system.measureTimeMillis
 
 class Homepage : Fragment(R.layout.homepage) {
 
@@ -28,23 +29,7 @@ class Homepage : Fragment(R.layout.homepage) {
 
     fun Long.toBoolean() = this>0
     fun getDataFromDB(){
-        /*var goon=true
-        viewModel.auth.currentUser?.let {
-            viewModel.db.child("users").child(it.uid).child(viewModel.plantMacAddress).get().addOnSuccessListener {
-                if(it.value==null)
-                    goon=true
-            }.addOnFailureListener{
-                Toast.makeText(context, "Error getting data from DB", Toast.LENGTH_SHORT).show()
-            }
-        }
-*/
-        /*viewModel.db.child("plants").child(viewModel.plantMacAddress).get().addOnSuccessListener {
-            viewModel.plantMacAddress = it.value.toString()
-        }.addOnFailureListener{
-            Toast.makeText(context, "Error getting data from DB", Toast.LENGTH_SHORT).show()
-        }*/
-//        if(goon) {
-            viewModel.db.child("plants").child(viewModel.plantMacAddress).child("name").get()
+        viewModel.db.child("plants").child(viewModel.plantMacAddress).child("name").get()
                 .addOnSuccessListener {
                     viewModel.plantName = it.value.toString()
                     Log.d("caccaaaaa",viewModel.plantName)
@@ -104,10 +89,13 @@ class Homepage : Fragment(R.layout.homepage) {
                     }
                 }.addOnFailureListener {
                 Toast.makeText(context, "Error getting data from DB", Toast.LENGTH_SHORT).show()
-
             }
+        val elapsed = measureTimeMillis {
+            Thread.sleep(10000)
+            Log.d("ciaooooooo","aaaaaaaa")
+        }
     }
-    fun refreshFrag(){findNavController().navigate(R.id.action_homepage_to_homepage)}
+    fun refreshFrag(){if(viewModel.loggedIn) findNavController().navigate(R.id.action_homepage_to_homepage)}
 
     fun fastAccessNoLogin(user: String, psw:String){
         Log.d("account ",user+psw)
@@ -275,11 +263,11 @@ class Homepage : Fragment(R.layout.homepage) {
     }
 
 
-    /*override fun onResume() {
+    override fun onResume() {
         super.onResume()
         if(!viewModel.loggedIn)
             findNavController().navigate(R.id.action_homepage_to_registerActivity)
-    }*/
+    }
 
     fun goBack(){
         val a = Intent(Intent.ACTION_MAIN)
