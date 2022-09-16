@@ -50,6 +50,8 @@ class LoginActivity : Fragment(R.layout.activity_login) {
         }
 
         loginBtn.setOnClickListener{
+            loginBtn.isClickable=false
+            registerTV.isClickable=false
             //(activity as MainActivity).writeInternalStorage("0;0")
             loading.visibility=View.VISIBLE
             val email = emailLogin.text.toString()
@@ -70,7 +72,11 @@ class LoginActivity : Fragment(R.layout.activity_login) {
                     loading.visibility=View.VISIBLE
                     Toast.makeText(this@LoginActivity.requireActivity(), it.localizedMessage, Toast.LENGTH_LONG).show()
                 }
-            else loading.visibility=View.INVISIBLE
+            else {
+                loading.visibility=View.INVISIBLE
+                loginBtn.isClickable=true
+                registerTV.isClickable=true
+            }
         }
     }
 

@@ -42,7 +42,7 @@ class Profile : Fragment() {
 
         email.setText(viewModel.auth.currentUser?.email)
         logout.setOnClickListener {
-            viewModel.loggedIn=false
+            viewModel.auth.signOut()
             (activity as MainActivity).writeInternalStorage("0;0")
             findNavController().navigate(R.id.action_profile_to_homepage)
         }

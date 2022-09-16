@@ -66,7 +66,7 @@ class MainActivity : AppCompatActivity() {
     fun writeInternalStorage(text: String) {
         val fileBody = text
 
-        Toast.makeText(baseContext, "read "+applicationContext.openFileOutput(fileName, Context.MODE_PRIVATE).toString(), Toast.LENGTH_LONG).show()
+        //Toast.makeText(baseContext, "read "+applicationContext.openFileOutput(fileName, Context.MODE_PRIVATE).toString(), Toast.LENGTH_LONG).show()
         applicationContext.openFileOutput(fileName, Context.MODE_PRIVATE).use { output ->
 
             output.write(fileBody.toByteArray())

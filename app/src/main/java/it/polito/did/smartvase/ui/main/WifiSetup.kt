@@ -122,16 +122,15 @@ class WifiSetup : Fragment() {
 
     private fun wifiConnected() : Boolean {
         //if(getMac()=="SmartVase")
-        if (getSSid().substring(1, 9) == "SmartVas")
+        /*if (getSSid().substring(1, 9) == "SmartVas")
         {
             //viewModel.plantMacAddress=getSSid().replace(":","").substring(10)
             return true
-        }
+        }*/
         return viewModel.wifiPage
     }
     private fun getSSid() : String{
         wifiManager = context?.getSystemService(Context.WIFI_SERVICE) as WifiManager
-        Log.d("mamma", wifiManager.connectionInfo.toString())
         return wifiManager.connectionInfo.ssid
     }
 }

@@ -3,6 +3,7 @@ package it.polito.did.smartvase.ui.main
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -21,6 +22,8 @@ import com.google.android.material.switchmaterial.SwitchMaterial
 import com.google.firebase.auth.FirebaseAuth
 import it.polito.did.smartvase.MainActivity
 import it.polito.did.smartvase.R
+import java.util.*
+import kotlin.concurrent.schedule
 import kotlin.system.measureTimeMillis
 
 class Homepage : Fragment(R.layout.homepage) {
@@ -90,15 +93,11 @@ class Homepage : Fragment(R.layout.homepage) {
                 }.addOnFailureListener {
                 Toast.makeText(context, "Error getting data from DB", Toast.LENGTH_SHORT).show()
             }
-        val elapsed = measureTimeMillis {
-            Thread.sleep(10000)
-            Log.d("ciaooooooo","aaaaaaaa")
-        }
+
     }
-    fun refreshFrag(){if(viewModel.loggedIn) findNavController().navigate(R.id.action_homepage_to_homepage)}
+    fun refreshFrag(){findNavController().navigate(R.id.action_homepage_to_homepage)}
 
     fun fastAccessNoLogin(user: String, psw:String){
-        Log.d("account ",user+psw)
         viewModel.loggedIn=true
         viewModel.auth.signInWithEmailAndPassword(user, psw).addOnCompleteListener{
             if(it.isSuccessful){
@@ -107,17 +106,25 @@ class Homepage : Fragment(R.layout.homepage) {
 
             }
         }.addOnFailureListener{
-            Toast.makeText(this@Homepage.requireActivity(), it.localizedMessage, Toast.LENGTH_LONG).show()
+//            Toast.makeText(this@Homepage.requireActivity(), it.localizedMessage, Toast.LENGTH_LONG).show()
         }
+    }
+
+    var elapsed : Long =0
+    fun checkLog(){
+        if(viewModel.auth.getCurrentUser()==null)
+            findNavController().navigate(R.id.action_homepage_to_registerActivity)
+        else
+            elapsed = measureTimeMillis {
+                getDataFromDB()
+            }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel.auth = FirebaseAuth.getInstance()
+        checkLog()
 
-        getDataFromDB()
-
-        Log.d("userrr", viewModel.auth.currentUser.toString())
         viewModel.plantMacAddress="BC:FF:4D:5F:2E:51"
         //(activity as MainActivity).writeInternalStorage("vittorio@gmail.com;vittorio1234") //TODO se siamo in pericolo
         val account = (activity as MainActivity).readUser()
@@ -168,9 +175,17 @@ class Homepage : Fragment(R.layout.homepage) {
 
         val refresh = view.findViewById<ImageButton>(R.id.refresh1)
         val loading = view.findViewById<ConstraintLayout>(R.id.loading1)
-        //loading.visibility=View.VISIBLE
-        if(!viewModel.porcata)
+
+        if(viewModel.porcata) {
+            loading.visibility = View.VISIBLE
+            //Timer().schedule(1000){loading.visibility=View.GONE}
+        }
+        else
             loading.visibility=View.GONE
+
+
+        //loading.visibility=View.GONE
+
 
         if(!viewModel.plantCreated)
             hider.visibility=View.VISIBLE
@@ -262,11 +277,9 @@ class Homepage : Fragment(R.layout.homepage) {
 
     }
 
-
     override fun onResume() {
         super.onResume()
-        if(!viewModel.loggedIn)
-            findNavController().navigate(R.id.action_homepage_to_registerActivity)
+        checkLog()
     }
 
     fun goBack(){
