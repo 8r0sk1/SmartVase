@@ -41,6 +41,7 @@ class MainViewModel : ViewModel() {
     var porcata=true
     var wifiPage=false
 
+
     init {
         //TODO RICEVERE DA DATABASE VALORI DEFAULT
         //reset()

@@ -23,6 +23,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.database.FirebaseDatabase
 import it.polito.did.smartvase.MainActivity
 import it.polito.did.smartvase.R
+import kotlin.system.measureTimeMillis
 
 class Dashboard : Fragment() {
 
@@ -30,22 +31,6 @@ class Dashboard : Fragment() {
 
     fun Long.toBoolean() = this>0
     fun getDataFromDB(){
-        /*var goon=true
-        viewModel.auth.currentUser?.let {
-            viewModel.db.child("users").child(it.uid).child(viewModel.plantMacAddress).get().addOnSuccessListener {
-                if(it.value==null)
-                    goon=true
-            }.addOnFailureListener{
-                Toast.makeText(context, "Error getting data from DB", Toast.LENGTH_SHORT).show()
-            }
-        }
-*/
-        /*viewModel.db.child("plants").child(viewModel.plantMacAddress).get().addOnSuccessListener {
-            viewModel.plantMacAddress = it.value.toString()
-        }.addOnFailureListener{
-            Toast.makeText(context, "Error getting data from DB", Toast.LENGTH_SHORT).show()
-        }*/
-//        if(goon) {
         viewModel.db.child("plants").child(viewModel.plantMacAddress).child("name").get()
             .addOnSuccessListener {
                 viewModel.plantName = it.value.toString()
@@ -99,23 +84,27 @@ class Dashboard : Fragment() {
         viewModel.db.child("plants").child(viewModel.plantMacAddress).child("auto_mode").get()
             .addOnSuccessListener {
                 viewModel.auto = (it.value as Long).toBoolean()
+                Log.d("panettone", "ue buono")
                 if(viewModel.porcata) {
                     viewModel.porcata=false
                     refreshFrag()
                 }
             }.addOnFailureListener {
                 Toast.makeText(context, "Error getting data from DB", Toast.LENGTH_SHORT).show()
-
             }
+
     }
     fun refreshFrag(){findNavController().navigate(R.id.action_dashboard_to_dashboard)}
 
+    var elapsed : Long =0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val inflater = TransitionInflater.from(requireContext())
         enterTransition = inflater.inflateTransition(R.transition.fade)
         exitTransition = inflater.inflateTransition(R.transition.fade)
-        getDataFromDB()
+        elapsed = measureTimeMillis {
+            getDataFromDB()
+        }
     }
 
     override fun onCreateView(
@@ -151,8 +140,12 @@ class Dashboard : Fragment() {
 
         val refresh = view.findViewById<ImageButton>(R.id.refresh2)
         val loading = view.findViewById<ConstraintLayout>(R.id.loading2)
-        //loading.visibility=View.VISIBLE
-        if(!viewModel.porcata)
+
+        if(viewModel.porcata) {
+            loading.visibility = View.VISIBLE
+            //Timer().schedule(1000){loading.visibility=View.GONE}
+        }
+        else
             loading.visibility=View.GONE
 
         val barHeight=waterBar.translationY

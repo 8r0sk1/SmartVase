@@ -22,9 +22,6 @@ import com.google.android.material.switchmaterial.SwitchMaterial
 import com.google.firebase.auth.FirebaseAuth
 import it.polito.did.smartvase.MainActivity
 import it.polito.did.smartvase.R
-import java.util.*
-import kotlin.concurrent.schedule
-import kotlin.system.measureTimeMillis
 
 class Homepage : Fragment(R.layout.homepage) {
 
@@ -95,6 +92,15 @@ class Homepage : Fragment(R.layout.homepage) {
             }
 
     }
+    fun checkPlantList(){
+        viewModel.auth.currentUser?.let {
+            viewModel.db.child("users").child(it.uid).child("plant1").get().addOnSuccessListener {
+                viewModel.plantCreated = it.value != null
+            }.addOnFailureListener{
+                Toast.makeText(context, "Error getting data from DB", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
     fun refreshFrag(){findNavController().navigate(R.id.action_homepage_to_homepage)}
 
     fun fastAccessNoLogin(user: String, psw:String){
@@ -110,14 +116,14 @@ class Homepage : Fragment(R.layout.homepage) {
         }
     }
 
-    var elapsed : Long =0
+    //var elapsed : Long =0
     fun checkLog(){
         if(viewModel.auth.getCurrentUser()==null)
             findNavController().navigate(R.id.action_homepage_to_registerActivity)
-        else
-            elapsed = measureTimeMillis {
-                getDataFromDB()
-            }
+        else {
+            checkPlantList()
+            getDataFromDB()
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -178,18 +184,15 @@ class Homepage : Fragment(R.layout.homepage) {
 
         if(viewModel.porcata) {
             loading.visibility = View.VISIBLE
-            //Timer().schedule(1000){loading.visibility=View.GONE}
+            Handler().postDelayed({loading.visibility=View.GONE},1000)
         }
         else
             loading.visibility=View.GONE
-
-
-        //loading.visibility=View.GONE
-
-
+        Log.d("visibilititit",viewModel.plantCreated.toString())
         if(!viewModel.plantCreated)
             hider.visibility=View.VISIBLE
         else{
+            hider.visibility=View.GONE
             if(viewModel.waterLevel<.10){
                 plantCard.setBackgroundColor(0xCCDF0C49.toInt())
                 (activity as MainActivity).notification(viewModel.plantIconId,"Please load some water",(5*viewModel.waterLevel).toString()+" L left")
@@ -226,6 +229,7 @@ class Homepage : Fragment(R.layout.homepage) {
                         deleteConfirm.visibility=View.INVISIBLE
 
                         viewModel.db.child("users/" + viewModel.auth.currentUser?.uid).removeValue()
+                        //todo vladdo sei sicuro?????????????????????????????????????????
 
                         val snack = Snackbar.make(it, "Plant deleted", Snackbar.LENGTH_LONG)
                         snack.show()
