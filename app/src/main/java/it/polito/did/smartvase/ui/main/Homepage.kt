@@ -182,6 +182,8 @@ class Homepage : Fragment(R.layout.homepage) {
         val refresh = view.findViewById<ImageButton>(R.id.refresh1)
         val loading = view.findViewById<ConstraintLayout>(R.id.loading1)
 
+        val waterMax = 0.15
+
         if(viewModel.porcata) {
             loading.visibility = View.VISIBLE
             Handler().postDelayed({loading.visibility=View.GONE},1000)
@@ -199,7 +201,7 @@ class Homepage : Fragment(R.layout.homepage) {
             Log.d("eeehssssi","cliccabile")
             if(viewModel.waterLevel<.10){
                 plantCard.setBackgroundColor(0xCCDF0C49.toInt())
-                (activity as MainActivity).notification(viewModel.plantIconId,"Please load some water",(5*viewModel.waterLevel).toString()+" L left")
+                (activity as MainActivity).notification(viewModel.plantIconId,"Please load some water",(waterMax * viewModel.waterLevel).toString().substring(0,4) + " L left")
                 if(viewModel.soilMoisture<viewModel.defaultMin) {
                     (activity as MainActivity).notification(viewModel.plantIconId,"Please water this plant",(viewModel.soilMoisture*100).toInt().toString()+"% Soil moisture")
                     soilAlert.visibility = View.VISIBLE
@@ -237,6 +239,8 @@ class Homepage : Fragment(R.layout.homepage) {
 
                         val snack = Snackbar.make(it, "Plant deleted", Snackbar.LENGTH_LONG)
                         snack.show()
+
+                        refreshFrag()
                     }
                     deleteNo.setOnClickListener {
                         deleteConfirm.visibility = View.INVISIBLE

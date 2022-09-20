@@ -100,6 +100,10 @@ class PlantSetup2 : Fragment() {
             viewModel.defaultMin=barMin.progress*0.01f
             viewModel.plantCreated=true
             viewModel.db.child("users/" + viewModel.auth.currentUser?.uid + "/plant1").setValue(viewModel.plantMacAddress)
+            viewModel.db.child("plants/" + viewModel.plantMacAddress).child("imagePlant").setValue(viewModel.plantIconId)
+            viewModel.db.child("plants/" + viewModel.plantMacAddress).child("name").setValue(viewModel.plantName)
+            viewModel.db.child("plants/" + viewModel.plantMacAddress).child("soilMoistureMax").setValue(viewModel.defaultMax)
+            viewModel.db.child("plants/" + viewModel.plantMacAddress).child("soilMoistureMin").setValue(viewModel.defaultMin)
             //TODO VLAD aggiungere viewmodel.mac come valore di User->viewmodel.idutente->plant1
             findNavController().navigate(R.id.action_plantSetup2_to_dashboard) }
     }

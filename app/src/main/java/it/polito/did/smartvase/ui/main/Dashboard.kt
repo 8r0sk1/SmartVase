@@ -141,6 +141,8 @@ class Dashboard : Fragment() {
         val refresh = view.findViewById<ImageButton>(R.id.refresh2)
         val loading = view.findViewById<ConstraintLayout>(R.id.loading2)
 
+        val waterMax = 0.15
+
         if(viewModel.porcata) {
             loading.visibility = View.VISIBLE
             //Timer().schedule(1000){loading.visibility=View.GONE}
@@ -151,7 +153,7 @@ class Dashboard : Fragment() {
         val barHeight=waterBar.translationY
         if(viewModel.waterLevel<.10) {
             waterAlert.visibility = View.VISIBLE
-            (activity as MainActivity).notification(viewModel.plantIconId,"Please load some water",(5 * viewModel.waterLevel).toString() + " L left")
+            (activity as MainActivity).notification(viewModel.plantIconId,"Please load some water",(waterMax * viewModel.waterLevel).toString().substring(0,4) + " L left")
         }
         if(viewModel.soilMoisture<viewModel.defaultMin) {
             (activity as MainActivity).notification(viewModel.plantIconId,"Please water this plant",(viewModel.soilMoisture*100).toInt().toString()+"% Soil moisture")
@@ -163,7 +165,7 @@ class Dashboard : Fragment() {
         plantIcon?.setImageResource(viewModel.plantIconId)
 
         //testo percentuale riempimento
-        WaterLevelPercentage?.text= (5*viewModel.waterLevel).toString()+"L"
+        WaterLevelPercentage?.text= (waterMax*viewModel.waterLevel).toString().substring(0,4)+"L"
         SoilMoisturePercentage?.text= (viewModel.soilMoisture*100).toInt().toString()+"%"
 
         //divisori barre
@@ -196,7 +198,6 @@ class Dashboard : Fragment() {
                 waterButton(autoWaterButton, offText, false)
                 viewModel.db.child("plants").child(viewModel.plantMacAddress).child("auto_mode").setValue(0)
             }
-            viewModel.ref.setValue(1) //TODO VLADDO da cambiare il path della reference in mainviewmodel
             return@setOnLongClickListener true
         }
 
@@ -208,8 +209,11 @@ class Dashboard : Fragment() {
             viewModel.notification = !viewModel.notification
             notification(notificationButton,notificationState,viewModel.notification)
             (activity as MainActivity).vibration(true)
+            viewModel.db.child("plants").child(viewModel.plantMacAddress).child("notify_mode").setValue(viewModel.notification.toInt())
         }
     }
+
+    fun Boolean.toInt() = if (this) 1 else 0
 
     @RequiresApi(Build.VERSION_CODES.M)
     @SuppressLint("SetTextI18n")
