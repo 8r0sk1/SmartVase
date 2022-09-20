@@ -159,6 +159,10 @@ class Dashboard : Fragment() {
             (activity as MainActivity).notification(viewModel.plantIconId,"Please water this plant",(viewModel.soilMoisture*100).toInt().toString()+"% Soil moisture")
             soilAlert.visibility = View.VISIBLE
         }
+        if(viewModel.soilMoisture>viewModel.defaultMax) {
+            (activity as MainActivity).notification(viewModel.plantIconId,"Too much water",(viewModel.soilMoisture*100).toInt().toString()+"% Soil moisture")
+            soilAlert.visibility = View.VISIBLE
+        }
 
         //popolamento viste
         plantName?.setText(viewModel.plantName)

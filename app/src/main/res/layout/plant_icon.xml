@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/plantSelection5"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -14,17 +15,22 @@
         android:id="@+id/cardViewAddPlant5"
         android:layout_width="100dp"
         android:layout_height="100dp"
+        app:cardBackgroundColor="#00FDF7F7"
         app:cardCornerRadius="10dp"
         app:cardElevation="0dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_marginLeft="2dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="2dp"
+            android:orientation="horizontal">
 
             <ImageView
                 android:id="@+id/plantIcon5"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:adjustViewBounds="true"
                 android:scaleType="fitCenter"
                 android:src="@mipmap/ic_launcher"
@@ -49,32 +55,43 @@
         android:textColor="@color/black"
         android:textSize="20sp" />
 
-    <TextView
-        android:id="@+id/defaultMin5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_toEndOf="@+id/Type5"
-        android:text="35" />
-
-    <TextView
-        android:id="@+id/defaultMax5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/Type5"
-        android:layout_marginTop="-19dp"
-        android:layout_toEndOf="@+id/Type5"
-        android:text="55" />
-
-    <TextView
-        android:id="@+id/defaultValues"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/Type5"
-        android:layout_alignStart="@+id/defaultMin5"
-        android:layout_alignTop="@+id/cardViewAddPlant5"
-        android:layout_marginStart="-10dp"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="115dp"
+        android:layout_height="95dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
         android:layout_marginTop="0dp"
-        android:layout_marginBottom="-43dp"
-        android:text="Default Soil Moisture %" />
+        android:layout_marginEnd="5dp">
+
+        <TextView
+            android:id="@+id/defaultValues"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="60dp"
+            android:text="Default Soil Moisture %"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/defaultMin5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:text="35"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/defaultMax5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="55"
+            app:layout_constraintEnd_toEndOf="@+id/defaultValues"
+            app:layout_constraintStart_toEndOf="@+id/defaultMin5"
+            app:layout_constraintTop_toTopOf="@+id/defaultMin5" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 </RelativeLayout>
