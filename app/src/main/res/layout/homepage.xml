@@ -315,7 +315,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
                 android:contentDescription="@string/plantcard"
-                android:foreground="@drawable/waterendbar"
+                android:foreground="@drawable/cool_bg"
                 android:scaleX="1.5"
                 android:src="@mipmap/ic_launcher"
                 android:translationY="120dp"

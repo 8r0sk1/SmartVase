@@ -168,7 +168,7 @@ class Homepage : Fragment(R.layout.homepage) {
         val deleteNo = view.findViewById<Button>(R.id.deleteNo1)
         val deleteYes = view.findViewById<Button>(R.id.deleteYes1)
         var removing = false
-        val hider = view.findViewById<ImageView>(R.id.hider1)
+        //val hider = view.findViewById<ImageView>(R.id.hider1)
         val bg = view.findViewById<ConstraintLayout>(R.id.constraintLayout1)
 
         val plantCard = view.findViewById<CardView>(R.id.cardPlant1)
@@ -188,11 +188,15 @@ class Homepage : Fragment(R.layout.homepage) {
         }
         else
             loading.visibility=View.GONE
-        Log.d("visibilititit",viewModel.plantCreated.toString())
-        if(!viewModel.plantCreated)
-            hider.visibility=View.VISIBLE
+
+        if(!viewModel.plantCreated) {
+            //hider.visibility = View.VISIBLE
+            plantCard.visibility=View.GONE
+            Log.d("noooon",viewModel.plantCreated.toString())
+        }
         else{
-            hider.visibility=View.GONE
+            plantCard.visibility=View.VISIBLE
+            Log.d("eeehssssi","cliccabile")
             if(viewModel.waterLevel<.10){
                 plantCard.setBackgroundColor(0xCCDF0C49.toInt())
                 (activity as MainActivity).notification(viewModel.plantIconId,"Please load some water",(5*viewModel.waterLevel).toString()+" L left")
@@ -223,7 +227,7 @@ class Homepage : Fragment(R.layout.homepage) {
                         (activity as MainActivity).vibration(false)
 
                         removePlant.visibility = View.INVISIBLE
-                        hider.visibility = View.VISIBLE
+                        //hider.visibility = View.VISIBLE
                         viewModel.reset()
                         removing=false
                         deleteConfirm.visibility=View.INVISIBLE

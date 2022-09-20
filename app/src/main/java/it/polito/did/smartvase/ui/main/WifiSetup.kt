@@ -70,8 +70,11 @@ class WifiSetup : Fragment() {
                     if (viewModel.plantCreated) {
                         val snack = Snackbar.make(view, "Already connected", Snackbar.LENGTH_LONG)
                         snack.show()
-                    } else
+                    } else {
+                        viewModel.plantName="Plant Name"
+                        viewModel.plantIconId= android.R.drawable.toast_frame
                         findNavController().navigate(R.id.action_wifisetup_to_plantsetup)
+                    }
                 }.addOnFailureListener {
                     val snack = Snackbar.make(view, "DB Connection Lost.", Snackbar.LENGTH_SHORT)
                     snack.show()
