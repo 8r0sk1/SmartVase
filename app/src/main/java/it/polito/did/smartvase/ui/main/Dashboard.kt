@@ -153,14 +153,14 @@ class Dashboard : Fragment() {
         val barHeight=waterBar.translationY
         if(viewModel.waterLevel<.10) {
             waterAlert.visibility = View.VISIBLE
-            (activity as MainActivity).notification(viewModel.plantIconId,"Please load some water",(waterMax * viewModel.waterLevel).toString().substring(0,4) + " L left")
+            if(viewModel.notification) (activity as MainActivity).notification(viewModel.plantIconId,"Please load some water",(waterMax * viewModel.waterLevel).toString().substring(0,4) + " L left")
         }
         if(viewModel.soilMoisture<viewModel.defaultMin) {
-            (activity as MainActivity).notification(viewModel.plantIconId,"Please water this plant",(viewModel.soilMoisture*100).toInt().toString()+"% Soil moisture")
+            if(viewModel.notification) (activity as MainActivity).notification(viewModel.plantIconId,"Please water this plant",(viewModel.soilMoisture*100).toInt().toString()+"% Soil moisture")
             soilAlert.visibility = View.VISIBLE
         }
         if(viewModel.soilMoisture>viewModel.defaultMax) {
-            (activity as MainActivity).notification(viewModel.plantIconId,"Too much water",(viewModel.soilMoisture*100).toInt().toString()+"% Soil moisture")
+            if(viewModel.notification) (activity as MainActivity).notification(viewModel.plantIconId,"Too much water",(viewModel.soilMoisture*100).toInt().toString()+"% Soil moisture")
             soilAlert.visibility = View.VISIBLE
         }
 

@@ -201,9 +201,9 @@ class Homepage : Fragment(R.layout.homepage) {
             Log.d("eeehssssi","cliccabile")
             if(viewModel.waterLevel<.10){
                 plantCard.setBackgroundColor(0xCCDF0C49.toInt())
-                (activity as MainActivity).notification(viewModel.plantIconId,"Please load some water",(waterMax * viewModel.waterLevel).toString().substring(0,4) + " L left")
+                if(viewModel.notification) (activity as MainActivity).notification(viewModel.plantIconId,"Please load some water",(waterMax * viewModel.waterLevel).toString().substring(0,4) + " L left")
                 if(viewModel.soilMoisture<viewModel.defaultMin) {
-                    (activity as MainActivity).notification(viewModel.plantIconId,"Please water this plant",(viewModel.soilMoisture*100).toInt().toString()+"% Soil moisture")
+                    if(viewModel.notification) (activity as MainActivity).notification(viewModel.plantIconId,"Please water this plant",(viewModel.soilMoisture*100).toInt().toString()+"% Soil moisture")
                     soilAlert.visibility = View.VISIBLE
                 }
             }
