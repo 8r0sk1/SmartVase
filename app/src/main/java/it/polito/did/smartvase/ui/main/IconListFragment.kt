@@ -37,16 +37,12 @@ class IconListFragment : Fragment() {
 
         //Inizializzazione icone
         val Icons = arrayListOf<PlantIcon>()
-        Icons.add(PlantIcon(R.drawable.nficusicon,"Ficus", 50, 25))
-        Icons.add(PlantIcon(R.drawable.nficusicon,"Gianni", 50, 25))
-        Icons.add(PlantIcon(R.drawable.nficusicon,"Franco", 50, 25))
-        Icons.add(PlantIcon(R.drawable.nficusicon,"DottorCisafrulli", 50, 25))
-        Icons.add(PlantIcon(R.drawable.nficusicon,"Vlad", 50, 25))
-        Icons.add(PlantIcon(R.drawable.nficusicon,"Ciruzzo", 50, 25))
-        Icons.add(PlantIcon(R.drawable.nficusicon,"Vlad", 50, 25))
-        Icons.add(PlantIcon(R.drawable.nficusicon,"Vlad", 50, 25))
-        Icons.add(PlantIcon(R.drawable.nficusicon,"Vlad", 50, 25))
-        Icons.add(PlantIcon(R.drawable.nficusicon,"Vlad", 50, 25))
+        Icons.add(PlantIcon(R.drawable.nficusicon,"Ficus", 50, 40))
+        Icons.add(PlantIcon(R.drawable.aloeicon,"Aloe", 60, 45))
+        Icons.add(PlantIcon(R.drawable.monsteraicon,"Monstera", 90, 65))
+        Icons.add(PlantIcon(R.drawable.dracaenaicon,"Dracaena", 80, 60))
+        Icons.add(PlantIcon(R.drawable.snakeplanticon,"Snake", 40, 20))
+        Icons.add(PlantIcon(R.drawable.photosicon,"General Plant", 70, 40))
 
         //Mostra le voci come lista lineare
         recyclerView?.layoutManager =LinearLayoutManager(this.context)

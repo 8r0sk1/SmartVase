@@ -169,11 +169,12 @@ class Settings : Fragment() {
             goBack()
         }
         next.setOnClickListener {
+            viewModel.db.child("plants/" + viewModel.plantMacAddress).child("soilMoistureMin").setValue(barMin.progress*0.01f)
+            viewModel.db.child("plants/" + viewModel.plantMacAddress).child("soilMoistureMax").setValue(barMax.progress*0.01f)
             viewModel.defaultMax=barMax.progress*0.01f
             viewModel.defaultMin=barMin.progress*0.01f
             viewModel.plantName=plantName.text.toString()
-            viewModel.db.child("plants/" + viewModel.plantMacAddress).child("soilMoistureMin").setValue(viewModel.defaultMin)
-            viewModel.db.child("plants/" + viewModel.plantMacAddress).child("soilMoistureMax").setValue(viewModel.defaultMax)
+
 
             findNavController().navigate(R.id.action_settings_to_dashboard) }
     }
